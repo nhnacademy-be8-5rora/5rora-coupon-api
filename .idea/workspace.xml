@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f69c862f-3061-4181-a199-63e664ff56d6" name="변경" comment=".">
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/entity/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/entity/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/entity/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/controller/IndexController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +99,7 @@
       <workItem from="1733813957872" duration="58000" />
       <workItem from="1733814038195" duration="457000" />
       <workItem from="1733814499554" duration="134000" />
-      <workItem from="1733814641868" duration="2453000" />
+      <workItem from="1733814641868" duration="3074000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -166,7 +165,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733816938128</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary=".">
+      <option name="closed" value="true" />
+      <created>1733817105501</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1733817105501</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
