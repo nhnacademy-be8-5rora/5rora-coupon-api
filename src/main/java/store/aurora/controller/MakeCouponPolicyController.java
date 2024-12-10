@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import store.aurora.entity.CouponPolicy;
 import store.aurora.service.CouponPolicyService;
 
+//관리자용 쿠폰 생성 및 배포용
 @Controller
 @RequestMapping("/admin")
 public class MakeCouponPolicyController {
