@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f69c862f-3061-4181-a199-63e664ff56d6" name="변경" comment=".">
-      <change afterPath="$PROJECT_DIR$/src/main/java/store/aurora/entity/BookPolicy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/store/aurora/entity/CategoryPolicy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/store/aurora/entity/CouponPolicy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/store/aurora/entity/CouponState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/store/aurora/entity/DiscountRule.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/store/aurora/entity/UserCoupon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/entity/UserCoupon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/entity/UserCoupon.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +99,7 @@
       <workItem from="1733813957872" duration="58000" />
       <workItem from="1733814038195" duration="457000" />
       <workItem from="1733814499554" duration="134000" />
-      <workItem from="1733814641868" duration="1118000" />
+      <workItem from="1733814641868" duration="1473000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -147,11 +141,30 @@
       <option name="project" value="LOCAL" />
       <updated>1733814321930</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary=".">
+      <option name="closed" value="true" />
+      <created>1733815801551</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1733815801551</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="." />

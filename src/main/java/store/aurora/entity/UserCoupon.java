@@ -13,9 +13,8 @@ public class UserCoupon {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @ManyToOne(optional = false)
-//    @JoinColumn(name = "user_id", nullable = false)
-//    private User user;
+    @JoinColumn(name = "user_id", nullable = false)
+    private String userId;
 
     @Column(nullable = false)
     private String couponCode;
