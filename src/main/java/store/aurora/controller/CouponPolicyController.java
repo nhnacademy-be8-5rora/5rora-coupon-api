@@ -58,7 +58,7 @@ private ResponseEntity<String> handleValidationErrors(BindingResult bindingResul
 
     // 쿠폰정책 생성 (관리자)
     @PostMapping(value = "/coupon/create")
-    public ResponseEntity<String> couponCreate(@RequestBody @Valid CouponRequestDto couponRequestDto,
+    public ResponseEntity<String> couponPolicyCreate(@RequestBody @Valid CouponRequestDto couponRequestDto,
                                                BindingResult bindingResult) { //@Valid 유효 검증
 
         // 유효성 검사(BindingResult -> 폼 데이터 검증후 오류 데이터 정보 담음
@@ -67,7 +67,8 @@ private ResponseEntity<String> handleValidationErrors(BindingResult bindingResul
             return errorResponse;
         }
 
-        couponPolicyService.couponCreate(couponRequestDto);  // 실제 쿠폰 생성 처리
+        couponPolicyService.couponPolicyCreate(couponRequestDto);  // 실제 쿠폰 생성 처리
+
         return ResponseEntity.ok("쿠폰정보가 생성되었습니다.");
     }
 
@@ -97,9 +98,15 @@ private ResponseEntity<String> handleValidationErrors(BindingResult bindingResul
     @PostMapping("/coupon-distribution")
     public ResponseEntity<String> giveCouponToUser(@RequestBody @Valid CouponRequestDto couponRequestDto,
                                                    BindingResult bindingResult) {
-        couponPolicyService.userCouponCreate(new CouponRequestDto());
 
-        return ResponseEntity.ok("유저 쿠폰이 생성되었습니다.");
+        ResponseEntity<String> errorResponse = handleValidationErrors(bindingResult);
+        if (errorResponse != null) {
+            return errorResponse;
+        }
+
+        couponPolicyService.userCouponCreate(couponRequestDto);
+
+        return ResponseEntity.ok("유저쿠폰이 생성되었습니다.");
     }
 
 }

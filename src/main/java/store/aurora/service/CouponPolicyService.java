@@ -31,14 +31,12 @@ public class CouponPolicyService {
         }
     }
 
-    public void createCouponPolicy(CouponPolicy couponPolicy) {
+    public void couponPolicyCreate(@Valid CouponRequestDto couponRequestDto) {
 
-    }
-
-    public void couponCreate(@Valid CouponRequestDto couponRequestDto) {
     }
 
     public void couponUpdate(@Valid CouponRequestDto couponRequestDto, String couponId) {
+
     }
 
     public void couponDelete(String couponId) {
