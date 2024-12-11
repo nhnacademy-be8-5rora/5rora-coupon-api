@@ -23,7 +23,6 @@ public class BookPolicy {
     @ManyToOne(optional = false)
     @JoinColumn(name = "discount_rule_id", nullable = false)
     private DiscountRule discountRule;
-
-    // Getters and Setters
+    
 }
 

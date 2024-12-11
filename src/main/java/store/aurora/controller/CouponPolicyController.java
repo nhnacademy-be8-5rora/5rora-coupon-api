@@ -95,7 +95,8 @@ private ResponseEntity<String> handleValidationErrors(BindingResult bindingResul
 
     //todo 관리자가 입력한 쿠폰을 주는 명령어(특정 한명에게 줄 수 있으며, 특정 조건을 충족한 유저들에게 쿠폰을 뿌릴 수 있도록 함)
     @PostMapping("/coupon-distribution")
-    public ResponseEntity<String> giveCouponToUser() {
+    public ResponseEntity<String> giveCouponToUser(@RequestBody @Valid CouponRequestDto couponRequestDto,
+                                                   BindingResult bindingResult) {
         couponPolicyService.userCouponCreate(new CouponRequestDto());
 
         return ResponseEntity.ok("유저 쿠폰이 생성되었습니다.");

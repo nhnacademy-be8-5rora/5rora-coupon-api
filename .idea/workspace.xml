@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="f69c862f-3061-4181-a199-63e664ff56d6" name="변경" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/dto/RequestCouponPolicyDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/dto/RequestCouponPolicyDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/entity/CouponState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/entity/CouponState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/entity/UserCoupon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/entity/UserCoupon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/controller/CouponPolicyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/controller/CouponPolicyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/dto/CouponRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/dto/CouponRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/entity/BookPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/entity/BookPolicy.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +112,7 @@
       <workItem from="1733813957872" duration="58000" />
       <workItem from="1733814038195" duration="457000" />
       <workItem from="1733814499554" duration="134000" />
-      <workItem from="1733814641868" duration="14317000" />
+      <workItem from="1733814641868" duration="17265000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -266,7 +266,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733883620865</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary=".">
+      <option name="closed" value="true" />
+      <created>1733884050283</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1733884050283</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
