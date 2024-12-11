@@ -19,5 +19,9 @@ public class CouponPolicyService {
     }
 
     public void couponDelete(String couponId) {
+
+    }
+
+    public void userCouponCreate(CouponRequestDto couponRequestDto) {
     }
 }

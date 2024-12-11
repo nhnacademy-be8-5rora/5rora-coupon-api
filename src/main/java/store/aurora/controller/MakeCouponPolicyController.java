@@ -4,12 +4,9 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import store.aurora.dto.CouponRequestDto;
-import store.aurora.entity.CouponPolicy;
 import store.aurora.service.CouponPolicyService;
 
 //관리자용 쿠폰 생성 및 배포용
@@ -59,11 +56,12 @@ private ResponseEntity<String> handleValidationErrors(BindingResult bindingResul
     return null; // 에러가 없으면 null 반환
 }
 
-    // 쿠폰 생성 (관리자)
+    // 쿠폰정책 생성 (관리자)
     @PostMapping(value = "/coupon/create")
     public ResponseEntity<String> couponCreate(@RequestBody @Valid CouponRequestDto couponRequestDto,
-                                               BindingResult bindingResult) {
-        // 유효성 검사
+                                               BindingResult bindingResult) { //@Valid 유효 검증
+
+        // 유효성 검사(BindingResult -> 폼 데이터 검증후 오류 데이터 정보 담음
         ResponseEntity<String> errorResponse = handleValidationErrors(bindingResult);
         if (errorResponse != null) {
             return errorResponse;
@@ -73,10 +71,10 @@ private ResponseEntity<String> handleValidationErrors(BindingResult bindingResul
         return ResponseEntity.ok("쿠폰정보가 생성되었습니다.");
     }
 
-    // 쿠폰 수정 (관리자)
-    @PutMapping(value = "/coupon/update/{couponId}")
+    // 쿠폰정책 수정 (관리자)
+    @PutMapping(value = "/coupon/update/{couponPolicyId}")
     public ResponseEntity<String> couponUpdate(@RequestBody @Valid CouponRequestDto couponRequestDto,
-                                               @PathVariable("couponId") String couponId,
+                                               @PathVariable("couponPolicyId") String couponId,
                                                BindingResult bindingResult) {
         // 유효성 검사
         ResponseEntity<String> errorResponse = handleValidationErrors(bindingResult);
@@ -89,10 +87,18 @@ private ResponseEntity<String> handleValidationErrors(BindingResult bindingResul
     }
 
     // 쿠폰 삭제 (관리자)
-    @DeleteMapping(value = "/coupon/delete/{couponId}")
-    public ResponseEntity<String> couponDelete(@PathVariable("couponId") String couponId) {
+    @DeleteMapping(value = "/coupon/delete/{couponPolicyId}")
+    public ResponseEntity<String> couponDelete(@PathVariable("couponPolicyId") String couponId) {
         couponPolicyService.couponDelete(couponId);  // 실제 쿠폰 삭제 처리
         return ResponseEntity.ok("쿠폰정보가 삭제되었습니다.");
+    }
+
+    //todo 관리자가 입력한 쿠폰을 주는 명령어(특정 한명에게 줄 수 있으며, 특정 조건을 충족한 유저들에게 쿠폰을 뿌릴 수 있도록 함)
+    @PostMapping("/coupon-distribution")
+    public ResponseEntity<String> giveCouponToUser() {
+        couponPolicyService.userCouponCreate(new CouponRequestDto());
+
+        return ResponseEntity.ok("유저 쿠폰이 생성되었습니다.");
     }
 
 }
