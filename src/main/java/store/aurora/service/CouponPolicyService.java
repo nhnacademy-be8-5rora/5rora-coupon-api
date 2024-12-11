@@ -38,13 +38,13 @@ public class CouponPolicyService {
 
     }
 
-    public void couponUpdate(@Valid CouponRequestDto couponRequestDto, String couponId) {
+    public void couponUpdate(@Valid CouponRequestDto couponRequestDto) {
 
     }
 
-    public void couponDelete(String couponId) {
-
-    }
+//    public void couponDelete(String couponId) {
+//
+//    }
 
     public void userCouponCreate(CouponRequestDto couponRequestDto) {
     }
