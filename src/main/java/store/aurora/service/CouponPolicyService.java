@@ -34,14 +34,18 @@ public class CouponPolicyService {
 
     }
 
+    //사용자 쿠폰 수정
     public void couponUpdate(@Valid RequestCouponDto requestCouponDto) {
 
     }
 
-//    public void couponDelete(String couponId) {
-//
-//    }
-
+    //사용자 쿠폰 생성
     public void userCouponCreate(RequestCouponDto requestCouponDto) {
+
     }
+
+    //사용자 쿠폰 삭제 굳이 필요한가 싶어서 킵
+    //    public void couponDelete(String couponId) {
+    //
+    //    }
 }
