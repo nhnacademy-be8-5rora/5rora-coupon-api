@@ -31,6 +31,4 @@ public class DiscountRule {
 
     @OneToMany(mappedBy = "discountRule", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CategoryPolicy> categoryPolicies;
-
-    // Getters and Setters
 }
