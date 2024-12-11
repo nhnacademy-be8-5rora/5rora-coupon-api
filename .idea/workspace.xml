@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f69c862f-3061-4181-a199-63e664ff56d6" name="변경" comment=".">
+      <change afterPath="$PROJECT_DIR$/src/main/java/store/aurora/entity/SaleType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/controller/AdminCouponController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/controller/AdminCouponController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/dto/CouponRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/dto/RequestCouponDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/dto/RequestCouponPolicyDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/dto/RequestCouponPolicyDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/service/CouponPolicyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/service/CouponPolicyService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -18,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -113,7 +117,7 @@
       <workItem from="1733814499554" duration="134000" />
       <workItem from="1733814641868" duration="18578000" />
       <workItem from="1733898889080" duration="1050000" />
-      <workItem from="1733900311160" duration="1207000" />
+      <workItem from="1733900311160" duration="2243000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -299,7 +303,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733899821341</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary=".">
+      <option name="closed" value="true" />
+      <created>1733902059975</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1733902059975</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

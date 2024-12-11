@@ -2,19 +2,14 @@ package store.aurora.service;
 
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
-import store.aurora.dto.CouponRequestDto;
+import store.aurora.dto.RequestCouponDto;
 import store.aurora.dto.RequestCouponPolicyDTO;
-import store.aurora.entity.CouponPolicy;
 
-import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import store.aurora.exception.CouponInsertException;
 import store.aurora.repository.CouponPolicyRepository;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CouponPolicyService {
@@ -34,11 +29,12 @@ public class CouponPolicyService {
         }
     }
 
-    public void couponPolicyCreate(@Valid CouponRequestDto couponRequestDto) {
+    //쿠폰 정책 생성
+    public void couponPolicyCreate(@Valid RequestCouponDto requestCouponDto) {
 
     }
 
-    public void couponUpdate(@Valid CouponRequestDto couponRequestDto) {
+    public void couponUpdate(@Valid RequestCouponDto requestCouponDto) {
 
     }
 
@@ -46,6 +42,6 @@ public class CouponPolicyService {
 //
 //    }
 
-    public void userCouponCreate(CouponRequestDto couponRequestDto) {
+    public void userCouponCreate(RequestCouponDto requestCouponDto) {
     }
 }

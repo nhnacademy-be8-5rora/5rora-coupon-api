@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import store.aurora.dto.CouponRequestDto;
+import store.aurora.dto.RequestCouponDto;
 import store.aurora.service.CouponPolicyService;
 
 //관리자용 쿠폰 생성 및 배포용
@@ -50,7 +50,7 @@ public class AdminCouponController {
 // BindingResult 검증을 처리하는 메서드
 private ResponseEntity<String> handleValidationErrors(BindingResult bindingResult) {
     if (bindingResult.hasErrors()) {
-        String errorMessage = bindingResult.getAllErrors().get(0).getDefaultMessage();
+        String errorMessage = bindingResult.getAllErrors().getFirst().getDefaultMessage();
         return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
     }
     return null; // 에러가 없으면 null 반환
@@ -58,7 +58,7 @@ private ResponseEntity<String> handleValidationErrors(BindingResult bindingResul
 
     // 쿠폰정책 생성 (관리자) -> 쿠폰 정책은 생성밖에 안됨(정책 수정, 삭제시 -> 그 전에 이미 그 쿠폰을 가진 유저들이 피해를 볼 수 있음)
     @PostMapping(value = "/coupon/create")
-    public ResponseEntity<String> couponPolicyCreate(@RequestBody @Valid CouponRequestDto couponRequestDto,
+    public ResponseEntity<String> couponPolicyCreate(@RequestBody @Valid RequestCouponDto requestCouponDto,
                                                BindingResult bindingResult) { //@Valid 유효 검증
 
         // 유효성 검사(BindingResult -> 폼 데이터 검증후 오류 데이터 정보 담음
@@ -67,14 +67,14 @@ private ResponseEntity<String> handleValidationErrors(BindingResult bindingResul
             return errorResponse;
         }
 
-        couponPolicyService.couponPolicyCreate(couponRequestDto);  // 실제 쿠폰 생성 처리
+        couponPolicyService.couponPolicyCreate(requestCouponDto);  // 실제 쿠폰 생성 처리
 
         return ResponseEntity.ok("쿠폰정보가 생성되었습니다.");
     }
 
     // 사용자쿠폰 수정 (관리자)
     @PutMapping(value = "/coupon/update/")
-    public ResponseEntity<String> couponUpdate(@RequestBody @Valid CouponRequestDto couponRequestDto,
+    public ResponseEntity<String> couponUpdate(@RequestBody @Valid RequestCouponDto requestCouponDto,
                                                BindingResult bindingResult) {
         // 유효성 검사
         ResponseEntity<String> errorResponse = handleValidationErrors(bindingResult);
@@ -82,20 +82,21 @@ private ResponseEntity<String> handleValidationErrors(BindingResult bindingResul
             return errorResponse;
         }
 
-        couponPolicyService.couponUpdate(couponRequestDto);  // 실제 쿠폰 수정 처리
+        couponPolicyService.couponUpdate(requestCouponDto);  // 실제 쿠폰 수정 처리
         return ResponseEntity.ok("사용자쿠폰이 수정되었습니다.");
     }
 
-//    // 사용자쿠폰 삭제 (관리자/자동)
-//    @DeleteMapping(value = "/coupon/delete/{userCouponId}")
-//    public ResponseEntity<String> couponDelete(@PathVariable("userCouponId") String couponId) {
-//        couponPolicyService.couponDelete(couponId);  // 실제 쿠폰 삭제 처리
-//        return ResponseEntity.ok("사용자쿠폰이 삭제되었습니다.");
-//    }
+    /* 사용자쿠폰 삭제 (관리자/자동)
+        @DeleteMapping(value = "/coupon/delete/{userCouponId}")
+        public ResponseEntity<String> couponDelete(@PathVariable("userCouponId") String couponId) {
+            couponPolicyService.couponDelete(couponId);  // 실제 쿠폰 삭제 처리
+            return ResponseEntity.ok("사용자쿠폰이 삭제되었습니다.");
+        }
+    */
 
     //todo 관리자가 입력한 쿠폰을 주는 명령어(특정 한명에게 줄 수 있으며, 특정 조건을 충족한 유저들에게 쿠폰을 뿌릴 수 있도록 함)
     @PostMapping("/coupon/distribution")
-    public ResponseEntity<String> couponCreate(@RequestBody @Valid CouponRequestDto couponRequestDto,
+    public ResponseEntity<String> couponCreate(@RequestBody @Valid RequestCouponDto requestCouponDto,
                                                    BindingResult bindingResult) {
 
         ResponseEntity<String> errorResponse = handleValidationErrors(bindingResult);
@@ -103,7 +104,7 @@ private ResponseEntity<String> handleValidationErrors(BindingResult bindingResul
             return errorResponse;
         }
 
-        couponPolicyService.userCouponCreate(couponRequestDto);
+        couponPolicyService.userCouponCreate(requestCouponDto);
 
         return ResponseEntity.ok("사용자쿠폰이 생성되었습니다.");
     }
