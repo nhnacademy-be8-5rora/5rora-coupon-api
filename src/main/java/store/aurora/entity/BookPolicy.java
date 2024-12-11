@@ -6,23 +6,21 @@ import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+
 @Entity
-@Table(name = "book_policies")
+@Table(name = "book_policy")
 @Data
 public class BookPolicy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "book_coupon")
     private Long id;
 
-    @Column(nullable = false)
-    private String isbn;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "policy_id", nullable = false)
+    private CouponPolicy policy;
 
-    @Column(nullable = false)
-    private String ruleCode;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "discount_rule_id", nullable = false)
-    private DiscountRule discountRule;
-    
+    @Column(name = "book_id", nullable = false)
+    private Long bookId;
 }
 

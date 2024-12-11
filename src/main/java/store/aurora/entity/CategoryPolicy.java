@@ -3,23 +3,21 @@ package store.aurora.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+
 @Entity
-@Table(name = "category_policies")
+@Table(name = "category_policy")
 @Data
 public class CategoryPolicy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "category_coupon")
     private Long id;
 
-    @Column(nullable = false)
-    private String categoryCode;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "policy_id", nullable = false)
+    private CouponPolicy policy;
 
-    @Column(nullable = false)
-    private String ruleCode;
+    @Column(name = "category_id", nullable = false)
+    private Long categoryId;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "discount_rule_id", nullable = false)
-    private DiscountRule discountRule;
-
-    // Getters and Setters
 }

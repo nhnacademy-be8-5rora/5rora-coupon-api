@@ -12,23 +12,23 @@ import java.util.Set;
 public class DiscountRule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "discount_id")
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String ruleCode;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "policy_id", nullable = false)
+    private CouponPolicy policy;
 
-    @Column(nullable = false)
-    private Double discountRate;
+    @Column(name = "need_cost")
+    private long needCost;
 
-    @Column(nullable = false)
-    private LocalDateTime validFrom;
+    @Column(name = "max_sale")
+    private long maxSale;
 
-    @Column(nullable = false)
-    private LocalDateTime validUntil;
+    @Column(name = "sale_percent")
+    private Integer salePercent;
 
-    @OneToMany(mappedBy = "discountRule", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<BookPolicy> bookPolicies;
+    @Column(name = "sale_amount")
+    private Integer saleAmount;
 
-    @OneToMany(mappedBy = "discountRule", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<CategoryPolicy> categoryPolicies;
 }

@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Entity
-@Table(name = "coupon_policies")
+@Table(name = "coupon_policy")
 @Data
 public class CouponPolicy {
 
@@ -14,9 +14,11 @@ public class CouponPolicy {
     @Column(name = "policy_id")
     private Long id;  // Policy의 기본 키
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "policy_name", nullable = false, length = 50)
     private String name;
 
-    @OneToMany(mappedBy = "policy")  // UserCoupon 엔티티의 policy 필드와 매핑
-    private List<UserCoupon> userCoupons;  // 한 정책에 여러 개의 UserCoupon이 연결됨
+    @Enumerated(EnumType.STRING)
+    @Column(name = "sale_type", nullable = false)
+    private SaleType saleType;
+
 }
