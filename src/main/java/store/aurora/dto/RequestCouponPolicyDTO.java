@@ -19,5 +19,4 @@ public class RequestCouponPolicyDTO {
 
     private Long userId;
 
-    // getters and setters
 }

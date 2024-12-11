@@ -18,16 +18,17 @@ public class UserCoupon {
 
     @ManyToOne(fetch = FetchType.LAZY)  // Many UserCoupon -> One Policy
     @JoinColumn(name = "policy_id", nullable = false)  // 외래 키로 policy_id 지정
-    private CouponPolicy policyId;
+    private CouponPolicy policy;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "coupon_state", nullable = false)
+    @Column(name = "coupon_state", nullable = false,
+            columnDefinition = "ENUM('LIVE', 'USED', 'TIMEOUT') DEFAULT 'LIVE'")
     private CouponState couponState;
 
     @Column(name = "start_date", nullable = false)
     private LocalDate startDate;
 
-    @Column(name = "end_date", nullable = false)
+    @Column(name = "end_date", nullable = true)
     private LocalDate endDate;
 
     @Column(name = "user_id", nullable = false)
@@ -36,8 +37,4 @@ public class UserCoupon {
     @Column(name = "used_period")
     private LocalDate usedPeriod;
 
-    // Enum 클래스 정의
-    public enum CouponState {
-        LIVE, USED, TIMEOUT
-    }
 }

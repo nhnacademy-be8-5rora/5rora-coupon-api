@@ -1,7 +1,5 @@
 package store.aurora.entity;
 
 public enum CouponState {
-    ACTIVE,
-    EXPIRED,
-    REDEEMED
+    LIVE, USED, TIMEOUT
 }
