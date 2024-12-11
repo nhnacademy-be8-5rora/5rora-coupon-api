@@ -8,6 +8,7 @@ import store.aurora.dto.RequestCouponPolicyDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import store.aurora.exception.CouponInsertException;
 import store.aurora.repository.CouponPolicyRepository;
+import store.aurora.repository.CouponRepository;
 
 import java.util.List;
 
@@ -17,8 +18,12 @@ public class CouponPolicyService {
     @Autowired
     private final CouponPolicyRepository couponPolicyRepository;
 
-    public CouponPolicyService(CouponPolicyRepository couponPolicyRepository) {
+    @Autowired
+    private final CouponRepository couponRepository;
+
+    public CouponPolicyService(CouponPolicyRepository couponPolicyRepository, CouponRepository couponRepository) {
         this.couponPolicyRepository = couponPolicyRepository;
+        this.couponRepository = couponRepository;
     }
 
     public void batchInsert(List<RequestCouponPolicyDTO> couponDTOList) throws CouponInsertException {
@@ -30,7 +35,7 @@ public class CouponPolicyService {
     }
 
     //쿠폰 정책 생성
-    public void couponPolicyCreate(@Valid RequestCouponDto requestCouponDto) {
+    public void couponPolicyCreate(@Valid RequestCouponPolicyDTO requestCouponPolicyDTO) {
 
     }
 
