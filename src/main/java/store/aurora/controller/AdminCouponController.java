@@ -12,12 +12,12 @@ import store.aurora.service.CouponPolicyService;
 //관리자용 쿠폰 생성 및 배포용
 @RestController
 @RequestMapping("/admin")
-public class CouponPolicyController {
+public class AdminCouponController {
 
     @Autowired
     private final CouponPolicyService couponPolicyService;
 
-    public CouponPolicyController(CouponPolicyService couponPolicyService) {
+    public AdminCouponController(CouponPolicyService couponPolicyService) {
         this.couponPolicyService = couponPolicyService;
     }
 

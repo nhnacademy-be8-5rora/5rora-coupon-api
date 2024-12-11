@@ -20,8 +20,11 @@ import java.util.Optional;
 public class CouponPolicyService {
 
     @Autowired
-    private CouponPolicyRepository couponPolicyRepository;
+    private final CouponPolicyRepository couponPolicyRepository;
 
+    public CouponPolicyService(CouponPolicyRepository couponPolicyRepository) {
+        this.couponPolicyRepository = couponPolicyRepository;
+    }
 
     public void batchInsert(List<RequestCouponPolicyDTO> couponDTOList) throws CouponInsertException {
         try {
