@@ -2,24 +2,21 @@ package store.aurora.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import java.util.List;
 
 @Entity
 @Table(name = "coupon_policies")
 @Data
 public class CouponPolicy {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "policy_id")
+    private Long id;  // Policy의 기본 키
 
-    @Column(nullable = false)
-    private String couponCode;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-    @Column(nullable = false)
-    private String ruleCode;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "discount_rule_id", nullable = false)
-    private DiscountRule discountRule;
-
-    // Getters and Setters
+    @OneToMany(mappedBy = "policy")  // UserCoupon 엔티티의 policy 필드와 매핑
+    private List<UserCoupon> userCoupons;  // 한 정책에 여러 개의 UserCoupon이 연결됨
 }

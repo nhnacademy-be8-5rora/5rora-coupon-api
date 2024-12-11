@@ -3,31 +3,41 @@ package store.aurora.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "user_coupons")
+@Table(name = "user_coupon")
 @Data
 public class UserCoupon {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "coupon_id", nullable = false)
+    private Long couponId;
 
-    @JoinColumn(name = "user_id", nullable = false)
-    private String userId;
-
-    @Column(nullable = false)
-    private String couponCode;
+    @ManyToOne(fetch = FetchType.LAZY)  // Many UserCoupon -> One Policy
+    @JoinColumn(name = "policy_id", nullable = false)  // 외래 키로 policy_id 지정
+    private CouponPolicy policyId;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private CouponState state;
+    @Column(name = "coupon_state", nullable = false)
+    private CouponState couponState;
 
-    @Column(nullable = false)
-    private LocalDateTime issuedAt;
+    @Column(name = "start_date", nullable = false)
+    private LocalDate startDate;
 
-    @Column(nullable = false)
-    private LocalDateTime expirationAt;
+    @Column(name = "end_date", nullable = false)
+    private LocalDate endDate;
 
-    // Getters and Setters
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
+
+    @Column(name = "used_period")
+    private LocalDate usedPeriod;
+
+    // Enum 클래스 정의
+    public enum CouponState {
+        LIVE, USED, TIMEOUT
+    }
 }

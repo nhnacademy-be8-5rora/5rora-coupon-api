@@ -1,22 +1,19 @@
 package store.aurora.dto;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "coupons")
-public class CouponDTO {
+@Data
+public class RequestCouponPolicyDTO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String couponCode;
-
-    private LocalDateTime assignedAt;
-
-    private LocalDateTime updatedAt;
 
     private String status;
 

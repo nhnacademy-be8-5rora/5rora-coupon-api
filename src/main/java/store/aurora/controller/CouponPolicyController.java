@@ -12,12 +12,12 @@ import store.aurora.service.CouponPolicyService;
 //관리자용 쿠폰 생성 및 배포용
 @RestController
 @RequestMapping("/admin")
-public class MakeCouponPolicyController {
+public class CouponPolicyController {
 
     @Autowired
     private final CouponPolicyService couponPolicyService;
 
-    public MakeCouponPolicyController(CouponPolicyService couponPolicyService) {
+    public CouponPolicyController(CouponPolicyService couponPolicyService) {
         this.couponPolicyService = couponPolicyService;
     }
 
@@ -86,7 +86,7 @@ private ResponseEntity<String> handleValidationErrors(BindingResult bindingResul
         return ResponseEntity.ok("쿠폰정보가 수정되었습니다.");
     }
 
-    // 쿠폰 삭제 (관리자)
+    // 쿠폰정책 삭제 (관리자)
     @DeleteMapping(value = "/coupon/delete/{couponPolicyId}")
     public ResponseEntity<String> couponDelete(@PathVariable("couponPolicyId") String couponId) {
         couponPolicyService.couponDelete(couponId);  // 실제 쿠폰 삭제 처리
