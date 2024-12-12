@@ -42,46 +42,41 @@ public class CouponPolicyService {
     public void couponPolicyCreate(@Valid RequestCouponPolicyDTO requestCouponPolicyDTO
             , @Valid DiscountRuleDTO discountRuleDTO, @Valid AddPolicyDTO addPolicyDTO) {
 
+        //쿠폰정책 기본 테이블 개체 생성
         CouponPolicy couponPolicy = new CouponPolicy();
         couponPolicy.setName(requestCouponPolicyDTO.getPolicyName());
         couponPolicy.setSaleType(requestCouponPolicyDTO.getSaleType());
+        couponPolicyRepository.save(couponPolicy);
 
         DiscountRule discountRule = new DiscountRule();
-        discountRule.setPolicy(couponPolicy);
+        discountRule.setPolicy(couponPolicy); // CouponPolicy 참조
         discountRule.setMaxSale(discountRuleDTO.getMaxSale());
-        discountRule.setNeedCost(discountRuleDTO.getNeedCost());
-        discountRule.setSaleAmount(discountRuleDTO.getSaleAmount());
-        discountRule.setSalePercent(discountRuleDTO.getSalePercent());
+        disCountRuleRepository.save(discountRule);
 
-
-        // 카테고리 정책 생성
+        //카테고리 정책 테이블 개체 생성
         if (addPolicyDTO.getCategoryId() != null) {
             List<CategoryPolicy> categoryPolicies = addPolicyDTO.getCategoryId().stream()
                     .map(categoryId -> {
                         CategoryPolicy categoryPolicy = new CategoryPolicy();
-                        categoryPolicy.setPolicy(couponPolicy);
+                        categoryPolicy.setPolicy(couponPolicy); // CouponPolicy 참조
                         categoryPolicy.setCategoryId(categoryId);
                         return categoryPolicy;
                     })
                     .toList();
             categoryPolicyRepository.saveAll(categoryPolicies);
         }
-
-        // 책 정책 생성
+        //북 정책 테이블 생성
         if (addPolicyDTO.getBookId() != null) {
             List<BookPolicy> bookPolicies = addPolicyDTO.getBookId().stream()
                     .map(bookId -> {
                         BookPolicy bookPolicy = new BookPolicy();
-                        bookPolicy.setPolicy(couponPolicy);
+                        bookPolicy.setPolicy(couponPolicy); // CouponPolicy 참조
                         bookPolicy.setBookId(bookId);
                         return bookPolicy;
                     })
                     .toList();
             bookPolicyRepository.saveAll(bookPolicies);
         }
-
-        couponPolicyRepository.save(couponPolicy);
-        disCountRuleRepository.save(discountRule);
     }
 
     //사용자 쿠폰 수정(요청한 유저 ID 리스트를 통해 해당 ID에 포함된 userCoupons 들을 수정)
@@ -134,13 +129,13 @@ public class CouponPolicyService {
         couponRepository.saveAll(newCoupons); // 한 번에 저장
     }
 
-    private UserCoupon createUserCoupon(Long userId, CouponPolicy policy, CouponState state, LocalDate startDate, LocalDate endDate) {
-        UserCoupon userCoupon = new UserCoupon();
-        userCoupon.setUserId(userId);
-        userCoupon.setPolicy(policy);
-        userCoupon.setCouponState(state);
-        userCoupon.setStartDate(startDate);
-        userCoupon.setEndDate(endDate);
-        return userCoupon;
-    }
+//    private UserCoupon createUserCoupon(Long userId, CouponPolicy policy, CouponState state, LocalDate startDate, LocalDate endDate) {
+//        UserCoupon userCoupon = new UserCoupon();
+//        userCoupon.setUserId(userId);
+//        userCoupon.setPolicy(policy);
+//        userCoupon.setCouponState(state);
+//        userCoupon.setStartDate(startDate);
+//        userCoupon.setEndDate(endDate);
+//        return userCoupon;
+//    }
 }

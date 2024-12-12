@@ -1,7 +1,6 @@
 package store.aurora.repository;
 
 import feign.Param;
-import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -32,7 +31,7 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
             "uc.policy = (SELECT p FROM CouponPolicy p WHERE p.id = :policyId), " +
             "uc.startDate = :startDate, uc.endDate = :endDate " +
             "WHERE uc.userId IN :userIds")
-    int updateCouponAttributesByUserIds(@Param("couponState") CouponState couponState,
+    void updateCouponAttributesByUserIds(@Param("couponState") CouponState couponState,
                                         @Param("policyId") Long policyId,
                                         @Param("startDate") LocalDate startDate,
                                         @Param("endDate") LocalDate endDate,
