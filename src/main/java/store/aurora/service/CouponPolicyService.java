@@ -39,8 +39,8 @@ public class CouponPolicyService {
 
     //쿠폰 정책 생성(쿠폰계산 및 쿠폰 정책 개체 생성)
     @Transactional
-    public void couponPolicyCreate(@Valid RequestCouponPolicyDTO requestCouponPolicyDTO
-            , @Valid DiscountRuleDTO discountRuleDTO, @Valid AddPolicyDTO addPolicyDTO) {
+    public void couponPolicyCreate(RequestCouponPolicyDTO requestCouponPolicyDTO
+            , DiscountRuleDTO discountRuleDTO, AddPolicyDTO addPolicyDTO) {
 
         //쿠폰정책 기본 테이블 개체 생성
         CouponPolicy couponPolicy = new CouponPolicy();
