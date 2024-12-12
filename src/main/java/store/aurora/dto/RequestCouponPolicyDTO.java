@@ -22,6 +22,5 @@ public class RequestCouponPolicyDTO {
         this.saleType = saleType;
         this.discountRule = discountRule;
     }
-
 }
 

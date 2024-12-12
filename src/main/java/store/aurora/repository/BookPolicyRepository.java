@@ -2,9 +2,9 @@ package store.aurora.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import store.aurora.entity.BookPolicy;
-import store.aurora.entity.CouponPolicy;
+import store.aurora.entity.CategoryPolicy;
 
-public interface CouponPolicyRepository extends JpaRepository<CouponPolicy, Long> {
+public interface BookPolicyRepository extends JpaRepository<BookPolicy, Long> {
 
 }
 

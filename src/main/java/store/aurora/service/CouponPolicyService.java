@@ -29,6 +29,12 @@ public class CouponPolicyService {
     //쿠폰 정책 생성
     public void couponPolicyCreate(@Valid RequestCouponPolicyDTO requestCouponPolicyDTO) {
 
+        couponPolicyRepository.flush();
+    }
+
+    public void couponPolicyAdd(@Valid RequestCouponPolicyDTO requestCouponPolicyDTO) {
+
+        couponPolicyRepository.flush();
     }
 
     //사용자 쿠폰 수정
