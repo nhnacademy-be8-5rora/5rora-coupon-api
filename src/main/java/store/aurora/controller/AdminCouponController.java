@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import store.aurora.dto.AddPolicyDTO;
+import store.aurora.dto.DiscountRuleDTO;
 import store.aurora.dto.RequestCouponDto;
 import store.aurora.dto.RequestCouponPolicyDTO;
 import store.aurora.service.CouponPolicyService;
@@ -61,7 +63,8 @@ private ResponseEntity<String> handleValidationErrors(BindingResult bindingResul
     //모든 사용자 쿠폰을 확인해서 해당 쿠폰 정책 ID가 있는지 파악한 후에 삭제, 수정 가능하도록 구현은 가능
     @PostMapping(value = "/coupon/create")
     public ResponseEntity<String> couponPolicyCreate(@RequestBody @Valid RequestCouponPolicyDTO requestCouponPolicyDTO,
-                                               BindingResult bindingResult) { //@Valid 유효 검증
+                                                     @RequestBody @Valid DiscountRuleDTO discountRuleDTO, BindingResult bindingResult,
+                                                     @RequestBody @Valid AddPolicyDTO addPolicyDTO) { //@Valid 유효 검증
 
         // 유효성 검사(BindingResult -> 폼 데이터 검증후 오류 데이터 정보 담음
         ResponseEntity<String> errorResponse = handleValidationErrors(bindingResult);
@@ -69,7 +72,7 @@ private ResponseEntity<String> handleValidationErrors(BindingResult bindingResul
             return errorResponse;
         }
 
-        couponPolicyService.couponPolicyCreate(requestCouponPolicyDTO);  // 실제 쿠폰 생성 처리
+        couponPolicyService.couponPolicyCreate(requestCouponPolicyDTO, discountRuleDTO, addPolicyDTO);  // 실제 쿠폰 생성 처리
 
         return ResponseEntity.ok("쿠폰정보가 생성되었습니다.");
     }

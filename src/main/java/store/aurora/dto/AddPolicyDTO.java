@@ -6,8 +6,6 @@ import java.util.List;
 
 @Data
 public class AddPolicyDTO {
-    private String policyId;
-    private List<Integer> categoryId;
-    private List<Integer> bookId;
-
+    private List<Long> categoryId;
+    private List<Long> bookId;
 }

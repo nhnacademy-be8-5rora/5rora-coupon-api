@@ -13,14 +13,10 @@ import java.time.LocalDateTime;
 public class RequestCouponPolicyDTO {
     private String policyName;
     private SaleType saleType;
-    private DiscountRule discountRule;
-    private CategoryPolicy categoryPolicy;
-    private BookPolicy bookPolicy;
+//    private DiscountRule discountRule;
+//    private CategoryPolicy categoryPolicy;
+//    private BookPolicy bookPolicy;
 
-    public RequestCouponPolicyDTO(String policyName, SaleType saleType, DiscountRule discountRule) {
-        this.policyName = policyName;
-        this.saleType = saleType;
-        this.discountRule = discountRule;
-    }
+
 }
 
