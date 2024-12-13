@@ -1,6 +1,7 @@
 package store.aurora.controller;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
@@ -18,14 +19,10 @@ import java.util.stream.Collectors;
 //관리자용 쿠폰 생성 및 배포용
 @RestController
 @RequestMapping("/admin")
+@RequiredArgsConstructor
 public class AdminCouponController {
 
-    @Autowired
     private final CouponPolicyService couponPolicyService;
-
-    public AdminCouponController(CouponPolicyService couponPolicyService) {
-        this.couponPolicyService = couponPolicyService;
-    }
 
 // BindingResult 검증을 처리하는 메서드
 private ResponseEntity<String> handleValidationErrors(BindingResult bindingResult) {

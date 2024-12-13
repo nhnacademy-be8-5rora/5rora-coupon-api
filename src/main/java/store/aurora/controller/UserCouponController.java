@@ -1,25 +1,20 @@
 package store.aurora.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import store.aurora.entity.UserCoupon;
 import store.aurora.service.CouponService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/coupon")
+@RequiredArgsConstructor
 public class UserCouponController {
 
-    @Autowired
     private final CouponService couponService;
-
-    public UserCouponController(CouponService couponService) {
-        this.couponService = couponService;
-    }
 
     //사용자 쿠폰 환불시 해당 사용자 쿠폰 상태 변경 및 데이터베이스 동기화
     @PutMapping(value = "/refund/")

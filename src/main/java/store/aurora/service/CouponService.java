@@ -8,13 +8,13 @@ import store.aurora.entity.CouponState;
 import store.aurora.entity.UserCoupon;
 import store.aurora.repository.CouponRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class CouponService {
 
-    @Autowired
     private final CouponRepository couponRepository;
 
     //사용자 쿠폰 환불
@@ -31,9 +31,11 @@ public class CouponService {
             }
 
             userCoupon.setCouponState(CouponState.LIVE);
+            userCoupon.setUsedPeriod(null);
         }
 
         couponRepository.saveAll(userCoupons); // 상태 변경 후 저장
+
     }
 
     //사용자 쿠폰 사용
@@ -50,7 +52,9 @@ public class CouponService {
             }
 
             userCoupon.setCouponState(CouponState.USED);
+            userCoupon.setUsedPeriod(LocalDate.now());
         }
 
+        couponRepository.saveAll(userCoupons); // 상태 변경 후 저장
     }
 }
