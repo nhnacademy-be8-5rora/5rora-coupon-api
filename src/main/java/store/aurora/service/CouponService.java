@@ -28,11 +28,11 @@ public class CouponService {
         }
 
         for (UserCoupon userCoupon : userCoupons) {
-            if (userCoupon.getCouponState() == CouponState.USED) {
-                throw new IllegalStateException("Cannot refund a used coupon: ID = " + userCoupon.getCouponState());
+            if (userCoupon.getCouponState() != CouponState.USED) {
+                throw new IllegalStateException("Cannot refund not used coupon: ID = " + userCoupon.getCouponState());
             }
 
-            userCoupon.setCouponState(CouponState.USED);
+            userCoupon.setCouponState(CouponState.LIVE);
         }
 
         couponRepository.saveAll(userCoupons); // 상태 변경 후 저장
