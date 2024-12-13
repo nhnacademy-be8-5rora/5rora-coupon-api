@@ -1,5 +1,6 @@
 package store.aurora.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,14 +13,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/couponList")
+@RequiredArgsConstructor
 public class UserCouponListController {
 
-    @Autowired
     private final CouponListService couponListService;
-
-    public UserCouponListController(CouponListService couponListService) {
-        this.couponListService = couponListService;
-    }
 
     //사용자쿠폰 목록 확인
     @GetMapping(value = "/couponList/{userId}")
