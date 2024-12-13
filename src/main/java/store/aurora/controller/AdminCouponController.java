@@ -23,8 +23,7 @@ public class AdminCouponController {
     // 쿠폰정책 생성 (관리자) -> 쿠폰 정책은 생성밖에 안됨(정책 수정, 삭제시 -> 이전에 해당 쿠폰을 가진 유저들이 피해를 볼 수 있음)
     //모든 사용자 쿠폰을 확인해서 해당 쿠폰 정책 ID가 있는지 파악한 후에 삭제, 수정 가능하도록 구현은 가능
     @PostMapping(value = "/coupon/create")
-    public ResponseEntity<String> couponPolicyCreate(@RequestBody @Validated RequestCouponPolicyDTO requestCouponPolicyDTO,
-                                                     BindingResult bindingResult) { //@Validated 유효 검증(무결성)
+    public ResponseEntity<String> couponPolicyCreate(@RequestBody @Validated RequestCouponPolicyDTO requestCouponPolicyDTO) { //@Validated 유효 검증(무결성)
 
         DiscountRuleDTO discountRuleDTO = requestCouponPolicyDTO.getDiscountRuleDTO();
         AddPolicyDTO addPolicyDTO = requestCouponPolicyDTO.getAddPolicyDTO();
