@@ -1,6 +1,7 @@
 package store.aurora.service;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import store.aurora.dto.AddPolicyDTO;
@@ -8,15 +9,14 @@ import store.aurora.dto.DiscountRuleDTO;
 import store.aurora.dto.RequestCouponDto;
 import store.aurora.dto.RequestCouponPolicyDTO;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import store.aurora.entity.*;
-import store.aurora.exception.CouponInsertException;
 import store.aurora.repository.*;
 
 import java.util.List;
 import java.time.LocalDate;
 
 @Service
+@RequiredArgsConstructor
 public class CouponPolicyService {
 
     private final CouponPolicyRepository couponPolicyRepository;
@@ -24,19 +24,7 @@ public class CouponPolicyService {
     private final DisCountRuleRepository disCountRuleRepository;
     private  final CategoryPolicyRepository categoryPolicyRepository;
     private  final BookPolicyRepository bookPolicyRepository;
-
-    @Autowired
-    public CouponPolicyService(CouponPolicyRepository couponPolicyRepository, CouponRepository couponRepository
-    , DisCountRuleRepository disCountRuleRepository, CategoryPolicyRepository categoryPolicyRepository
-            , BookPolicyRepository bookPolicyRepository) {
-        this.couponPolicyRepository = couponPolicyRepository;
-        this.couponRepository = couponRepository;
-        this.disCountRuleRepository = disCountRuleRepository;
-        this.categoryPolicyRepository = categoryPolicyRepository;
-        this.bookPolicyRepository = bookPolicyRepository;
-    }
-
-
+    
     //쿠폰 정책 생성(쿠폰계산 및 쿠폰 정책 개체 생성)
     @Transactional
     public void couponPolicyCreate(RequestCouponPolicyDTO requestCouponPolicyDTO
