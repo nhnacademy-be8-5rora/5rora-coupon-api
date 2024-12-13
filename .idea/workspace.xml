@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f69c862f-3061-4181-a199-63e664ff56d6" name="변경" comment=".">
-      <change afterPath="$PROJECT_DIR$/src/main/java/store/aurora/config/AppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/controller/UserCouponListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/controller/UserCouponListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/controller/UserCouponController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/controller/UserCouponController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/controller/ReTryCouponController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/controller/ReTryCouponController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/controller/UserCouponListController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/controller/UserCouponListController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/service/CouponListService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/service/CouponListService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +39,10 @@
     &quot;accountId&quot;: &quot;6f2235cd-d16b-4846-b047-90b000b436e2&quot;
   }
 }</component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -117,7 +122,7 @@
       <workItem from="1733814641868" duration="18578000" />
       <workItem from="1733898889080" duration="1050000" />
       <workItem from="1733900311160" duration="8606000" />
-      <workItem from="1733965035680" duration="32215000" />
+      <workItem from="1733965035680" duration="32506000" />
     </task>
     <task id="LOCAL-00001" summary=".">
       <option name="closed" value="true" />
@@ -503,7 +508,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734077797548</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary=".">
+      <option name="closed" value="true" />
+      <created>1734078436447</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1734078436447</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
