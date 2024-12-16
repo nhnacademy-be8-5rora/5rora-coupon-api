@@ -5,12 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f69c862f-3061-4181-a199-63e664ff56d6" name="변경" comment=".">
-      <change afterPath="$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/repository/CouponRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/repository/CouponRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/store/aurora/RequestCouponPolicyDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/repository/CouponRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/repository/CouponRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/CouponApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/CouponApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/controller/AdminCouponController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/controller/AdminCouponController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/controller/ReTryCouponController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/controller/ReTryCouponController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/controller/UserCouponListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/controller/UserCouponListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/CouponApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/CouponApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/jacoco.exec" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-store.aurora.CouponApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-store.aurora.CouponApplicationTests.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/store.aurora.CouponApplicationTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/store.aurora.CouponApplicationTests.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/store/aurora/CouponRepositoryTest.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,39 +70,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.CouponRepositoryTest.executor": "Run",
-    "JUnit.CouponRepositoryTest.testFindByUserId.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.CouponApplication.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/asdf/5rora-coupon-api/src/main/resources",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "프로젝트",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.CouponRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CouponRepositoryTest.testFindByUserId.executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.CouponApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/asdf/5rora-coupon-api/src/main/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;모듈&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.4249264&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql_aurora",
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql_aurora&quot;,
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="store.aurora" />
@@ -104,9 +115,9 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CouponRepositoryTest.testFindByUserId">
+  <component name="RunManager" selected="Spring Boot.CouponApplication">
     <configuration name="CouponRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="account" />
+      <module name="5rora-coupon-api" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="store.aurora.*" />
@@ -121,7 +132,7 @@
       </method>
     </configuration>
     <configuration name="CouponRepositoryTest.testFindByUserId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="account" />
+      <module name="5rora-coupon-api" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="store.aurora.*" />
@@ -139,7 +150,7 @@
     <configuration name="CouponApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="temurin-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <module name="account" />
+      <module name="5rora-coupon-api" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="store.aurora.CouponApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -147,8 +158,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CouponRepositoryTest.testFindByUserId" />
         <item itemvalue="JUnit.CouponRepositoryTest" />
+        <item itemvalue="JUnit.CouponRepositoryTest.testFindByUserId" />
       </list>
     </recent_temporary>
   </component>
@@ -176,15 +187,9 @@
       <workItem from="1733900311160" duration="8606000" />
       <workItem from="1733965035680" duration="33045000" />
       <workItem from="1734307307079" duration="6000" />
-      <workItem from="1734307501768" duration="14873000" />
-    </task>
-    <task id="LOCAL-00016" summary=".">
-      <option name="closed" value="true" />
-      <created>1733880202917</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1733880202917</updated>
+      <workItem from="1734307501768" duration="15740000" />
+      <workItem from="1734333878607" duration="1557000" />
+      <workItem from="1734335451019" duration="155000" />
     </task>
     <task id="LOCAL-00017" summary=".">
       <option name="closed" value="true" />
@@ -570,7 +575,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734326708053</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary=".">
+      <option name="closed" value="true" />
+      <created>1734333011051</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1734333011051</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

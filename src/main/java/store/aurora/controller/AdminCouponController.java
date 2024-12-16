@@ -41,7 +41,7 @@ public class AdminCouponController {
         return ResponseEntity.ok("사용자쿠폰이 수정되었습니다.");
     }
 
-    //todo 관리자가 입력한 쿠폰을 주는 명령어(특정 한명에게 줄 수 있으며, 특정 조건을 충족한 유저들에게 쿠폰을 뿌릴 수 있도록 함)
+    //관리자가 입력한 쿠폰을 주는 명령어(특정 한명에게 줄 수 있으며, 특정 조건을 충족한 유저들에게 쿠폰을 뿌릴 수 있도록 함)
     @PostMapping("/coupon/distribution")
     public ResponseEntity<String> couponCreate(@RequestBody @Validated RequestCouponDto requestCouponDto) {
 

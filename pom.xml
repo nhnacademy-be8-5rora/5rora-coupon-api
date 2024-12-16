@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository. -->
     </parent>
     <groupId>store.aurora</groupId>
-    <artifactId>account</artifactId>
+    <artifactId>5rora-coupon-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>account</name>
-    <description>account</description>
+    <name>5rora-coupon-api</name>
+    <description>5rora-coupon-api</description>
     <url/>
     <licenses>
         <license/>
@@ -31,6 +31,8 @@
         <spring-cloud.version>2023.0.2</spring-cloud.version>
     </properties>
 
+
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -45,22 +47,21 @@
 
     <dependencies>
 
-<!--        <dependency>-->
-<!--            <groupId>org.mockito</groupId>-->
-<!--            <artifactId>mockito-core</artifactId>-->
-<!--            <version>5.5.0</version>-->
-<!--        </dependency>-->
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
@@ -97,10 +98,6 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
@@ -114,6 +111,7 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -133,46 +131,15 @@
 
     </dependencies>
 
-<!--    <build>-->
-<!--        <finalName>account-api</finalName>-->
-<!--        <plugins>-->
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--            </plugin>-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version> <!-- 최신 버전 확인 후 업데이트 -->
+            </plugin>
+        </plugins>
+    </build>
 
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-surefire-plugin</artifactId>-->
-<!--                <version>3.1.0</version>-->
-<!--                <configuration>-->
-<!--                    &lt;!&ndash; test skip 하려면 true 설정 &ndash;&gt;-->
-<!--                    <skipTests>false</skipTests>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
-
-<!--            <plugin>-->
-<!--                <groupId>org.jacoco</groupId>-->
-<!--                <artifactId>jacoco-maven-plugin</artifactId>-->
-<!--                <version>0.8.9</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>jacoco-initialize</id>-->
-<!--                        <goals>-->
-<!--                            <goal>prepare-agent</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                    <execution>-->
-<!--                        <id>jacoco-site</id>-->
-<!--                        <phase>package</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>report</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
-
-<!--        </plugins>-->
-<!--    </build>-->
 
 </project>
