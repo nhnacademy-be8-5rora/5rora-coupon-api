@@ -30,7 +30,7 @@ public class CouponService {
                 throw new IllegalStateException("Cannot refund not used coupon: ID = " + userCoupon.getCouponState());
             }
 
-            userCoupon.setCouponState(CouponState.LIVE);
+            userCoupon.setCouponState(CouponState.LIVE);    //사용자 쿠폰 상태 live 변경(used -> live)
             userCoupon.setUsedPeriod(null);
         }
 
@@ -51,7 +51,7 @@ public class CouponService {
                 throw new IllegalStateException("Cannot use a dead coupon: ID = " + userCoupon.getCouponState());
             }
 
-            userCoupon.setCouponState(CouponState.USED);
+            userCoupon.setCouponState(CouponState.USED);    //Live -> used 변경
             userCoupon.setUsedPeriod(LocalDate.now());
         }
 
