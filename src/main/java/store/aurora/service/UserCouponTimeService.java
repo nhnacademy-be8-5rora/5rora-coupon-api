@@ -18,7 +18,15 @@ public class UserCouponTimeService {
     @Scheduled(cron = "0 0 12 * * ?") // 매일 12:00 PM 실행
     @Transactional
     public void updateExpiredCoupons() {
+        //live 인 쿠폰 중에서 만료기간보다 현재기간이 큰 경우에만 couponState 을 timeout 으로 변경하는 쿼리
         couponRepository.updateExpiredCoupons();
         log.info("Expired coupons updated at: {}", java.time.LocalDateTime.now());
+    }
+
+    @Scheduled(cron = "0 0 12 * * ?") // 매일 12:00 PM 실행
+    @Transactional
+    public void deleteExpiredCoupons() {
+        couponRepository.deleteExpiredCoupons();
+        log.info("Expired coupons delete at: {}", java.time.LocalDateTime.now());
     }
 }
