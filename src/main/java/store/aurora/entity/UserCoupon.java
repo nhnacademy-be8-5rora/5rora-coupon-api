@@ -35,6 +35,6 @@ public class UserCoupon {
     private Long userId;
 
     @Column(name = "used_period")
-    private LocalDate usedPeriod;
+    private LocalDate changedDate;
 
 }

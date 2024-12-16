@@ -26,6 +26,7 @@ public class UserCouponTimeService {
     @Scheduled(cron = "0 0 12 * * ?") // 매일 12:00 PM 실행
     @Transactional
     public void deleteExpiredCoupons() {
+        //sed나 timeout인 상태의 사용자 쿠폰의 데이터를 삭제
         couponRepository.deleteExpiredCoupons();
         log.info("Expired coupons delete at: {}", java.time.LocalDateTime.now());
     }

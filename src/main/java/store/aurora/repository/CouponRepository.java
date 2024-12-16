@@ -47,5 +47,8 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
             "WHERE u.endDate < CURRENT_TIMESTAMP AND u.couponState = 'live'")
     void updateExpiredCoupons();
 
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM UserCoupon u WHERE u.couponState IN ('used', 'timeout')")
     void deleteExpiredCoupons();
 }
