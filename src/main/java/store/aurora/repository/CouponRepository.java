@@ -45,8 +45,8 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
     @Modifying
     @Transactional
     @Query("UPDATE UserCoupon u SET u.couponState = 'timeout', " +
-            "    u.changedDate = CURRENT_TIMESTAMP " +
-            "WHERE u.endDate < CURRENT_TIMESTAMP AND u.couponState = 'live'")
+            "    u.changedDate = CURRENT_DATE " +
+            "WHERE u.endDate < CURRENT_DATE AND u.couponState = 'live'")
     void updateExpiredCoupons();
 
     @Modifying
