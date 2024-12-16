@@ -5,7 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import store.aurora.entity.CouponState;
 import store.aurora.repository.CouponRepository;
+
+import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +30,9 @@ public class UserCouponTimeService {
     @Transactional
     public void deleteExpiredCoupons() {
         //sed나 timeout인 상태의 사용자 쿠폰의 데이터를 삭제
-        couponRepository.deleteExpiredCoupons();
+        // 90일 전 시간 계산
+        LocalDateTime ninetyDaysAgo = LocalDateTime.now().minusDays(90);
+        couponRepository.deleteExpiredCoupons(CouponState.USED, CouponState.TIMEOUT, ninetyDaysAgo);
         log.info("Expired coupons delete at: {}", java.time.LocalDateTime.now());
     }
 }

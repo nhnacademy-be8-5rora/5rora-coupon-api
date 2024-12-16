@@ -31,7 +31,7 @@ public class CouponService {
             }
 
             userCoupon.setCouponState(CouponState.LIVE);    //사용자 쿠폰 상태 live 변경(used -> live)
-            userCoupon.setUsedPeriod(null);
+            userCoupon.setChangedDate(LocalDate.now());
         }
 
         couponRepository.saveAll(userCoupons); // 상태 변경 후 저장
@@ -52,7 +52,7 @@ public class CouponService {
             }
 
             userCoupon.setCouponState(CouponState.USED);    //Live -> used 변경
-            userCoupon.setUsedPeriod(LocalDate.now());
+            userCoupon.setChangedDate(LocalDate.now());
         }
 
         couponRepository.saveAll(userCoupons); // 상태 변경 후 저장

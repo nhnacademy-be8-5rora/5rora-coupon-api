@@ -10,6 +10,7 @@ import store.aurora.entity.CouponState;
 import store.aurora.entity.UserCoupon;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
@@ -43,12 +44,18 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
 
     @Modifying
     @Transactional
-    @Query("UPDATE UserCoupon u SET u.couponState = 'timeout'" +
+    @Query("UPDATE UserCoupon u SET u.couponState = 'timeout', " +
+            "    u.changedDate = CURRENT_TIMESTAMP " +
             "WHERE u.endDate < CURRENT_TIMESTAMP AND u.couponState = 'live'")
     void updateExpiredCoupons();
 
     @Modifying
     @Transactional
-    @Query("DELETE FROM UserCoupon u WHERE u.couponState IN ('used', 'timeout')")
-    void deleteExpiredCoupons();
+    @Query("DELETE FROM UserCoupon u " +
+            "WHERE u.couponState IN (:usedState, :timeoutState) " +
+            "AND u.changedDate < :ninetyDaysAgo")
+    void deleteExpiredCoupons(
+            @Param("usedState") CouponState usedState,
+            @Param("timeoutState") CouponState timeoutState,
+            @Param("ninetyDaysAgo") LocalDateTime ninetyDaysAgo);
 }
