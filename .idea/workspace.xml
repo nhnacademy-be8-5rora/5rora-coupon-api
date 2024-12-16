@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f69c862f-3061-4181-a199-63e664ff56d6" name="변경" comment=".">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/entity/BookPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/entity/BookPolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/CouponApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/CouponApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/controller/UserCouponController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/controller/UserCouponController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/entity/BookPolicy.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/entity/BookPolicy.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/entity/UserCoupon.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/entity/UserCoupon.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/repository/CouponRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/repository/CouponRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/service/CouponService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/service/CouponService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,15 +131,7 @@
       <workItem from="1733900311160" duration="8606000" />
       <workItem from="1733965035680" duration="33045000" />
       <workItem from="1734307307079" duration="6000" />
-      <workItem from="1734307501768" duration="8921000" />
-    </task>
-    <task id="LOCAL-00013" summary=".">
-      <option name="closed" value="true" />
-      <created>1733819801874</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1733819801874</updated>
+      <workItem from="1734307501768" duration="9457000" />
     </task>
     <task id="LOCAL-00014" summary=".">
       <option name="closed" value="true" />
@@ -536,7 +517,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734312699319</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary=".">
+      <option name="closed" value="true" />
+      <created>1734323361169</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1734323361169</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
