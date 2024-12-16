@@ -10,4 +10,5 @@ class CouponApplicationTests {
     void contextLoads() {
     }
 
+
 }

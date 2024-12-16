@@ -23,6 +23,4 @@ public class CouponListService {
 
         return couponRepository.findByUserId(userId);
     }
-
-
 }
