@@ -12,13 +12,13 @@ public class CouponPolicy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "policy_id")
-    private Long policyId;  // 정책 ID
+    private Long Id;  // 정책 ID
 
     @Column(name = "policy_name", nullable = false)
-    private String policyName;  // 정책 이름
+    private String Name;  // 정책 이름
 
     @Column(name = "sale_type", nullable = false)
-    private String saleType;  // 할인 종류
+    private SaleType saleType;  // 할인 종류
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "discount_id", referencedColumnName = "discount_id")

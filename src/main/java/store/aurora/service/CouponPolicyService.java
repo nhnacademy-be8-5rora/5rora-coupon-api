@@ -37,7 +37,6 @@ public class CouponPolicyService {
         couponPolicyRepository.save(couponPolicy);
 
         DiscountRule discountRule = new DiscountRule();
-        discountRule.setPolicy(couponPolicy); // CouponPolicy 참조
         discountRule.setMaxSale(discountRuleDTO.getMaxSale());
         disCountRuleRepository.save(discountRule);
 
