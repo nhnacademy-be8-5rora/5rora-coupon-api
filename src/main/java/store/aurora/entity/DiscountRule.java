@@ -15,10 +15,6 @@ public class DiscountRule {
     @Column(name = "discount_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "policy_id", nullable = false)
-    private CouponPolicy policy;
-
     @Column(name = "need_cost")
     private long needCost;
 

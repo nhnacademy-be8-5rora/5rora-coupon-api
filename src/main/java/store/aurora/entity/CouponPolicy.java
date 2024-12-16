@@ -12,13 +12,16 @@ public class CouponPolicy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "policy_id")
-    private Long id;  // Policy의 기본 키
+    private Long policyId;  // 정책 ID
 
-    @Column(name = "policy_name", nullable = false, length = 50)
-    private String name;
+    @Column(name = "policy_name", nullable = false)
+    private String policyName;  // 정책 이름
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "sale_type", nullable = false)
-    private SaleType saleType;
+    private String saleType;  // 할인 종류
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "discount_id", referencedColumnName = "discount_id")
+    private DiscountRule discountRule;  // 할인 ID (옵션), discount 테이블과 외래 키 관계
 
 }

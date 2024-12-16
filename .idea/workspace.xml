@@ -5,23 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f69c862f-3061-4181-a199-63e664ff56d6" name="변경" comment=".">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/CouponApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/CouponApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/controller/AdminCouponController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/controller/AdminCouponController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/controller/ReTryCouponController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/controller/ReTryCouponController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/controller/UserCouponListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/controller/UserCouponListController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/entity/CouponPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/entity/CouponPolicy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/entity/DiscountRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/entity/DiscountRule.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/CouponApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/CouponApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/jacoco.exec" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-store.aurora.CouponApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-store.aurora.CouponApplicationTests.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/surefire-reports/store.aurora.CouponApplicationTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/store.aurora.CouponApplicationTests.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/store/aurora/CouponRepositoryTest.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +104,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.CouponApplication">
+  <component name="RunManager" selected="JUnit.CouponRepositoryTest.testFindByUserId">
     <configuration name="CouponRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5rora-coupon-api" />
       <extension name="coverage">
@@ -158,8 +147,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CouponRepositoryTest" />
         <item itemvalue="JUnit.CouponRepositoryTest.testFindByUserId" />
+        <item itemvalue="JUnit.CouponRepositoryTest" />
       </list>
     </recent_temporary>
   </component>
@@ -189,15 +178,7 @@
       <workItem from="1734307307079" duration="6000" />
       <workItem from="1734307501768" duration="15740000" />
       <workItem from="1734333878607" duration="1557000" />
-      <workItem from="1734335451019" duration="155000" />
-    </task>
-    <task id="LOCAL-00017" summary=".">
-      <option name="closed" value="true" />
-      <created>1733881925278</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1733881925278</updated>
+      <workItem from="1734335451019" duration="2035000" />
     </task>
     <task id="LOCAL-00018" summary=".">
       <option name="closed" value="true" />
@@ -583,7 +564,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734333011051</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary=".">
+      <option name="closed" value="true" />
+      <created>1734335611879</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1734335611880</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
