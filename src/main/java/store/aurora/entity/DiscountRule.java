@@ -3,9 +3,6 @@ package store.aurora.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.time.LocalDateTime;
-import java.util.Set;
-
 @Entity
 @Table(name = "discount_rule")
 @Data

@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f69c862f-3061-4181-a199-63e664ff56d6" name="변경" comment=".">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/controller/AdminCouponController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/controller/AdminCouponController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/dto/CreateCouponDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/dto/CreateCouponDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/dto/RefundCouponDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/dto/RequestCouponDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/dto/RequestUserCouponDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/dto/RequestCouponPolicyDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/dto/RequestCouponPolicyDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/dto/UsedCouponDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/entity/UserCoupon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/entity/UserCoupon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/service/CouponPolicyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/service/CouponPolicyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/entity/DiscountRule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/entity/DiscountRule.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,15 +174,7 @@
       <workItem from="1734307501768" duration="15740000" />
       <workItem from="1734333878607" duration="1557000" />
       <workItem from="1734335451019" duration="2843000" />
-      <workItem from="1734393637191" duration="5909000" />
-    </task>
-    <task id="LOCAL-00024" summary=".">
-      <option name="closed" value="true" />
-      <created>1733902059975</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1733902059975</updated>
+      <workItem from="1734393637191" duration="5926000" />
     </task>
     <task id="LOCAL-00025" summary=".">
       <option name="closed" value="true" />
@@ -576,7 +560,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734398689974</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary=".">
+      <option name="closed" value="true" />
+      <created>1734399932254</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1734399932254</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
