@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import store.aurora.entity.*;
 import store.aurora.repository.CouponPolicyRepository;
 import store.aurora.repository.CouponRepository;
+import store.aurora.repository.DisCountRuleRepository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,15 +26,17 @@ class CouponRepositoryTest {
     @Autowired
     private CouponPolicyRepository couponPolicyRepository;
 
+    @Autowired
+    private DisCountRuleRepository discountRuleRepository;
+
     private CouponPolicy couponPolicy;
 
     @BeforeEach
     void setUp() {
-        new DiscountRule();
-
         //discountRule 설정
         DiscountRule discountRule = new DiscountRule();
         discountRule.setSaleAmount(10000);
+        discountRule =discountRuleRepository.save(discountRule);
 
         // CouponPolicy 설정
         couponPolicy = new CouponPolicy();
@@ -58,7 +61,8 @@ class CouponRepositoryTest {
         coupon2.setEndDate(LocalDate.now().plusDays(5));  // 아직 만료되지 않음
         coupon2.setPolicy(couponPolicy);  // CouponPolicy 설정
 
-        couponRepository.saveAll(List.of(coupon1, coupon2));  // 데이터 저장
+        couponRepository.save(coupon1);
+        couponRepository.save(coupon2);
     }
 
     @Test

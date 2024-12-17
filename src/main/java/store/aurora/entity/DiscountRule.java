@@ -14,10 +14,10 @@ public class DiscountRule {
     private Long id;
 
     @Column(name = "need_cost")
-    private long needCost;
+    private Integer needCost;
 
     @Column(name = "max_sale")
-    private long maxSale;
+    private Integer maxSale;
 
     @Column(name = "sale_percent")
     private Integer salePercent;
