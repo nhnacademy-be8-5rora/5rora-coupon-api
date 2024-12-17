@@ -33,7 +33,7 @@ public class UserCoupon {
     @Column(name = "user_id", nullable = false)
     private Long userId;
 
-    @Column(name = "used_period")
+    @Column(name = "change_period")
     private LocalDate changedDate;
 
 }

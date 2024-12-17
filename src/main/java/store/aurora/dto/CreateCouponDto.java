@@ -9,5 +9,4 @@ import java.util.List;
 public class CreateCouponDto {
     private List<Long> userId;   // 유저 식별자
     private CouponPolicy policy;
-
 }

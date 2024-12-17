@@ -1,12 +1,11 @@
 package store.aurora.service;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import store.aurora.dto.AddPolicyDTO;
 import store.aurora.dto.DiscountRuleDTO;
-import store.aurora.dto.RequestCouponDto;
+import store.aurora.dto.RequestUserCouponDto;
 import store.aurora.dto.RequestCouponPolicyDTO;
 
 import store.aurora.entity.*;
@@ -76,40 +75,37 @@ public class CouponPolicyService {
         discountRule.setSalePercent(discountRuleDTO.getSalePercent());  //null 가능
         discountRule.setSaleAmount(discountRuleDTO.getSaleAmount());    //null 가능
 
-        if(discountRule.getSalePercent() == null && discountRule.getSaleAmount() == null){
-            throw new IllegalArgumentException("salePercent and saleAmount must not be null");
-        }
         return discountRule;
     }
 
     //사용자 쿠폰 수정(요청한 유저 ID 리스트를 통해 해당 ID에 포함된 userCoupons 들을 수정)
     @Transactional
-    public void couponUpdate(RequestCouponDto requestCouponDto) {    //@valid로 null 값 판별
+    public void couponUpdate(RequestUserCouponDto requestUserCouponDto) {    //@valid로 null 값 판별
 
         couponRepository.updateCouponAttributesByUserIds(
-                requestCouponDto.getState(),                    // 쿠폰 상태
-                requestCouponDto.getPolicy().getId(),           // 정책 ID (CouponPolicy에서 가져옴)
-                requestCouponDto.getStartDate(),                // 시작일
-                requestCouponDto.getEndDate(),                  // 종료일
-                requestCouponDto.getUserId()                    // 유저 ID 리스트
+                requestUserCouponDto.getState(),                    // 쿠폰 상태
+                requestUserCouponDto.getPolicy().getId(),           // 정책 ID (CouponPolicy에서 가져옴)
+                requestUserCouponDto.getStartDate(),                // 시작일
+                requestUserCouponDto.getEndDate(),                  // 종료일
+                requestUserCouponDto.getUserId()                    // 유저 ID 리스트
         );
     }
 
     //사용자 쿠폰 생성
     @Transactional
-    public void userCouponCreate(RequestCouponDto requestCouponDto) {
-        if (requestCouponDto.getUserId() == null || requestCouponDto.getUserId().isEmpty()) {
+    public void userCouponCreate(RequestUserCouponDto requestUserCouponDto) {
+        if (requestUserCouponDto.getUserId() == null || requestUserCouponDto.getUserId().isEmpty()) {
             throw new IllegalArgumentException("User ID list must not be empty");
         }
-        if (requestCouponDto.getPolicy() == null) {
+        if (requestUserCouponDto.getPolicy() == null) {
             throw new IllegalArgumentException("Policy must not be null");
         }
 
-        List<Long> userIds = requestCouponDto.getUserId(); // 유저 ID 리스트
-        CouponPolicy policy = requestCouponDto.getPolicy(); // 적용할 정책
-        CouponState state = requestCouponDto.getState();   // 쿠폰 초기 상태
-        LocalDate startDate = requestCouponDto.getStartDate(); // 시작일
-        LocalDate endDate = requestCouponDto.getEndDate();     // 종료일
+        List<Long> userIds = requestUserCouponDto.getUserId(); // 유저 ID 리스트
+        CouponPolicy policy = requestUserCouponDto.getPolicy(); // 적용할 정책
+        CouponState state = requestUserCouponDto.getState();   // 쿠폰 초기 상태
+        LocalDate startDate = requestUserCouponDto.getStartDate(); // 시작일
+        LocalDate endDate = requestUserCouponDto.getEndDate();     // 종료일
 
         List<UserCoupon> newCoupons = userIds.stream()
                 .map(userId -> {
@@ -125,14 +121,4 @@ public class CouponPolicyService {
 
         couponRepository.saveAll(newCoupons); // 한 번에 저장
     }
-
-//    private UserCoupon createUserCoupon(Long userId, CouponPolicy policy, CouponState state, LocalDate startDate, LocalDate endDate) {
-//        UserCoupon userCoupon = new UserCoupon();
-//        userCoupon.setUserId(userId);
-//        userCoupon.setPolicy(policy);
-//        userCoupon.setCouponState(state);
-//        userCoupon.setStartDate(startDate);
-//        userCoupon.setEndDate(endDate);
-//        return userCoupon;
-//    }
 }
