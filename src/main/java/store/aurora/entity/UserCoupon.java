@@ -20,7 +20,7 @@ public class UserCoupon {
     private CouponPolicy policy;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "coupon_state", nullable = false,
+    @Column(name = "coupon_state",
             columnDefinition = "ENUM('LIVE', 'USED', 'TIMEOUT') DEFAULT 'LIVE'")
     private CouponState couponState;
 
