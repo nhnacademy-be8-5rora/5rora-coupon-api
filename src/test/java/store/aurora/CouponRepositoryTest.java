@@ -105,6 +105,9 @@ class CouponRepositoryTest {
                 List.of(1L)
         );
 
+        entityManager.flush();
+        entityManager.clear();
+
         UserCoupon updatedCoupon = couponRepository.findById(1L).orElseThrow();
         assertThat(updatedCoupon.getCouponState()).isEqualTo(CouponState.USED);
         assertThat(updatedCoupon.getStartDate()).isEqualTo(LocalDate.now().minusDays(5));
@@ -116,7 +119,11 @@ class CouponRepositoryTest {
         // 만료된 쿠폰 상태 업데이트
         couponRepository.updateExpiredCoupons();
 
+        entityManager.flush();
+        entityManager.clear();
+
         List<UserCoupon> coupons = couponRepository.findAll();
+
         assertThat(coupons).anyMatch(coupon -> coupon.getCouponState() == CouponState.TIMEOUT);
     }
 
@@ -126,8 +133,11 @@ class CouponRepositoryTest {
         couponRepository.deleteExpiredCoupons(
                 CouponState.USED,
                 CouponState.TIMEOUT,
-                LocalDateTime.now().minusDays(90)
+                LocalDate.now().minusDays(90)
         );
+
+        entityManager.flush();
+        entityManager.clear();
 
         List<UserCoupon> coupons = couponRepository.findAll();
         assertThat(coupons).hasSize(2); // 현재 테스트 데이터에는 조건에 맞는 삭제 없음
@@ -135,6 +145,6 @@ class CouponRepositoryTest {
 
     @Test
     void testCouponCreate() {
-
+        //사용자 쿠폰 생성
     }
 }

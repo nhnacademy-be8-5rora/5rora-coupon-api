@@ -46,6 +46,7 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
             "WHERE u.endDate < CURRENT_DATE AND u.couponState = 'live'")
     void updateExpiredCoupons();
 
+    //used, timeout 상태인 userCoupon 90일이 지날 경우 삭제하는 명령어
     @Modifying
     @Transactional
     @Query("DELETE FROM UserCoupon u " +
@@ -54,7 +55,7 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
     void deleteExpiredCoupons(
             @Param("usedState") CouponState usedState,
             @Param("timeoutState") CouponState timeoutState,
-            @Param("ninetyDaysAgo") LocalDateTime ninetyDaysAgo);
+            @Param("ninetyDaysAgo") LocalDate ninetyDaysAgo);
 
     List<UserCoupon> findByUserIdIn(List<Long> userIds);
 }

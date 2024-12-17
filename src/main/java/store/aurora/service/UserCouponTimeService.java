@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import store.aurora.entity.CouponState;
 import store.aurora.repository.CouponRepository;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
@@ -31,7 +31,7 @@ public class UserCouponTimeService {
     public void deleteExpiredCoupons() {
         //sed나 timeout인 상태의 사용자 쿠폰의 데이터를 삭제
         // 90일 전 시간 계산
-        LocalDateTime ninetyDaysAgo = LocalDateTime.now().minusDays(90);
+        LocalDate ninetyDaysAgo = LocalDate.now().minusDays(90);
         couponRepository.deleteExpiredCoupons(CouponState.USED, CouponState.TIMEOUT, ninetyDaysAgo);
         log.info("Expired coupons delete at: {}", java.time.LocalDateTime.now());
     }
