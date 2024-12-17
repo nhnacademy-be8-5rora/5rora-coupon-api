@@ -2,6 +2,7 @@ package store.aurora;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,13 +21,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Transactional
 class CouponRepositoryTest {
 
-    @Autowired
+    @Mock
     private CouponRepository couponRepository;
 
-    @Autowired
+    @Mock
     private CouponPolicyRepository couponPolicyRepository;
 
-    @Autowired
+    @Mock
     private DisCountRuleRepository discountRuleRepository;
 
     private CouponPolicy couponPolicy;
@@ -49,14 +50,12 @@ class CouponRepositoryTest {
         // UserCoupon 데이터 추가
         UserCoupon coupon1 = new UserCoupon();
         coupon1.setUserId(1L);  // userId 설정
-        coupon1.setCouponState(CouponState.LIVE);  // couponState 설정
         coupon1.setStartDate(LocalDate.now().minusDays(10));  // startDate 설정
         coupon1.setEndDate(LocalDate.now().minusDays(1));  // 만료된 상태
         coupon1.setPolicy(couponPolicy);  // CouponPolicy 설정
 
         UserCoupon coupon2 = new UserCoupon();
         coupon2.setUserId(2L);  // userId 설정
-        coupon2.setCouponState(CouponState.LIVE);  // couponState 설정
         coupon2.setStartDate(LocalDate.now().minusDays(10));  // startDate 설정
         coupon2.setEndDate(LocalDate.now().plusDays(5));  // 아직 만료되지 않음
         coupon2.setPolicy(couponPolicy);  // CouponPolicy 설정
@@ -76,8 +75,10 @@ class CouponRepositoryTest {
 
     @Test
     void testUpdateCouponStateByUserIds() {
+        List<Long> userIds = List.of(1L, 2L);
+
         // UserIds에 대한 상태 업데이트
-        int updatedRows = couponRepository.updateCouponStateByUserIds(CouponState.TIMEOUT, List.of(1L, 2L));
+        int updatedRows = couponRepository.updateCouponStateByUserIds(CouponState.TIMEOUT, userIds);
 
         assertThat(updatedRows).isEqualTo(2);
 
@@ -122,5 +123,10 @@ class CouponRepositoryTest {
 
         List<UserCoupon> coupons = couponRepository.findAll();
         assertThat(coupons).hasSize(2); // 현재 테스트 데이터에는 조건에 맞는 삭제 없음
+    }
+
+    @Test
+    void testCouponCreate() {
+
     }
 }

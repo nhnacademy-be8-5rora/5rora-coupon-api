@@ -27,7 +27,7 @@ public class UserCoupon {
     @Column(name = "start_date", nullable = false)
     private LocalDate startDate;
 
-    @Column(name = "end_date", nullable = true)
+    @Column(name = "end_date")
     private LocalDate endDate;
 
     @Column(name = "user_id", nullable = false)

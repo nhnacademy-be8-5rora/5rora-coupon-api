@@ -41,7 +41,6 @@ public class CouponPolicyService {
         couponPolicy.setDiscountRule(discountRule);
         couponPolicyRepository.save(couponPolicy);
 
-
         //카테고리 정책 테이블 개체 생성(addPolicy -> categoryId, bookId list null 구분으로 테이블 생성)
         if (addPolicyDTO.getCategoryId() != null) {
             List<CategoryPolicy> categoryPolicies = addPolicyDTO.getCategoryId().stream()
