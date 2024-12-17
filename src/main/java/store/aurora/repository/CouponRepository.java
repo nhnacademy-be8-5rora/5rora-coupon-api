@@ -21,8 +21,8 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
     //관리자가 특정 사용자 ID 리스트에 해당하는 UserCoupon들의 couponState 업데이트
     @Modifying
     @Transactional
-    @Query("UPDATE UserCoupon uc SET uc.couponState = :newState WHERE uc.userId IN :userIds")
-    int updateCouponStateByUserIds(@Param("couponState") CouponState newState,
+    @Query("UPDATE UserCoupon uc SET uc.couponState = :couponState WHERE uc.userId IN :userIds")
+    int updateCouponStateByUserIds(@Param("couponState") CouponState couponState,
                                    @Param("userIds") List<Long> userIds);
 
 
