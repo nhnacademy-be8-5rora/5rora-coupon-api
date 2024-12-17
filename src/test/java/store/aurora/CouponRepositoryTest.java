@@ -21,21 +21,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Transactional
 class CouponRepositoryTest {
 
-    @Mock
+    @Autowired
     private CouponRepository couponRepository;
 
-    @Mock
+    @Autowired
     private CouponPolicyRepository couponPolicyRepository;
 
-    @Mock
+    @Autowired
     private DisCountRuleRepository discountRuleRepository;
 
     private CouponPolicy couponPolicy;
 
+    private DiscountRule discountRule;
+
     @BeforeEach
     void setUp() {
         //discountRule 설정
-        DiscountRule discountRule = new DiscountRule();
         discountRule.setSaleAmount(10000);
         discountRule =discountRuleRepository.save(discountRule);
 

@@ -6,18 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="f69c862f-3061-4181-a199-63e664ff56d6" name="변경" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/entity/UserCoupon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/entity/UserCoupon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/repository/BookPolicyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/repository/BookPolicyRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/repository/CategoryPolicyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/repository/CategoryPolicyRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/repository/CouponPolicyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/repository/CouponPolicyRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/repository/CouponRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/repository/CouponRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/repository/DisCountRuleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/repository/DisCountRuleRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/service/CouponPolicyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/service/CouponPolicyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/entity/DiscountRule.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/entity/DiscountRule.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/entity/UserCoupon.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/entity/UserCoupon.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/repository/BookPolicyRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/repository/BookPolicyRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/repository/CategoryPolicyRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/repository/CategoryPolicyRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/repository/CouponPolicyRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/repository/CouponPolicyRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/repository/CouponRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/repository/CouponRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/service/CouponPolicyService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/service/CouponPolicyService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/repository/DisCountRuleRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/repository/DisCountRuleRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/store/aurora/CouponRepositoryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/store/aurora/CouponRepositoryTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,7 +65,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JUnit.CouponRepositoryTest.executor": "Run",
-    "JUnit.CouponRepositoryTest.testFindByUserId.executor": "Run",
+    "JUnit.CouponRepositoryTest.testFindByUserId.executor": "Debug",
     "JUnit.CouponRepositoryTest.testUpdateCouponAttributesByUserIds.executor": "Debug",
     "JUnit.CouponRepositoryTest.testUpdateCouponStateByUserIds.executor": "Debug",
     "RequestMappingsPanelOrder0": "0",
@@ -117,7 +112,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CouponRepositoryTest.testFindByUserId">
+  <component name="RunManager" selected="JUnit.CouponRepositoryTest">
     <configuration name="CouponRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5rora-coupon-api" />
       <extension name="coverage">
@@ -192,10 +187,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CouponRepositoryTest" />
         <item itemvalue="JUnit.CouponRepositoryTest.testFindByUserId" />
         <item itemvalue="JUnit.CouponRepositoryTest.testUpdateCouponStateByUserIds" />
         <item itemvalue="JUnit.CouponRepositoryTest.testUpdateCouponAttributesByUserIds" />
-        <item itemvalue="JUnit.CouponRepositoryTest" />
       </list>
     </recent_temporary>
   </component>
@@ -226,15 +221,7 @@
       <workItem from="1734307501768" duration="15740000" />
       <workItem from="1734333878607" duration="1557000" />
       <workItem from="1734335451019" duration="2843000" />
-      <workItem from="1734393637191" duration="12086000" />
-    </task>
-    <task id="LOCAL-00030" summary=".">
-      <option name="closed" value="true" />
-      <created>1733905889605</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1733905889605</updated>
+      <workItem from="1734393637191" duration="12552000" />
     </task>
     <task id="LOCAL-00031" summary=".">
       <option name="closed" value="true" />
@@ -620,7 +607,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734409855040</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary=".">
+      <option name="closed" value="true" />
+      <created>1734412660684</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1734412660684</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -658,21 +653,66 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java</url>
-          <line>82</line>
+          <line>83</line>
           <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java</url>
-          <line>84</line>
+          <line>85</line>
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java</url>
-          <line>85</line>
+          <line>86</line>
           <properties>
             <option name="lambda-ordinal" value="-1" />
           </properties>
           <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java</url>
+          <line>72</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java</url>
+          <line>73</line>
+          <option name="timeStamp" value="62" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
