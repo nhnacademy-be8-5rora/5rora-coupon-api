@@ -30,15 +30,21 @@ public class CouponPolicyService {
     public void couponPolicyCreate(RequestCouponPolicyDTO requestCouponPolicyDTO
             , DiscountRuleDTO discountRuleDTO, AddPolicyDTO addPolicyDTO) {
 
+        //계산 테이블 개체 생성
+        DiscountRule discountRule = new DiscountRule();
+        discountRule.setNeedCost(discountRuleDTO.getNeedCost());
+        discountRule.setMaxSale(discountRuleDTO.getMaxSale());
+        discountRule.setSalePercent(discountRuleDTO.getSalePercent());
+        discountRule.setSaleAmount(discountRuleDTO.getSaleAmount());
+        disCountRuleRepository.save(discountRule);
+
         //쿠폰정책 기본 테이블 개체 생성
         CouponPolicy couponPolicy = new CouponPolicy();
         couponPolicy.setName(requestCouponPolicyDTO.getPolicyName());
         couponPolicy.setSaleType(requestCouponPolicyDTO.getSaleType());
+        couponPolicy.setDiscountRule(discountRule);
         couponPolicyRepository.save(couponPolicy);
 
-        DiscountRule discountRule = new DiscountRule();
-        discountRule.setMaxSale(discountRuleDTO.getMaxSale());
-        disCountRuleRepository.save(discountRule);
 
         //카테고리 정책 테이블 개체 생성
         if (addPolicyDTO.getCategoryId() != null) {
