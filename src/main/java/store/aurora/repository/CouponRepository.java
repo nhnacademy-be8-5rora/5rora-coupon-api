@@ -15,21 +15,13 @@ import java.util.List;
 
 public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
 
-    // userId 리스트로 UserCoupon 조회
-    List<UserCoupon> findByUserIdIn(List<Long> userIds);
-
     List<UserCoupon> findByUserId(Long userId);
 
+    //특정 사용자 ID 리스트에 해당하는 UserCoupon들의 couponState 업데이트
     @Modifying
     @Query("UPDATE UserCoupon uc SET uc.couponState = :newState WHERE uc.userId IN :userIds")
-    int updateCouponStateByUserIds(String newState, List<Long> userIds);
+    int updateCouponStateByUserIds(CouponState newState, List<Long> userIds);
 
-//    @Modifying
-//    @Query("UPDATE UserCoupon uc SET uc.couponState = :couponState, uc.expiryDate = " +
-//            ":expiryDate WHERE uc.userId IN :userIds")
-//    int updateCouponAttributesByUserIds(@Param("coupon_state") CouponState couponState,
-//                                        @Param("start_date") LocalDate startDate,
-//                                        @Param("end_date") LocalDate endDate);
 
     @Modifying
     @Query("UPDATE UserCoupon uc SET uc.couponState = :couponState, " +

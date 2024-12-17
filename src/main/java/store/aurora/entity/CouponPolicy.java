@@ -12,10 +12,10 @@ public class CouponPolicy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "policy_id")
-    private Long Id;  // 정책 ID
+    private Long id;  // 정책 ID
 
     @Column(name = "policy_name", nullable = false)
-    private String Name;  // 정책 이름
+    private String name;  // 정책 이름
 
     @Column(name = "sale_type", nullable = false)
     private SaleType saleType;  // 할인 종류

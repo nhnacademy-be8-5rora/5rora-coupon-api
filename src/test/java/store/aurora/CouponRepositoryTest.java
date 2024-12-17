@@ -68,7 +68,7 @@ class CouponRepositoryTest {
     @Test
     void testUpdateCouponStateByUserIds() {
         // UserIds에 대한 상태 업데이트
-        int updatedRows = couponRepository.updateCouponStateByUserIds(CouponState.TIMEOUT.name(), List.of(1L, 2L));
+        int updatedRows = couponRepository.updateCouponStateByUserIds(CouponState.TIMEOUT, List.of(1L, 2L));
 
         assertThat(updatedRows).isEqualTo(2);
 
