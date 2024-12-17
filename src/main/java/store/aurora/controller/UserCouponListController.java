@@ -1,5 +1,6 @@
 package store.aurora.controller;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class UserCouponListController {
     private final CouponListService couponListService;
     //사용자쿠폰 목록 확인
     @GetMapping(value = "/couponList/{userId}") //->외부 api로 보내는 링크
-    public ResponseEntity<List<UserCoupon>> couponList(@PathVariable Long userId) {
+    public ResponseEntity<List<UserCoupon>> couponList(@PathVariable @NotNull Long userId) {
         if(userId == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

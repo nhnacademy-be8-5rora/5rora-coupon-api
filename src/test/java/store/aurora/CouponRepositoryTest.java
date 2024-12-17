@@ -5,10 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.transaction.annotation.Transactional;
-import store.aurora.entity.CouponPolicy;
-import store.aurora.entity.CouponState;
-import store.aurora.entity.UserCoupon;
-import store.aurora.entity.SaleType;
+import store.aurora.entity.*;
 import store.aurora.repository.CouponPolicyRepository;
 import store.aurora.repository.CouponRepository;
 
@@ -32,10 +29,19 @@ class CouponRepositoryTest {
 
     @BeforeEach
     void setUp() {
-// CouponPolicy 설정
+        new DiscountRule();
+
+
+        //discountRule 설정
+        DiscountRule discountRule = new DiscountRule();
+        discountRule.setSaleAmount(10000);
+
+        // CouponPolicy 설정
         couponPolicy = new CouponPolicy();
         couponPolicy.setName("Test Policy");
         couponPolicy.setSaleType(SaleType.AMOUNT);  // SaleType 설정
+        couponPolicy.setDiscountRule(discountRule);
+
         couponPolicy = couponPolicyRepository.save(couponPolicy);
 
         // UserCoupon 데이터 추가
