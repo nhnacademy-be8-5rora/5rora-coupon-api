@@ -84,13 +84,7 @@ public class CouponPolicyService {
 
     //사용자 쿠폰 수정(요청한 유저 ID 리스트를 통해 해당 ID에 포함된 userCoupons 들을 수정)
     @Transactional
-    public void couponUpdate(@Valid RequestCouponDto requestCouponDto) {
-        if (requestCouponDto.getUserId() == null || requestCouponDto.getUserId().isEmpty()) {
-            throw new IllegalArgumentException("User ID list must not be empty");
-        }
-        if (requestCouponDto.getPolicy() == null) {
-            throw new IllegalArgumentException("Policy must not be null");
-        }
+    public void couponUpdate(RequestCouponDto requestCouponDto) {    //@valid로 null 값 판별
 
         couponRepository.updateCouponAttributesByUserIds(
                 requestCouponDto.getState(),                    // 쿠폰 상태

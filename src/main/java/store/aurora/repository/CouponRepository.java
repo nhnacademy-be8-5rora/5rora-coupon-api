@@ -23,6 +23,7 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
     int updateCouponStateByUserIds(CouponState newState, List<Long> userIds);
 
 
+    //사용자 쿠폰들 전체 수정
     @Modifying
     @Query("UPDATE UserCoupon uc SET uc.couponState = :couponState, " +
             "uc.policy = (SELECT p FROM CouponPolicy p WHERE p.id = :policyId), " +

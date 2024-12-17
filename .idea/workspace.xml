@@ -5,18 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f69c862f-3061-4181-a199-63e664ff56d6" name="변경" comment=".">
+      <change afterPath="$PROJECT_DIR$/src/main/java/store/aurora/config/GlobalExceptionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/entity/CouponPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/entity/CouponPolicy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/repository/CouponRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/repository/CouponRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/controller/AdminCouponController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/controller/AdminCouponController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/controller/UserCouponListController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/controller/UserCouponListController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/dto/RequestCouponDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/dto/RequestCouponDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/dto/RequestCouponPolicyDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/dto/RequestCouponPolicyDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/entity/CouponPolicy.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/entity/CouponPolicy.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/entity/UserCoupon.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/entity/UserCoupon.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/service/CouponListService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/service/CouponListService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/service/CouponPolicyService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/service/CouponPolicyService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/service/CouponPolicyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/service/CouponPolicyService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,15 +177,7 @@
       <workItem from="1734307501768" duration="15740000" />
       <workItem from="1734333878607" duration="1557000" />
       <workItem from="1734335451019" duration="2843000" />
-      <workItem from="1734393637191" duration="2939000" />
-    </task>
-    <task id="LOCAL-00022" summary=".">
-      <option name="closed" value="true" />
-      <created>1733894634306</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1733894634306</updated>
+      <workItem from="1734393637191" duration="4640000" />
     </task>
     <task id="LOCAL-00023" summary=".">
       <option name="closed" value="true" />
@@ -579,7 +563,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734395797721</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary=".">
+      <option name="closed" value="true" />
+      <created>1734396770740</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1734396770740</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
