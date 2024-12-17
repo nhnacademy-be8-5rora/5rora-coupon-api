@@ -1,5 +1,6 @@
 /Users/asdf/5rora-coupon-api/src/main/java/store/aurora/CouponApplication.java
 /Users/asdf/5rora-coupon-api/src/main/java/store/aurora/config/AppConfig.java
+/Users/asdf/5rora-coupon-api/src/main/java/store/aurora/config/GlobalExceptionHandler.java
 /Users/asdf/5rora-coupon-api/src/main/java/store/aurora/controller/AdminCouponController.java
 /Users/asdf/5rora-coupon-api/src/main/java/store/aurora/controller/ReTryCouponController.java
 /Users/asdf/5rora-coupon-api/src/main/java/store/aurora/controller/UserCouponController.java
@@ -7,10 +8,8 @@
 /Users/asdf/5rora-coupon-api/src/main/java/store/aurora/dto/AddPolicyDTO.java
 /Users/asdf/5rora-coupon-api/src/main/java/store/aurora/dto/CreateCouponDto.java
 /Users/asdf/5rora-coupon-api/src/main/java/store/aurora/dto/DiscountRuleDTO.java
-/Users/asdf/5rora-coupon-api/src/main/java/store/aurora/dto/RefundCouponDto.java
-/Users/asdf/5rora-coupon-api/src/main/java/store/aurora/dto/RequestCouponDto.java
 /Users/asdf/5rora-coupon-api/src/main/java/store/aurora/dto/RequestCouponPolicyDTO.java
-/Users/asdf/5rora-coupon-api/src/main/java/store/aurora/dto/UsedCouponDto.java
+/Users/asdf/5rora-coupon-api/src/main/java/store/aurora/dto/RequestUserCouponDto.java
 /Users/asdf/5rora-coupon-api/src/main/java/store/aurora/entity/BookPolicy.java
 /Users/asdf/5rora-coupon-api/src/main/java/store/aurora/entity/CategoryPolicy.java
 /Users/asdf/5rora-coupon-api/src/main/java/store/aurora/entity/CouponPolicy.java
