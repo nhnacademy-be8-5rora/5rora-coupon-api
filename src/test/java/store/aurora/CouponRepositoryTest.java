@@ -1,5 +1,6 @@
 package store.aurora;
 
+import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -30,14 +31,15 @@ class CouponRepositoryTest {
     @Autowired
     private DisCountRuleRepository discountRuleRepository;
 
-    private CouponPolicy couponPolicy;
+    @Autowired
+    private EntityManager entityManager;
 
-    private DiscountRule discountRule;
+    private CouponPolicy couponPolicy;
 
     @BeforeEach
     void setUp() {
         //discountRule 설정
-        discountRule = new DiscountRule();
+        DiscountRule discountRule = new DiscountRule();
         discountRule.setSaleAmount(10000);
         discountRule =discountRuleRepository.save(discountRule);
 
@@ -82,9 +84,13 @@ class CouponRepositoryTest {
         // UserIds에 대한 상태 업데이트
         int updatedRows = couponRepository.updateCouponStateByUserIds(CouponState.TIMEOUT, userIds);
 
+        entityManager.flush();
+        entityManager.clear();
+
         assertThat(updatedRows).isEqualTo(2);
 
-        List<UserCoupon> coupons = couponRepository.findAll();
+        List<UserCoupon> coupons = couponRepository.findByUserIdIn(userIds);
+
         assertThat(coupons).allMatch(coupon -> coupon.getCouponState() == CouponState.TIMEOUT);
     }
 

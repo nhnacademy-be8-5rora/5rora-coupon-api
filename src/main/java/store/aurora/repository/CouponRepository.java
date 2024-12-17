@@ -55,4 +55,6 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
             @Param("usedState") CouponState usedState,
             @Param("timeoutState") CouponState timeoutState,
             @Param("ninetyDaysAgo") LocalDateTime ninetyDaysAgo);
+
+    List<UserCoupon> findByUserIdIn(List<Long> userIds);
 }
