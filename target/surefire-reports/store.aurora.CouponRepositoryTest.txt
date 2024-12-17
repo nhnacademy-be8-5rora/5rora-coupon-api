@@ -1,0 +1,46 @@
+-------------------------------------------------------------------------------
+Test set: store.aurora.CouponRepositoryTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 6, Skipped: 0, Time elapsed: 11.03 s <<< FAILURE! -- in store.aurora.CouponRepositoryTest
+store.aurora.CouponRepositoryTest.testCouponCreate -- Time elapsed: 1.226 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "store.aurora.entity.DiscountRule.setSaleAmount(java.lang.Integer)" because "this.discountRule" is null
+	at store.aurora.CouponRepositoryTest.setUp(CouponRepositoryTest.java:40)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+store.aurora.CouponRepositoryTest.testFindByUserId -- Time elapsed: 0.022 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "store.aurora.entity.DiscountRule.setSaleAmount(java.lang.Integer)" because "this.discountRule" is null
+	at store.aurora.CouponRepositoryTest.setUp(CouponRepositoryTest.java:40)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+store.aurora.CouponRepositoryTest.testUpdateCouponStateByUserIds -- Time elapsed: 0.011 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "store.aurora.entity.DiscountRule.setSaleAmount(java.lang.Integer)" because "this.discountRule" is null
+	at store.aurora.CouponRepositoryTest.setUp(CouponRepositoryTest.java:40)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+store.aurora.CouponRepositoryTest.testUpdateExpiredCoupons -- Time elapsed: 0.029 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "store.aurora.entity.DiscountRule.setSaleAmount(java.lang.Integer)" because "this.discountRule" is null
+	at store.aurora.CouponRepositoryTest.setUp(CouponRepositoryTest.java:40)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+store.aurora.CouponRepositoryTest.testUpdateCouponAttributesByUserIds -- Time elapsed: 0.021 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "store.aurora.entity.DiscountRule.setSaleAmount(java.lang.Integer)" because "this.discountRule" is null
+	at store.aurora.CouponRepositoryTest.setUp(CouponRepositoryTest.java:40)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+store.aurora.CouponRepositoryTest.testDeleteExpiredCoupons -- Time elapsed: 0.013 s <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "store.aurora.entity.DiscountRule.setSaleAmount(java.lang.Integer)" because "this.discountRule" is null
+	at store.aurora.CouponRepositoryTest.setUp(CouponRepositoryTest.java:40)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

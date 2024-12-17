@@ -37,6 +37,7 @@ class CouponRepositoryTest {
     @BeforeEach
     void setUp() {
         //discountRule 설정
+        discountRule = new DiscountRule();
         discountRule.setSaleAmount(10000);
         discountRule =discountRuleRepository.save(discountRule);
 
