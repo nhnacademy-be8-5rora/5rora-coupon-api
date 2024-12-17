@@ -31,11 +31,8 @@ public class CouponPolicyService {
             , DiscountRuleDTO discountRuleDTO, AddPolicyDTO addPolicyDTO) {
 
         //계산 테이블 개체 생성
-        DiscountRule discountRule = new DiscountRule();
-        discountRule.setNeedCost(discountRuleDTO.getNeedCost());
-        discountRule.setMaxSale(discountRuleDTO.getMaxSale());
-        discountRule.setSalePercent(discountRuleDTO.getSalePercent());
-        discountRule.setSaleAmount(discountRuleDTO.getSaleAmount());
+        DiscountRule discountRule = getDiscountRule(discountRuleDTO);
+
         disCountRuleRepository.save(discountRule);
 
         //쿠폰정책 기본 테이블 개체 생성
@@ -46,7 +43,7 @@ public class CouponPolicyService {
         couponPolicyRepository.save(couponPolicy);
 
 
-        //카테고리 정책 테이블 개체 생성
+        //카테고리 정책 테이블 개체 생성(addPolicy -> categoryId, bookId list null 구분으로 테이블 생성)
         if (addPolicyDTO.getCategoryId() != null) {
             List<CategoryPolicy> categoryPolicies = addPolicyDTO.getCategoryId().stream()
                     .map(categoryId -> {
@@ -70,6 +67,19 @@ public class CouponPolicyService {
                     .toList();
             bookPolicyRepository.saveAll(bookPolicies);
         }
+    }
+
+    private static DiscountRule getDiscountRule(DiscountRuleDTO discountRuleDTO) {
+        DiscountRule discountRule = new DiscountRule();
+        discountRule.setNeedCost(discountRuleDTO.getNeedCost());
+        discountRule.setMaxSale(discountRuleDTO.getMaxSale());
+        discountRule.setSalePercent(discountRuleDTO.getSalePercent());  //null 가능
+        discountRule.setSaleAmount(discountRuleDTO.getSaleAmount());    //null 가능
+
+        if(discountRule.getSalePercent() == null && discountRule.getSaleAmount() == null){
+            throw new IllegalArgumentException("salePercent and saleAmount must not be null");
+        }
+        return discountRule;
     }
 
     //사용자 쿠폰 수정(요청한 유저 ID 리스트를 통해 해당 ID에 포함된 userCoupons 들을 수정)

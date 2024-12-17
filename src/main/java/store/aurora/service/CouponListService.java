@@ -1,7 +1,6 @@
 package store.aurora.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import store.aurora.entity.UserCoupon;
 import store.aurora.repository.BookPolicyRepository;
@@ -19,8 +18,11 @@ public class CouponListService {
     private final CategoryPolicyRepository categoryPolicyRepository;
 
 
+    //사용자 쿠폰 목록 검색
     public List<UserCoupon> getCouponList(Long userId) {
 
         return couponRepository.findByUserId(userId);
     }
+
+    //장바구니에서 각 상품별 쿠폰 목록 검색
 }

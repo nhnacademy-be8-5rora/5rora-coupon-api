@@ -21,7 +21,7 @@ public class CouponPolicy {
     private SaleType saleType;  // 할인 종류
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "discount_id", referencedColumnName = "discount_id")
+    @JoinColumn(name = "discount_id", nullable = false)
     private DiscountRule discountRule;  // 할인 ID (옵션), discount 테이블과 외래 키 관계
 
 }

@@ -1,12 +1,10 @@
 package store.aurora.dto;
 
 import lombok.Data;
-import lombok.Getter;
 import store.aurora.entity.CouponPolicy;
 import store.aurora.entity.CouponState;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Data
