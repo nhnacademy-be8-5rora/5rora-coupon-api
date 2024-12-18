@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f69c862f-3061-4181-a199-63e664ff56d6" name="변경" comment=".">
+      <change afterPath="$PROJECT_DIR$/libs/toast-logncrash-logback-sdk-3.0.5.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/logback-spring.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/eca1e363-3d6b-4293-8f10-3ad50a024535.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/store/aurora/CouponPolicyServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/store/aurora/CouponPolicyServiceTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,12 +34,12 @@
     &quot;assignee&quot;: &quot;adffdfewqefw&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/nhnacademy-be8-5rora/5rora-coupon-api.git&quot;,
-    &quot;accountId&quot;: &quot;6f2235cd-d16b-4846-b047-90b000b436e2&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/nhnacademy-be8-5rora/5rora-coupon-api.git",
+    "accountId": "7ca1cb54-fcfe-446d-9a97-6b643f3f2221"
   }
-}</component>
+}]]></component>
   <component name="JavaAutoRunManager">
     <enabled-run-configurations>
       <run-configuration type="JUnit" name="CouponRepositoryTest" />
@@ -79,7 +81,7 @@
     "Spring Boot.CouponApplication.executor": "Run",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/asdf/5rora-coupon-api/src/main/resources",
+    "last_opened_file_path": "/Users/seungchan/Desktop/workspace/5rora/5rora-coupon-api/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -113,7 +115,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CouponRepositoryTest">
+  <component name="RunManager" selected="Spring Boot.CouponApplication">
     <configuration name="CouponRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5rora-coupon-api" />
       <extension name="coverage">
@@ -215,8 +217,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fdfe4dae3a2d-intellij.indexing.shared.core-IU-243.22562.145" />
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-IU-243.22562.145" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.19072.14" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.19072.14" />
       </set>
     </attachedChunks>
   </component>
@@ -245,6 +247,7 @@
       <workItem from="1734480306700" duration="2415000" />
       <workItem from="1734482731492" duration="1363000" />
       <workItem from="1734484110346" duration="4432000" />
+      <workItem from="1734508466830" duration="588000" />
     </task>
     <task id="LOCAL-00048" summary=".">
       <option name="closed" value="true" />
