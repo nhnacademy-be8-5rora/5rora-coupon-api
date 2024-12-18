@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f69c862f-3061-4181-a199-63e664ff56d6" name="변경" comment=".">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/repository/CouponRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/repository/CouponRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/repository/CouponRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/repository/CouponRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/service/UserCouponTimeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/service/UserCouponTimeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/store/aurora/CouponRepositoryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/store/aurora/CouponRepositoryTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,15 +238,7 @@
       <workItem from="1734335451019" duration="2843000" />
       <workItem from="1734393637191" duration="12867000" />
       <workItem from="1734413451208" duration="2671000" />
-      <workItem from="1734423941367" duration="1308000" />
-    </task>
-    <task id="LOCAL-00037" summary=".">
-      <option name="closed" value="true" />
-      <created>1733992629411</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1733992629411</updated>
+      <workItem from="1734423941367" duration="1996000" />
     </task>
     <task id="LOCAL-00038" summary=".">
       <option name="closed" value="true" />
@@ -630,7 +624,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734425129343</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary=".">
+      <option name="closed" value="true" />
+      <created>1734425262678</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1734425262678</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -143,8 +143,4 @@ class CouponRepositoryTest {
         assertThat(coupons).hasSize(2); // 현재 테스트 데이터에는 조건에 맞는 삭제 없음
     }
 
-    @Test
-    void testCouponCreate() {
-        //사용자 쿠폰 생성
-    }
 }
