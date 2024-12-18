@@ -79,7 +79,7 @@ public class CouponPolicyService {
 
     //사용자 쿠폰 수정(요청한 유저 ID 리스트를 통해 해당 ID에 포함된 userCoupons 들을 수정)
     @Transactional
-    public void couponUpdate(RequestUserCouponDto requestUserCouponDto) {    //@valid로 null 값 판별
+    public void couponUpdate(RequestUserCouponDto requestUserCouponDto) {
 
         couponRepository.updateCouponAttributesByUserIds(
                 requestUserCouponDto.getState(),                    // 쿠폰 상태

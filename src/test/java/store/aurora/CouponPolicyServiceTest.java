@@ -53,7 +53,7 @@ class CouponPolicyServiceTest {
         addPolicyDTO.setCategoryId(Arrays.asList(1L, 2L));
         addPolicyDTO.setBookId(Arrays.asList(3L, 4L));
 
-        // When
+        // 사용자 쿠폰 생성
         couponPolicyService.couponPolicyCreate(requestCouponPolicyDTO, discountRuleDTO, addPolicyDTO);
 
         // Then
@@ -68,13 +68,27 @@ class CouponPolicyServiceTest {
         // Given
         RequestUserCouponDto requestUserCouponDto = new RequestUserCouponDto();
 
+        CouponPolicy couponPolicy = new CouponPolicy();
+        couponPolicy.setId(1L);
+
         requestUserCouponDto.setState(CouponState.USED);
-        requestUserCouponDto.setPolicy(new CouponPolicy());
+        requestUserCouponDto.setPolicy(couponPolicy);
         requestUserCouponDto.setStartDate(LocalDate.now().minusDays(5));
         requestUserCouponDto.setEndDate(LocalDate.now().plusDays(10));
-        requestUserCouponDto.setUserId(Arrays.asList(1L, 2L));
+        requestUserCouponDto.setUserId(Arrays.asList(1L, 2L));      //받아올 유저 ID
 
-        // When
+
+        // Mocking the behavior of couponRepository
+        // 예를 들어, updateCouponAttributesByUserIds 메서드가 실제로 동작하는 것처럼 mock 설정
+        doNothing().when(couponRepository).updateCouponAttributesByUserIds(
+                eq(CouponState.USED),
+                anyLong(),
+                eq(requestUserCouponDto.getStartDate()),
+                eq(requestUserCouponDto.getEndDate()),
+                eq(requestUserCouponDto.getUserId())
+        );
+
+        // 사용자 쿠폰 수정
         couponPolicyService.couponUpdate(requestUserCouponDto);
 
         // Then
@@ -103,4 +117,6 @@ class CouponPolicyServiceTest {
         // Then
         verify(couponRepository).saveAll(anyList()); // couponRepository의 saveAll 호출 여부 검증
     }
+
+
 }

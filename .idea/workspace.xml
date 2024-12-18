@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f69c862f-3061-4181-a199-63e664ff56d6" name="변경" comment=".">
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/5rora-coupon-api.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/store/aurora/dto/UpdateUserCouponDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/service/CouponService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/service/CouponService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/service/CouponPolicyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/service/CouponPolicyService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/store/aurora/CouponPolicyServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/store/aurora/CouponPolicyServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/service/CouponService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/service/CouponService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/store/aurora/CouponPolicyServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/store/aurora/CouponPolicyServiceTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,11 +48,6 @@
     &quot;accountId&quot;: &quot;6f2235cd-d16b-4846-b047-90b000b436e2&quot;
   }
 }</component>
-  <component name="JavaAutoRunManager">
-    <enabled-run-configurations>
-      <run-configuration type="JUnit" name="CouponRepositoryTest" />
-    </enabled-run-configurations>
-  </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -73,7 +70,7 @@
   "keyToString": {
     "JUnit.CouponPolicyServiceTest.executor": "Run",
     "JUnit.CouponPolicyServiceTest.testCouponPolicyCreate.executor": "Debug",
-    "JUnit.CouponPolicyServiceTest.testCouponUpdate.executor": "Debug",
+    "JUnit.CouponPolicyServiceTest.testCouponUpdate.executor": "Run",
     "JUnit.CouponRepositoryTest.executor": "Run",
     "JUnit.CouponRepositoryTest.testDeleteExpiredCoupons.executor": "Run",
     "JUnit.CouponRepositoryTest.testFindByUserId.executor": "Run",
@@ -256,14 +253,6 @@
       <workItem from="1734482731492" duration="1363000" />
       <workItem from="1734484110346" duration="4432000" />
       <workItem from="1734488764903" duration="9207000" />
-    </task>
-    <task id="LOCAL-00049" summary=".">
-      <option name="closed" value="true" />
-      <created>1734078436447</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1734078436447</updated>
     </task>
     <task id="LOCAL-00050" summary=".">
       <option name="closed" value="true" />
@@ -649,7 +638,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734503083313</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary=".">
+      <option name="closed" value="true" />
+      <created>1734509727429</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1734509727429</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -691,38 +688,8 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponPolicyServiceTest.java</url>
-          <line>80</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponPolicyServiceTest.java</url>
-          <line>77</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponPolicyServiceTest.java</url>
-          <line>81</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponPolicyServiceTest.java</url>
-          <line>82</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponPolicyServiceTest.java</url>
-          <line>83</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponPolicyServiceTest.java</url>
-          <line>84</line>
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponPolicyServiceTest.java</url>
-          <line>85</line>
-          <option name="timeStamp" value="29" />
+          <line>56</line>
+          <option name="timeStamp" value="31" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
