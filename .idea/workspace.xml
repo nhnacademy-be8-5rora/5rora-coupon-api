@@ -5,9 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f69c862f-3061-4181-a199-63e664ff56d6" name="변경" comment=".">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/repository/CouponRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/repository/CouponRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/store/aurora/CouponApplicationTests.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/repository/CouponRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/repository/CouponRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/service/UserCouponTimeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/service/UserCouponTimeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-store.aurora.CouponApplicationTests.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-store.aurora.CouponRepositoryTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-store.aurora.CouponRepositoryTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/store.aurora.CouponApplicationTests.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/store.aurora.CouponRepositoryTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/store.aurora.CouponRepositoryTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/store/aurora/CouponApplicationTests.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/store/aurora/CouponRepositoryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/store/aurora/CouponRepositoryTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,6 +48,11 @@
     &quot;accountId&quot;: &quot;6f2235cd-d16b-4846-b047-90b000b436e2&quot;
   }
 }</component>
+  <component name="JavaAutoRunManager">
+    <enabled-run-configurations>
+      <run-configuration type="JUnit" name="CouponRepositoryTest" />
+    </enabled-run-configurations>
+  </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -59,10 +73,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "JUnit.CouponRepositoryTest.executor": "Debug",
+    "JUnit.CouponRepositoryTest.executor": "Run",
     "JUnit.CouponRepositoryTest.testDeleteExpiredCoupons.executor": "Run",
     "JUnit.CouponRepositoryTest.testFindByUserId.executor": "Run",
-    "JUnit.CouponRepositoryTest.testUpdateCouponAttributesByUserIds.executor": "Run",
+    "JUnit.CouponRepositoryTest.testUpdateCouponAttributesByUserIds.executor": "Debug",
     "JUnit.CouponRepositoryTest.testUpdateCouponStateByUserIds.executor": "Run",
     "JUnit.CouponRepositoryTest.testUpdateExpiredCoupons.executor": "Debug",
     "RequestMappingsPanelOrder0": "0",
@@ -109,7 +123,22 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CouponRepositoryTest.testDeleteExpiredCoupons">
+  <component name="RunManager" selected="JUnit.CouponRepositoryTest.testUpdateCouponAttributesByUserIds">
+    <configuration name="CouponRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="5rora-coupon-api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="store.aurora.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="store.aurora" />
+      <option name="MAIN_CLASS_NAME" value="store.aurora.CouponRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CouponRepositoryTest.testDeleteExpiredCoupons" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5rora-coupon-api" />
       <extension name="coverage">
@@ -121,22 +150,6 @@
       <option name="PACKAGE_NAME" value="store.aurora" />
       <option name="MAIN_CLASS_NAME" value="store.aurora.CouponRepositoryTest" />
       <option name="METHOD_NAME" value="testDeleteExpiredCoupons" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CouponRepositoryTest.testFindByUserId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="5rora-coupon-api" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="store.aurora.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="store.aurora" />
-      <option name="MAIN_CLASS_NAME" value="store.aurora.CouponRepositoryTest" />
-      <option name="METHOD_NAME" value="testFindByUserId" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -201,11 +214,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CouponRepositoryTest.testUpdateCouponAttributesByUserIds" />
+        <item itemvalue="JUnit.CouponRepositoryTest" />
         <item itemvalue="JUnit.CouponRepositoryTest.testDeleteExpiredCoupons" />
         <item itemvalue="JUnit.CouponRepositoryTest.testUpdateExpiredCoupons" />
-        <item itemvalue="JUnit.CouponRepositoryTest.testUpdateCouponAttributesByUserIds" />
         <item itemvalue="JUnit.CouponRepositoryTest.testUpdateCouponStateByUserIds" />
-        <item itemvalue="JUnit.CouponRepositoryTest.testFindByUserId" />
       </list>
     </recent_temporary>
   </component>
@@ -238,15 +251,9 @@
       <workItem from="1734335451019" duration="2843000" />
       <workItem from="1734393637191" duration="12867000" />
       <workItem from="1734413451208" duration="2671000" />
-      <workItem from="1734423941367" duration="1996000" />
-    </task>
-    <task id="LOCAL-00038" summary=".">
-      <option name="closed" value="true" />
-      <created>1733993099301</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1733993099301</updated>
+      <workItem from="1734423941367" duration="2219000" />
+      <workItem from="1734480306700" duration="2415000" />
+      <workItem from="1734482731492" duration="1294000" />
     </task>
     <task id="LOCAL-00039" summary=".">
       <option name="closed" value="true" />
@@ -632,7 +639,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734425262678</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary=".">
+      <option name="closed" value="true" />
+      <created>1734480073195</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1734480073195</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -664,6 +679,20 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="." />
     <option name="LAST_COMMIT_MESSAGE" value="." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java</url>
+          <line>109</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

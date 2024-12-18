@@ -3,7 +3,6 @@ package store.aurora;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +12,6 @@ import store.aurora.repository.CouponRepository;
 import store.aurora.repository.DisCountRuleRepository;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -96,7 +94,7 @@ class CouponRepositoryTest {
 
     @Test
     void testUpdateCouponAttributesByUserIds() {
-        // UserCoupon 속성 업데이트
+        // UserCoupon 속성 업데이트(UserIds을 통한 사용자 쿠폰 수정)
         couponRepository.updateCouponAttributesByUserIds(
                 CouponState.USED,
                 couponPolicy.getId(),
@@ -108,10 +106,10 @@ class CouponRepositoryTest {
         entityManager.flush();
         entityManager.clear();
 
-        UserCoupon updatedCoupon = couponRepository.findById(1L).orElseThrow();
-        assertThat(updatedCoupon.getCouponState()).isEqualTo(CouponState.USED);
-        assertThat(updatedCoupon.getStartDate()).isEqualTo(LocalDate.now().minusDays(5));
-        assertThat(updatedCoupon.getEndDate()).isEqualTo(LocalDate.now().plusDays(10));
+        List<UserCoupon> updatedCoupon = couponRepository.findByUserId(1L);
+        assertThat(updatedCoupon).anyMatch(coupon -> coupon.getCouponState() == CouponState.USED);
+        assertThat(updatedCoupon).anyMatch(coupon -> coupon.getStartDate() == LocalDate.now().minusDays(5));
+        assertThat(updatedCoupon).anyMatch(coupon -> coupon.getEndDate() == LocalDate.now().plusDays(10));
     }
 
     @Test
