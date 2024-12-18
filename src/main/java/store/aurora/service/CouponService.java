@@ -2,7 +2,6 @@ package store.aurora.service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import store.aurora.entity.CouponState;
 import store.aurora.entity.UserCoupon;

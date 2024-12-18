@@ -7,6 +7,9 @@
     <list default="true" id="f69c862f-3061-4181-a199-63e664ff56d6" name="변경" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/service/CouponService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/service/CouponService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/store/aurora/CouponPolicyServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/store/aurora/CouponPolicyServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/store/aurora/service/CouponService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/store/aurora/service/CouponService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/store/aurora/CouponPolicyServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/store/aurora/CouponPolicyServiceTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +27,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -63,6 +71,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JUnit.CouponPolicyServiceTest.executor": "Run",
+    "JUnit.CouponPolicyServiceTest.testCouponPolicyCreate.executor": "Debug",
+    "JUnit.CouponPolicyServiceTest.testCouponUpdate.executor": "Debug",
     "JUnit.CouponRepositoryTest.executor": "Run",
     "JUnit.CouponRepositoryTest.testDeleteExpiredCoupons.executor": "Run",
     "JUnit.CouponRepositoryTest.testFindByUserId.executor": "Run",
@@ -113,7 +124,54 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CouponRepositoryTest">
+  <component name="RunManager" selected="JUnit.CouponPolicyServiceTest.testCouponUpdate">
+    <configuration name="CouponPolicyServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="5rora-coupon-api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="store.aurora.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="store.aurora" />
+      <option name="MAIN_CLASS_NAME" value="store.aurora.CouponPolicyServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CouponPolicyServiceTest.testCouponPolicyCreate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="5rora-coupon-api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="store.aurora.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="store.aurora" />
+      <option name="MAIN_CLASS_NAME" value="store.aurora.CouponPolicyServiceTest" />
+      <option name="METHOD_NAME" value="testCouponPolicyCreate" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CouponPolicyServiceTest.testCouponUpdate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="5rora-coupon-api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="store.aurora.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="store.aurora" />
+      <option name="MAIN_CLASS_NAME" value="store.aurora.CouponPolicyServiceTest" />
+      <option name="METHOD_NAME" value="testCouponUpdate" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CouponRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="5rora-coupon-api" />
       <extension name="coverage">
@@ -125,22 +183,6 @@
       <option name="PACKAGE_NAME" value="store.aurora" />
       <option name="MAIN_CLASS_NAME" value="store.aurora.CouponRepositoryTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CouponRepositoryTest.testDeleteExpiredCoupons" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="5rora-coupon-api" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="store.aurora.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="store.aurora" />
-      <option name="MAIN_CLASS_NAME" value="store.aurora.CouponRepositoryTest" />
-      <option name="METHOD_NAME" value="testDeleteExpiredCoupons" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -161,38 +203,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CouponRepositoryTest.testUpdateCouponStateByUserIds" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="5rora-coupon-api" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="store.aurora.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="store.aurora" />
-      <option name="MAIN_CLASS_NAME" value="store.aurora.CouponRepositoryTest" />
-      <option name="METHOD_NAME" value="testUpdateCouponStateByUserIds" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CouponRepositoryTest.testUpdateExpiredCoupons" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="5rora-coupon-api" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="store.aurora.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="store.aurora" />
-      <option name="MAIN_CLASS_NAME" value="store.aurora.CouponRepositoryTest" />
-      <option name="METHOD_NAME" value="testUpdateExpiredCoupons" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="CouponApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="temurin-21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -204,11 +214,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CouponPolicyServiceTest.testCouponUpdate" />
+        <item itemvalue="JUnit.CouponPolicyServiceTest" />
+        <item itemvalue="JUnit.CouponPolicyServiceTest.testCouponPolicyCreate" />
         <item itemvalue="JUnit.CouponRepositoryTest" />
         <item itemvalue="JUnit.CouponRepositoryTest.testUpdateCouponAttributesByUserIds" />
-        <item itemvalue="JUnit.CouponRepositoryTest.testDeleteExpiredCoupons" />
-        <item itemvalue="JUnit.CouponRepositoryTest.testUpdateExpiredCoupons" />
-        <item itemvalue="JUnit.CouponRepositoryTest.testUpdateCouponStateByUserIds" />
       </list>
     </recent_temporary>
   </component>
@@ -245,14 +255,7 @@
       <workItem from="1734480306700" duration="2415000" />
       <workItem from="1734482731492" duration="1363000" />
       <workItem from="1734484110346" duration="4432000" />
-    </task>
-    <task id="LOCAL-00048" summary=".">
-      <option name="closed" value="true" />
-      <created>1734077797548</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1734077797548</updated>
+      <workItem from="1734488764903" duration="9207000" />
     </task>
     <task id="LOCAL-00049" summary=".">
       <option name="closed" value="true" />
@@ -638,7 +641,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734487458029</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary=".">
+      <option name="closed" value="true" />
+      <created>1734503083313</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1734503083313</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -655,7 +666,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin2/main" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -670,6 +681,51 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="." />
     <option name="LAST_COMMIT_MESSAGE" value="." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="com.netflix.discovery.shared.transport.TransportException" package="com.netflix.discovery.shared.transport" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponPolicyServiceTest.java</url>
+          <line>80</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponPolicyServiceTest.java</url>
+          <line>77</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponPolicyServiceTest.java</url>
+          <line>81</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponPolicyServiceTest.java</url>
+          <line>82</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponPolicyServiceTest.java</url>
+          <line>83</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponPolicyServiceTest.java</url>
+          <line>84</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/store/aurora/CouponPolicyServiceTest.java</url>
+          <line>85</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
