@@ -94,22 +94,25 @@ class CouponRepositoryTest {
 
     @Test
     void testUpdateCouponAttributesByUserIds() {
+        LocalDate startDate = LocalDate.now().minusDays(5);
+        LocalDate endDate = LocalDate.now().plusDays(10);
+
         // UserCoupon 속성 업데이트(UserIds을 통한 사용자 쿠폰 수정)
         couponRepository.updateCouponAttributesByUserIds(
                 CouponState.USED,
                 couponPolicy.getId(),
-                LocalDate.now().minusDays(5),
-                LocalDate.now().plusDays(10),
+                startDate,
+                endDate,
                 List.of(1L)
         );
 
         entityManager.flush();
         entityManager.clear();
 
-        List<UserCoupon> updatedCoupon = couponRepository.findByUserId(1L);
-        assertThat(updatedCoupon).anyMatch(coupon -> coupon.getCouponState() == CouponState.USED);
-        assertThat(updatedCoupon).anyMatch(coupon -> coupon.getStartDate() == LocalDate.now().minusDays(5));
-        assertThat(updatedCoupon).anyMatch(coupon -> coupon.getEndDate() == LocalDate.now().plusDays(10));
+        List<UserCoupon> coupons = couponRepository.findByUserId(1L);
+        assertThat(coupons).anyMatch(coupon -> coupon.getCouponState() == CouponState.USED);
+        assertThat(coupons).anyMatch(coupon -> coupon.getStartDate().equals(startDate));
+        assertThat(coupons).anyMatch(coupon -> coupon.getEndDate().equals(endDate));
     }
 
     @Test
