@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f69c862f-3061-4181-a199-63e664ff56d6" name="변경" comment=".">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/5rora-coupon-api.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/store/aurora/dto/UpdateUserCouponDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/service/CouponPolicyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/service/CouponPolicyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/store/aurora/CouponPolicyServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/store/aurora/CouponPolicyServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/store/aurora/CouponPolicyServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/store/aurora/CouponPolicyServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/dto/UpdateUserCouponDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/dto/UpdateUserCouponDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/service/CouponListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/service/CouponListService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,22 +248,6 @@
       <workItem from="1734482731492" duration="1363000" />
       <workItem from="1734484110346" duration="4432000" />
       <workItem from="1734488764903" duration="9207000" />
-    </task>
-    <task id="LOCAL-00050" summary=".">
-      <option name="closed" value="true" />
-      <created>1734078754019</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1734078754020</updated>
-    </task>
-    <task id="LOCAL-00051" summary=".">
-      <option name="closed" value="true" />
-      <created>1734079151760</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1734079151760</updated>
     </task>
     <task id="LOCAL-00052" summary=".">
       <option name="closed" value="true" />
@@ -646,7 +625,23 @@
       <option name="project" value="LOCAL" />
       <updated>1734509727429</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary=".">
+      <option name="closed" value="true" />
+      <created>1734511749688</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1734511749688</updated>
+    </task>
+    <task id="LOCAL-00100" summary=".">
+      <option name="closed" value="true" />
+      <created>1734511752194</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1734511752195</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import store.aurora.dto.AddPolicyDTO;
-import store.aurora.dto.DiscountRuleDTO;
+import store.aurora.dto.AddPolicyDto;
+import store.aurora.dto.DiscountRuleDto;
 import store.aurora.dto.RequestUserCouponDto;
 import store.aurora.dto.RequestCouponPolicyDTO;
 import store.aurora.service.CouponPolicyService;
@@ -23,8 +23,8 @@ public class AdminCouponController {
     @PostMapping(value = "/coupon/create")
     public ResponseEntity<String> couponPolicyCreate(@RequestBody @Validated RequestCouponPolicyDTO requestCouponPolicyDTO) { //@Validated 유효 검증(무결성)
 
-        DiscountRuleDTO discountRuleDTO = requestCouponPolicyDTO.getDiscountRuleDTO();
-        AddPolicyDTO addPolicyDTO = requestCouponPolicyDTO.getAddPolicyDTO();
+        DiscountRuleDto discountRuleDTO = requestCouponPolicyDTO.getDiscountRuleDTO();
+        AddPolicyDto addPolicyDTO = requestCouponPolicyDTO.getAddPolicyDTO();
 
         //salePercent, saleAmount 둘 중 하나는 반드시 값이 있어야 한다
         if(discountRuleDTO.getSalePercent() == null && discountRuleDTO.getSaleAmount() == null){

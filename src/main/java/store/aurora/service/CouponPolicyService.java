@@ -3,8 +3,8 @@ package store.aurora.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import store.aurora.dto.AddPolicyDTO;
-import store.aurora.dto.DiscountRuleDTO;
+import store.aurora.dto.AddPolicyDto;
+import store.aurora.dto.DiscountRuleDto;
 import store.aurora.dto.RequestUserCouponDto;
 import store.aurora.dto.RequestCouponPolicyDTO;
 
@@ -27,7 +27,7 @@ public class CouponPolicyService {
     //쿠폰 정책 생성(쿠폰계산 및 쿠폰 정책 개체 생성)
     @Transactional
     public void couponPolicyCreate(RequestCouponPolicyDTO requestCouponPolicyDTO
-            , DiscountRuleDTO discountRuleDTO, AddPolicyDTO addPolicyDTO) {
+            , DiscountRuleDto discountRuleDTO, AddPolicyDto addPolicyDTO) {
 
         //계산 테이블 개체 생성
         DiscountRule discountRule = getDiscountRule(discountRuleDTO);
@@ -67,7 +67,7 @@ public class CouponPolicyService {
         }
     }
 
-    private static DiscountRule getDiscountRule(DiscountRuleDTO discountRuleDTO) {
+    private static DiscountRule getDiscountRule(DiscountRuleDto discountRuleDTO) {
         DiscountRule discountRule = new DiscountRule();
         discountRule.setNeedCost(discountRuleDTO.getNeedCost());
         discountRule.setMaxSale(discountRuleDTO.getMaxSale());

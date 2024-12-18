@@ -24,5 +24,8 @@ public class CouponListService {
         return couponRepository.findByUserId(userId);
     }
 
-    //장바구니에서 각 상품별 쿠폰 목록 검색
+    //장바구니에서 각 상품별 쿠폰 목록
+    public List<UserCoupon> getCouponListByCategory() {
+        return null;
+    }
 }
