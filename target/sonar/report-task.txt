@@ -1,0 +1,6 @@
+projectKey=5rora-coupon-api2
+serverUrl=http://133.186.241.167:9000
+serverVersion=10.5.1.90531
+dashboardUrl=http://133.186.241.167:9000/dashboard?id=5rora-coupon-api2
+ceTaskId=a2b962df-7a9c-4038-bc70-3955f386fc9b
+ceTaskUrl=http://133.186.241.167:9000/api/ce/task?id=a2b962df-7a9c-4038-bc70-3955f386fc9b

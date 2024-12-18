@@ -89,6 +89,7 @@ class CouponRepositoryTest {
 
         List<UserCoupon> coupons = couponRepository.findByUserIdIn(userIds);
 
+        assertThat(coupons).isNotEmpty();
         assertThat(coupons).allMatch(coupon -> coupon.getCouponState() == CouponState.TIMEOUT);
     }
 
@@ -110,9 +111,10 @@ class CouponRepositoryTest {
         entityManager.clear();
 
         List<UserCoupon> coupons = couponRepository.findByUserId(1L);
-        assertThat(coupons).anyMatch(coupon -> coupon.getCouponState() == CouponState.USED);
-        assertThat(coupons).anyMatch(coupon -> coupon.getStartDate().equals(startDate));
-        assertThat(coupons).anyMatch(coupon -> coupon.getEndDate().equals(endDate));
+        assertThat(coupons).isNotEmpty();
+        assertThat(coupons).allMatch(coupon -> coupon.getCouponState() == CouponState.USED
+                && coupon.getStartDate().equals(startDate)
+                && coupon.getEndDate().equals(endDate));
     }
 
     @Test

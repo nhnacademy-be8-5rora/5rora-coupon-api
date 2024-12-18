@@ -6,7 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="f69c862f-3061-4181-a199-63e664ff56d6" name="변경" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/store/aurora/controller/UserCouponListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/store/aurora/controller/UserCouponListController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/store/aurora/CouponRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/5rora-coupon-api-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/5rora-coupon-api-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-store.aurora.CouponRepositoryTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-store.aurora.CouponRepositoryTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/store.aurora.CouponRepositoryTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/store.aurora.CouponRepositoryTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/store/aurora/CouponRepositoryTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/store/aurora/CouponRepositoryTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -243,31 +248,7 @@
       <workItem from="1734423941367" duration="2219000" />
       <workItem from="1734480306700" duration="2415000" />
       <workItem from="1734482731492" duration="1363000" />
-      <workItem from="1734484110346" duration="784000" />
-    </task>
-    <task id="LOCAL-00040" summary=".">
-      <option name="closed" value="true" />
-      <created>1734051289821</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1734051289821</updated>
-    </task>
-    <task id="LOCAL-00041" summary=".">
-      <option name="closed" value="true" />
-      <created>1734052805061</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1734052805061</updated>
-    </task>
-    <task id="LOCAL-00042" summary=".">
-      <option name="closed" value="true" />
-      <created>1734052918129</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1734052918129</updated>
+      <workItem from="1734484110346" duration="2482000" />
     </task>
     <task id="LOCAL-00043" summary=".">
       <option name="closed" value="true" />
@@ -637,7 +618,31 @@
       <option name="project" value="LOCAL" />
       <updated>1734484091926</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary=".">
+      <option name="closed" value="true" />
+      <created>1734484944198</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1734484944198</updated>
+    </task>
+    <task id="LOCAL-00090" summary=".">
+      <option name="closed" value="true" />
+      <created>1734485159003</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1734485159003</updated>
+    </task>
+    <task id="LOCAL-00091" summary=".">
+      <option name="closed" value="true" />
+      <created>1734485384256</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1734485384256</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
