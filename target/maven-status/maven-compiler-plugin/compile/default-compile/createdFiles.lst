@@ -5,7 +5,7 @@ store/aurora/service/UserCouponTimeService.class
 store/aurora/dto/RequestCouponPolicyDTO.class
 store/aurora/entity/SaleType.class
 store/aurora/repository/BookPolicyRepository.class
-store/aurora/dto/DiscountRuleDTO.class
+store/aurora/dto/ProductInfoDto.class
 store/aurora/dto/CreateCouponDto.class
 store/aurora/config/GlobalExceptionHandler.class
 store/aurora/controller/UserCouponListController.class
@@ -17,13 +17,15 @@ store/aurora/repository/CategoryPolicyRepository.class
 store/aurora/service/CouponListService.class
 store/aurora/repository/CouponRepository.class
 store/aurora/dto/RequestUserCouponDto.class
+store/aurora/dto/DiscountRuleDto.class
 store/aurora/entity/CategoryPolicy.class
+store/aurora/dto/AddPolicyDto.class
 store/aurora/controller/ReTryCouponController.class
 store/aurora/entity/DiscountRule.class
 store/aurora/entity/UserCoupon.class
 store/aurora/controller/UserCouponController.class
 store/aurora/entity/CouponPolicy.class
-store/aurora/dto/AddPolicyDTO.class
 store/aurora/service/CouponPolicyService.class
+store/aurora/dto/UpdateUserCouponDto.class
 store/aurora/repository/CouponPolicyRepository.class
 store/aurora/controller/AdminCouponController.class
