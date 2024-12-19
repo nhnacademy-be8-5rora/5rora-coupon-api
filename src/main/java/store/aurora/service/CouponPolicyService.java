@@ -7,7 +7,6 @@ import store.aurora.dto.AddPolicyDTO;
 import store.aurora.dto.DiscountRuleDTO;
 import store.aurora.dto.RequestCouponPolicyDTO;
 import store.aurora.dto.RequestUserCouponDTO;
-import store.aurora.dto.RequestUserCouponDto;
 
 import store.aurora.entity.*;
 import store.aurora.repository.*;
@@ -38,30 +37,8 @@ public class CouponPolicyService {
         CouponPolicy couponPolicy = new CouponPolicy();
         saveCouponPolicy(couponPolicy, requestCouponPolicyDTO, discountRule);
 
-
-//        if (addPolicyDTO.getCategoryId() != null) {
-//            List<CategoryPolicy> categoryPolicies = addPolicyDTO.getCategoryId().stream()
-//                    .map(categoryId -> {
-//                        CategoryPolicy categoryPolicy = new CategoryPolicy();
-//                        categoryPolicy.setPolicy(couponPolicy); // CouponPolicy 참조
-//                        categoryPolicy.setCategoryId(categoryId);
-//                        return categoryPolicy;
-//                    })
-//                    .toList();
-//            categoryPolicyRepository.saveAll(categoryPolicies);
-//        }
-        //북 정책 테이블 생성
-        if (addPolicyDTO.getBookId() != null) {
-            List<BookPolicy> bookPolicies = addPolicyDTO.getBookId().stream()
-                    .map(bookId -> {
-                        BookPolicy bookPolicy = new BookPolicy();
-                        bookPolicy.setPolicy(couponPolicy); // CouponPolicy 참조
-                        bookPolicy.setBookId(bookId);
-                        return bookPolicy;
-                    })
-                    .toList();
-            bookPolicyRepository.saveAll(bookPolicies);
-        }
+        saveCategoryPolicies(couponPolicy, addPolicyDTO);
+        saveBookPolicies(couponPolicy, addPolicyDTO);
     }
 
     private void saveCouponPolicy(CouponPolicy couponPolicy, RequestCouponPolicyDTO requestCouponPolicyDTO, DiscountRule discountRule) {
@@ -96,6 +73,7 @@ public class CouponPolicyService {
         }
     }
 
+    //북 정책 테이블 생성
     private void saveBookPolicies(CouponPolicy couponPolicy, AddPolicyDTO AddPolicyDto) {
         if (AddPolicyDto.getBookId() != null) {
             List<BookPolicy> bookPolicies = AddPolicyDto.getBookId().stream()
@@ -125,19 +103,19 @@ public class CouponPolicyService {
 
     //사용자 쿠폰 생성
     @Transactional
-    public void userCouponCreate(RequestUserCouponDto requestUserCouponDto) {
-        if (requestUserCouponDto.getUserId() == null || requestUserCouponDto.getUserId().isEmpty()) {
+    public void userCouponCreate(RequestUserCouponDTO requestUserCouponDTO) {
+        if (requestUserCouponDTO.getUserId() == null || requestUserCouponDTO.getUserId().isEmpty()) {
             throw new IllegalArgumentException("User ID list must not be empty");
         }
-        if (requestUserCouponDto.getPolicy() == null) {
+        if (requestUserCouponDTO.getPolicy() == null) {
             throw new IllegalArgumentException("Policy must not be null");
         }
 
-        List<Long> userIds = requestUserCouponDto.getUserId(); // 유저 ID 리스트
-        CouponPolicy policy = requestUserCouponDto.getPolicy(); // 적용할 정책
-        CouponState state = requestUserCouponDto.getState();   // 쿠폰 초기 상태
-        LocalDate startDate = requestUserCouponDto.getStartDate(); // 시작일
-        LocalDate endDate = requestUserCouponDto.getEndDate();     // 종료일
+        List<Long> userIds = requestUserCouponDTO.getUserId(); // 유저 ID 리스트
+        CouponPolicy policy = requestUserCouponDTO.getPolicy(); // 적용할 정책
+        CouponState state = requestUserCouponDTO.getState();   // 쿠폰 초기 상태
+        LocalDate startDate = requestUserCouponDTO.getStartDate(); // 시작일
+        LocalDate endDate = requestUserCouponDTO.getEndDate();     // 종료일
 
         List<UserCoupon> newCoupons = userIds.stream()
                 .map(userId -> {

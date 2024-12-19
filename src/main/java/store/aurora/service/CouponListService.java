@@ -2,7 +2,7 @@ package store.aurora.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import store.aurora.dto.ProductInfoDto;
+import store.aurora.dto.ProductInfoDTO;
 import store.aurora.entity.UserCoupon;
 import store.aurora.repository.BookPolicyRepository;
 import store.aurora.repository.CategoryPolicyRepository;
@@ -26,7 +26,7 @@ public class CouponListService {
     }
 
     //결제창에서 각 상품별 쿠폰 목록
-    public List<UserCoupon> getCouponListByCategory(ProductInfoDto productInfoDto) {
+    public List<UserCoupon> getCouponListByCategory(ProductInfoDTO productInfoDTO) {
         return null;
     }
 }
