@@ -3,10 +3,7 @@ package store.aurora.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import store.aurora.dto.AddPolicyDTO;
-import store.aurora.dto.DiscountRuleDTO;
-import store.aurora.dto.RequestCouponPolicyDTO;
-import store.aurora.dto.RequestUserCouponDTO;
+import store.aurora.dto.*;
 
 import store.aurora.entity.*;
 import store.aurora.repository.*;
@@ -23,7 +20,60 @@ public class CouponPolicyService {
     private final DisCountRuleRepository disCountRuleRepository;
     private  final CategoryPolicyRepository categoryPolicyRepository;
     private  final BookPolicyRepository bookPolicyRepository;
-    
+
+    //사용자 쿠폰 수정(요청한 유저 ID 리스트를 통해 해당 ID에 포함된 userCoupons 들을 수정)
+    @Transactional
+    public void couponUpdate(UpdateUserCouponByUserIdDto updateUserCouponByUserIdDto) {
+        CouponState couponState = updateUserCouponByUserIdDto.getState();
+        Long policyId = updateUserCouponByUserIdDto.getPolicyId();
+        LocalDate endDate = updateUserCouponByUserIdDto.getEndDate();
+        List<Long> userIds = updateUserCouponByUserIdDto.getUserIds();
+
+        if (couponState != null) {
+            couponRepository.updateCouponStateByUserIds(couponState, userIds);
+        }
+
+        if (policyId != null) {
+            couponRepository.updateCouponPolicyByUserIds(policyId, userIds);
+        }
+
+        if (endDate != null) {
+            couponRepository.updateCouponEndDateByUserIds(endDate, userIds);
+        }
+
+    }
+
+    //사용자 쿠폰 생성
+    @Transactional
+    public void userCouponCreate(RequestUserCouponDTO requestUserCouponDTO) {
+        if (requestUserCouponDTO.getUserId() == null || requestUserCouponDTO.getUserId().isEmpty()) {
+            throw new IllegalArgumentException("User ID list must not be empty");
+        }
+        if (requestUserCouponDTO.getPolicy() == null) {
+            throw new IllegalArgumentException("Policy must not be null");
+        }
+
+        List<Long> userIds = requestUserCouponDTO.getUserId(); // 유저 ID 리스트
+        CouponPolicy policy = requestUserCouponDTO.getPolicy(); // 적용할 정책
+        CouponState state = requestUserCouponDTO.getState();   // 쿠폰 초기 상태
+        LocalDate startDate = requestUserCouponDTO.getStartDate(); // 시작일
+        LocalDate endDate = requestUserCouponDTO.getEndDate();     // 종료일
+
+        List<UserCoupon> newCoupons = userIds.stream()
+                .map(userId -> {
+                    UserCoupon userCoupon = new UserCoupon();
+                    userCoupon.setUserId(userId); // 사용자 ID 설정
+                    userCoupon.setPolicy(policy); // 정책 설정
+                    userCoupon.setCouponState(state); // 초기 상태 설정
+                    userCoupon.setStartDate(startDate); // 시작일 설정
+                    userCoupon.setEndDate(endDate); // 종료일 설정
+                    return userCoupon;
+                })
+                .toList();
+
+        couponRepository.saveAll(newCoupons); // 한 번에 저장
+    }
+
     //쿠폰 정책 생성(쿠폰계산 및 쿠폰 정책 개체 생성)
     @Transactional
     public void couponPolicyCreate(RequestCouponPolicyDTO requestCouponPolicyDTO
@@ -86,49 +136,5 @@ public class CouponPolicyService {
                     .toList();
             bookPolicyRepository.saveAll(bookPolicies);
         }
-    }
-
-    //사용자 쿠폰 수정(요청한 유저 ID 리스트를 통해 해당 ID에 포함된 userCoupons 들을 수정)
-    @Transactional
-    public void couponUpdate(RequestUserCouponDTO requestUserCouponDTO) {
-
-        couponRepository.updateCouponAttributesByUserIds(
-                requestUserCouponDTO.getState(),                    // 쿠폰 상태
-                requestUserCouponDTO.getPolicy().getId(),           // 정책 ID (CouponPolicy에서 가져옴)
-                requestUserCouponDTO.getStartDate(),                // 시작일
-                requestUserCouponDTO.getEndDate(),                  // 종료일
-                requestUserCouponDTO.getUserId()                    // 유저 ID 리스트
-        );
-    }
-
-    //사용자 쿠폰 생성
-    @Transactional
-    public void userCouponCreate(RequestUserCouponDTO requestUserCouponDTO) {
-        if (requestUserCouponDTO.getUserId() == null || requestUserCouponDTO.getUserId().isEmpty()) {
-            throw new IllegalArgumentException("User ID list must not be empty");
-        }
-        if (requestUserCouponDTO.getPolicy() == null) {
-            throw new IllegalArgumentException("Policy must not be null");
-        }
-
-        List<Long> userIds = requestUserCouponDTO.getUserId(); // 유저 ID 리스트
-        CouponPolicy policy = requestUserCouponDTO.getPolicy(); // 적용할 정책
-        CouponState state = requestUserCouponDTO.getState();   // 쿠폰 초기 상태
-        LocalDate startDate = requestUserCouponDTO.getStartDate(); // 시작일
-        LocalDate endDate = requestUserCouponDTO.getEndDate();     // 종료일
-
-        List<UserCoupon> newCoupons = userIds.stream()
-                .map(userId -> {
-                    UserCoupon userCoupon = new UserCoupon();
-                    userCoupon.setUserId(userId); // 사용자 ID 설정
-                    userCoupon.setPolicy(policy); // 정책 설정
-                    userCoupon.setCouponState(state); // 초기 상태 설정
-                    userCoupon.setStartDate(startDate); // 시작일 설정
-                    userCoupon.setEndDate(endDate); // 종료일 설정
-                    return userCoupon;
-                })
-                .toList();
-
-        couponRepository.saveAll(newCoupons); // 한 번에 저장
     }
 }

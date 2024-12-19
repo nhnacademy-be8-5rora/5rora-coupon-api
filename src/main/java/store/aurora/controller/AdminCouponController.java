@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import store.aurora.dto.AddPolicyDTO;
-import store.aurora.dto.DiscountRuleDTO;
-import store.aurora.dto.RequestCouponPolicyDTO;
-import store.aurora.dto.RequestUserCouponDTO;
+import store.aurora.dto.*;
 import store.aurora.service.CouponPolicyService;
 
 //관리자용 쿠폰 생성 및 배포용
@@ -47,9 +44,9 @@ public class AdminCouponController {
 
     // 사용자쿠폰 수정 (관리자)
     @PutMapping(value = "/coupon/update/")
-    public ResponseEntity<String> userCouponUpdate(@RequestBody @Validated RequestUserCouponDTO requestUserCouponDTO) {
+    public ResponseEntity<String> userCouponUpdate(@RequestBody @Validated UpdateUserCouponByUserIdDto updateUserCouponByUserIdDto) {
 
-        couponPolicyService.couponUpdate(requestUserCouponDTO);  // 실제 쿠폰 수정 처리
+        couponPolicyService.couponUpdate(updateUserCouponByUserIdDto);  // 실제 쿠폰 수정 처리
         return ResponseEntity.ok("사용자쿠폰이 수정되었습니다.");
     }
 

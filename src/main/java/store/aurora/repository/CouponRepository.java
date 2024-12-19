@@ -19,28 +19,23 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
 
     //관리자가 특정 사용자 ID 리스트에 해당하는 UserCoupon들의 couponState 업데이트
     @Modifying
-    @Transactional
     @Query("UPDATE UserCoupon uc SET uc.couponState = :couponState WHERE uc.userId IN :userIds")
-    int updateCouponStateByUserIds(@Param("couponState") CouponState couponState,
+    void updateCouponStateByUserIds(@Param("couponState") CouponState couponState,
                                    @Param("userIds") List<Long> userIds);
 
-
-    //사용자 ID을 통해 사용자 쿠폰들 전체 수정
     @Modifying
-    @Transactional
-    @Query("UPDATE UserCoupon uc SET uc.couponState = :couponState, " +
-            "uc.policy = (SELECT p FROM CouponPolicy p WHERE p.id = :policyId), " +
-            "uc.startDate = :startDate, uc.endDate = :endDate " +
-            "WHERE uc.userId IN :userIds")
-    void updateCouponAttributesByUserIds(@Param("couponState") CouponState couponState,
-                                        @Param("policyId") Long policyId,
-                                        @Param("startDate") LocalDate startDate,
-                                        @Param("endDate") LocalDate endDate,
-                                        @Param("userIds") List<Long> userIds);
+    @Query("UPDATE UserCoupon uc SET uc.policy = (SELECT p FROM CouponPolicy p WHERE p.id = " +
+            ":policyId) WHERE uc.userId IN :userIds")
+    void updateCouponPolicyByUserIds(@Param("policyId") Long policyId,
+                                     @Param("userIds") List<Long> userIds);
+
+    @Modifying
+    @Query("UPDATE UserCoupon uc SET uc.endDate = :endDate WHERE uc.userId IN :userIds")
+    void updateCouponEndDateByUserIds(@Param("endDate") LocalDate endDate,
+                                      @Param("userIds") List<Long> userIds);
 
     //timeout 이 된 사용자 쿠폰 상태 변경(live -> timeout)
     @Modifying
-    @Transactional
     @Query("UPDATE UserCoupon u SET u.couponState = 'timeout', " +
             "    u.changedDate = CURRENT_DATE " +
             "WHERE u.endDate < CURRENT_DATE AND u.couponState = 'live'")
@@ -48,7 +43,6 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
 
     //used, timeout 상태에서 90일이 지난  userCoupon 삭제
     @Modifying
-    @Transactional
     @Query("DELETE FROM UserCoupon u " +
             "WHERE u.couponState IN (:usedState, :timeoutState) " +
             "AND u.changedDate < :ninetyDaysAgo")

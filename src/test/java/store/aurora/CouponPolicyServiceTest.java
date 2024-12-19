@@ -8,10 +8,7 @@ import org.mockito.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import store.aurora.dto.AddPolicyDTO;
-import store.aurora.dto.DiscountRuleDTO;
-import store.aurora.dto.RequestCouponPolicyDTO;
-import store.aurora.dto.RequestUserCouponDTO;
+import store.aurora.dto.*;
 import store.aurora.entity.CouponPolicy;
 import store.aurora.entity.CouponState;
 import store.aurora.entity.DiscountRule;
@@ -65,40 +62,26 @@ class CouponPolicyServiceTest {
 
     @Test
     void testCouponUpdate() {
-        // Given
-        RequestUserCouponDTO requestUserCouponDTO = new RequestUserCouponDTO();
+        // 유저 ID을 통해 사용자 쿠폰 변경
+        UpdateUserCouponByUserIdDto dto = new UpdateUserCouponByUserIdDto();
 
-        CouponPolicy couponPolicy = new CouponPolicy();
-        couponPolicy.setId(1L);
-
-        requestUserCouponDTO.setState(CouponState.USED);
-        requestUserCouponDTO.setPolicy(couponPolicy);
-        requestUserCouponDTO.setStartDate(LocalDate.now().minusDays(5));
-        requestUserCouponDTO.setEndDate(LocalDate.now().plusDays(10));
-        requestUserCouponDTO.setUserId(Arrays.asList(1L, 2L));      //받아올 유저 ID
-
-
-        // Mocking the behavior of couponRepository
-        // 예를 들어, updateCouponAttributesByUserIds 메서드가 실제로 동작하는 것처럼 mock 설정
-        doNothing().when(couponRepository).updateCouponAttributesByUserIds(
-                eq(CouponState.USED),
-                anyLong(),
-                eq(requestUserCouponDTO.getStartDate()),
-                eq(requestUserCouponDTO.getEndDate()),
-                eq(requestUserCouponDTO.getUserId())
-        );
+        dto.setState(CouponState.USED);
+        dto.setPolicyId(1L);
+        dto.setEndDate(LocalDate.now().plusDays(10));
+        dto.setUserIds(Arrays.asList(1L, 2L));      //받아올 유저 ID
 
         // 사용자 쿠폰 수정
-        couponPolicyService.couponUpdate(requestUserCouponDTO);
+        couponPolicyService.couponUpdate(dto);
 
-        // Then
-        verify(couponRepository).updateCouponAttributesByUserIds(
-                eq(CouponState.USED),
-                anyLong(),
-                eq(requestUserCouponDTO.getStartDate()),
-                eq(requestUserCouponDTO.getEndDate()),
-                eq(requestUserCouponDTO.getUserId())
-        ); // couponRepository의 updateCouponAttributesByUserIds 호출 여부 검증
+
+        // Assert
+        verify(couponRepository, times(1))
+                .updateCouponStateByUserIds(CouponState.USED, dto.getUserIds());
+        verify(couponRepository, times(1))
+                .updateCouponPolicyByUserIds(1L, dto.getUserIds());
+        verify(couponRepository, times(1))
+                .updateCouponEndDateByUserIds(LocalDate.now().plusDays(10), dto.getUserIds());
+        verifyNoMoreInteractions(couponRepository);
     }
 
     @Test
