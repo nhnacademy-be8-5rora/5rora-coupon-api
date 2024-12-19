@@ -20,7 +20,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 
 @SpringBootTest
-class CouponPolicyServiceTest {
+class AdminCouponServiceTest {
 
     @MockBean private CouponPolicyRepository couponPolicyRepository;
     @MockBean private CouponRepository couponRepository;
