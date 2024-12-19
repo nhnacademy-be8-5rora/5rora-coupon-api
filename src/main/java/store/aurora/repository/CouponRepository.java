@@ -24,15 +24,15 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
                                    @Param("userIds") List<Long> userIds);
 
     @Modifying
-    @Query("UPDATE UserCoupon uc SET uc.policy = (SELECT p FROM CouponPolicy p WHERE p.id = " +
-            ":policyId) WHERE uc.userId IN :userIds")
-    void updateCouponPolicyByUserIds(@Param("policyId") Long policyId,
-                                     @Param("userIds") List<Long> userIds);
-
-    @Modifying
     @Query("UPDATE UserCoupon uc SET uc.endDate = :endDate WHERE uc.userId IN :userIds")
     void updateCouponEndDateByUserIds(@Param("endDate") LocalDate endDate,
                                       @Param("userIds") List<Long> userIds);
+
+    @Modifying
+    @Query("UPDATE UserCoupon uc SET uc.policy = (SELECT p FROM CouponPolicy p WHERE p.id = :policyId) " +
+            "WHERE uc.userId IN :userIds AND EXISTS (SELECT 1 FROM CouponPolicy p WHERE p.id = :policyId)")
+    void updateCouponPolicyByUserIds(@Param("policyId") Long policyId,
+                                     @Param("userIds") List<Long> userIds);
 
     //timeout 이 된 사용자 쿠폰 상태 변경(live -> timeout)
     @Modifying

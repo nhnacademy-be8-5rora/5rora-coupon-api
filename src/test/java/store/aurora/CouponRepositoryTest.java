@@ -32,6 +32,8 @@ class CouponRepositoryTest {
     @Autowired
     private EntityManager entityManager;
 
+    static Long count = 0L;
+
     @BeforeEach
     void setUp() {
         //discountRule 설정
@@ -62,6 +64,8 @@ class CouponRepositoryTest {
 
         couponRepository.save(coupon1);
         couponRepository.save(coupon2);
+
+        count++;
     }
 
     @Test
@@ -92,11 +96,14 @@ class CouponRepositoryTest {
     @Test
     public void testUpdateCouponPolicyByUserIds() {
         // Arrange
-        Long newPolicyId = 1L;
+        Long newPolicyId = count;
         List<Long> userIds = List.of(1L, 2L);
 
         // Act
         couponRepository.updateCouponPolicyByUserIds(newPolicyId, userIds);
+
+        entityManager.flush();
+        entityManager.clear();
 
         // Assert
         List<UserCoupon> updatedCoupons = couponRepository.findAllById(userIds);
@@ -111,6 +118,9 @@ class CouponRepositoryTest {
 
         // Act
         couponRepository.updateCouponEndDateByUserIds(newEndDate, userIds);
+
+        entityManager.flush();
+        entityManager.clear();
 
         // Assert
         List<UserCoupon> updatedCoupons = couponRepository.findAllById(userIds);
