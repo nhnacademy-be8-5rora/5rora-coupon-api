@@ -3,7 +3,7 @@ package store.aurora.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import store.aurora.dto.AddPolicyDto;
+import store.aurora.dto.AddPolicyDTO;
 import store.aurora.dto.DiscountRuleDTO;
 import store.aurora.dto.RequestUserCouponDto;
 import store.aurora.dto.RequestCouponPolicyDTO;
@@ -27,7 +27,7 @@ public class CouponPolicyService {
     //쿠폰 정책 생성(쿠폰계산 및 쿠폰 정책 개체 생성)
     @Transactional
     public void couponPolicyCreate(RequestCouponPolicyDTO requestCouponPolicyDTO
-            , DiscountRuleDTO discountRuleDTO, AddPolicyDto addPolicyDTO) {
+            , DiscountRuleDTO discountRuleDTO, AddPolicyDTO addPolicyDTO) {
 
         //계산 테이블 개체 생성
         DiscountRule discountRule = getDiscountRule(discountRuleDTO);
@@ -81,7 +81,7 @@ public class CouponPolicyService {
     }
 
     //카테고리 정책 테이블 개체 생성(addPolicy -> categoryId, bookId list null 구분으로 테이블 생성)
-    private void saveCategoryPolicies(CouponPolicy couponPolicy, AddPolicyDto AddPolicyDto) {
+    private void saveCategoryPolicies(CouponPolicy couponPolicy, AddPolicyDTO AddPolicyDto) {
         if (AddPolicyDto.getCategoryId() != null) {
             List<CategoryPolicy> categoryPolicies = AddPolicyDto.getCategoryId().stream()
                     .map(categoryId -> {
@@ -95,7 +95,7 @@ public class CouponPolicyService {
         }
     }
 
-    private void saveBookPolicies(CouponPolicy couponPolicy, AddPolicyDto AddPolicyDto) {
+    private void saveBookPolicies(CouponPolicy couponPolicy, AddPolicyDTO AddPolicyDto) {
         if (AddPolicyDto.getBookId() != null) {
             List<BookPolicy> bookPolicies = AddPolicyDto.getBookId().stream()
                     .map(bookId -> {

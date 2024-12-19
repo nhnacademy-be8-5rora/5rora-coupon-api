@@ -8,7 +8,7 @@ import org.mockito.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import store.aurora.dto.AddPolicyDto;
+import store.aurora.dto.AddPolicyDTO;
 import store.aurora.dto.DiscountRuleDTO;
 import store.aurora.dto.RequestCouponPolicyDTO;
 import store.aurora.dto.RequestUserCouponDto;
@@ -49,7 +49,7 @@ class CouponPolicyServiceTest {
 
         DiscountRuleDTO discountRuleDTO = new DiscountRuleDTO();
         discountRuleDTO.setSaleAmount(10000);
-        AddPolicyDto addPolicyDTO = new AddPolicyDto();
+        AddPolicyDTO addPolicyDTO = new AddPolicyDTO();
         addPolicyDTO.setCategoryId(Arrays.asList(1L, 2L));
         addPolicyDTO.setBookId(Arrays.asList(3L, 4L));
 
