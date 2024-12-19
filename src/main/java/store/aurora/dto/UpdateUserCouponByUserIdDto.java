@@ -2,7 +2,7 @@ package store.aurora.dto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import store.aurora.entity.CouponState;
+import store.aurora.domain.CouponState;
 
 import java.time.LocalDate;
 import java.util.List;

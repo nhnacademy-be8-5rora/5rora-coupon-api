@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import store.aurora.dto.*;
-import store.aurora.entity.CouponPolicy;
-import store.aurora.entity.CouponState;
-import store.aurora.entity.DiscountRule;
-import store.aurora.entity.SaleType;
+import store.aurora.domain.CouponPolicy;
+import store.aurora.domain.CouponState;
+import store.aurora.domain.DiscountRule;
+import store.aurora.domain.SaleType;
 import store.aurora.repository.*;
 import store.aurora.service.CouponPolicyService;
 

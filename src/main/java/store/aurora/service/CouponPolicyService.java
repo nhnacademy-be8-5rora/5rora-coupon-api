@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import store.aurora.dto.*;
 
-import store.aurora.entity.*;
+import store.aurora.domain.*;
 import store.aurora.repository.*;
 
 import java.util.List;

@@ -3,8 +3,8 @@ package store.aurora.service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import store.aurora.entity.CouponState;
-import store.aurora.entity.UserCoupon;
+import store.aurora.domain.CouponState;
+import store.aurora.domain.UserCoupon;
 import store.aurora.repository.CouponRepository;
 
 import java.time.LocalDate;

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.transaction.annotation.Transactional;
-import store.aurora.entity.*;
+import store.aurora.domain.*;
 import store.aurora.repository.CouponPolicyRepository;
 import store.aurora.repository.CouponRepository;
 import store.aurora.repository.DisCountRuleRepository;

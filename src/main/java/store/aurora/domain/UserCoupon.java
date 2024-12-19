@@ -1,4 +1,4 @@
-package store.aurora.entity;
+package store.aurora.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;

@@ -3,7 +3,7 @@ package store.aurora.dto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import store.aurora.entity.SaleType;
+import store.aurora.domain.SaleType;
 
 @Data
 public class RequestCouponPolicyDTO {

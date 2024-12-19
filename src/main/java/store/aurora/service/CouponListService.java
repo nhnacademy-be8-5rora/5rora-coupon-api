@@ -3,7 +3,7 @@ package store.aurora.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import store.aurora.dto.ProductInfoDTO;
-import store.aurora.entity.UserCoupon;
+import store.aurora.domain.UserCoupon;
 import store.aurora.repository.BookPolicyRepository;
 import store.aurora.repository.CategoryPolicyRepository;
 import store.aurora.repository.CouponRepository;

@@ -1,8 +1,7 @@
-package store.aurora.entity;
+package store.aurora.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import java.util.List;
 
 @Entity
 @Table(name = "coupon_policy")

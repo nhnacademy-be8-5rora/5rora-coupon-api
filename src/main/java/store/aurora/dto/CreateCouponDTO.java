@@ -1,7 +1,7 @@
 package store.aurora.dto;
 
 import lombok.Data;
-import store.aurora.entity.CouponPolicy;
+import store.aurora.domain.CouponPolicy;
 
 import java.util.List;
 

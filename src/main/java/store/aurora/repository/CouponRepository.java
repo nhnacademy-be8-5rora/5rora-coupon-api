@@ -1,13 +1,12 @@
 package store.aurora.repository;
 
 import feign.Param;
-import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import store.aurora.entity.CouponState;
-import store.aurora.entity.UserCoupon;
+import store.aurora.domain.CouponState;
+import store.aurora.domain.UserCoupon;
 
 import java.time.LocalDate;
 import java.util.List;

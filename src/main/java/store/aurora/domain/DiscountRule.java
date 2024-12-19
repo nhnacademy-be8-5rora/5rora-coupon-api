@@ -1,7 +1,6 @@
-package store.aurora.entity;
+package store.aurora.domain;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.AssertTrue;
 import lombok.Data;
 
 @Entity

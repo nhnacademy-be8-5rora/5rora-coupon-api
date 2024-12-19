@@ -1,23 +1,22 @@
-package store.aurora.entity;
+package store.aurora.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
 
-
 @Entity
-@Table(name = "category_policy")
+@Table(name = "book_policy")
 @Data
-public class CategoryPolicy {
+public class BookPolicy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_coupon")
+    @Column(name = "book_coupon")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "policy_id", nullable = false)
     private CouponPolicy policy;
 
-    @Column(name = "category_id", nullable = false)
-    private Long categoryId;
-
+    @Column(name = "book_id", nullable = false)
+    private Long bookId;
 }
+
