@@ -13,10 +13,10 @@ public class RequestCouponPolicyDTO {
     @NotNull
     private SaleType saleType;
 
-    private AddPolicyDto addPolicyDTO;
+    private AddPolicyDTO addPolicyDTO;
 
     @NotNull
-    private DiscountRuleDto discountRuleDTO;
+    private DiscountRuleDTO discountRuleDTO;
 
 }
 

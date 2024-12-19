@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Data
-public class RequestUserCouponDto {
+public class RequestUserCouponDTO {
     @NotNull
     private List<Long> userId;    // 유저 ID 리스트
     @NotNull

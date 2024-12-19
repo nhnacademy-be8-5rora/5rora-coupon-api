@@ -6,8 +6,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import store.aurora.dto.AddPolicyDto;
 import store.aurora.dto.DiscountRuleDto;
-import store.aurora.dto.RequestUserCouponDto;
 import store.aurora.dto.RequestCouponPolicyDTO;
+import store.aurora.dto.RequestUserCouponDto;
 import store.aurora.service.CouponPolicyService;
 
 //관리자용 쿠폰 생성 및 배포용
@@ -52,4 +52,6 @@ public class AdminCouponController {
         couponPolicyService.couponUpdate(requestUserCouponDto);  // 실제 쿠폰 수정 처리
         return ResponseEntity.ok("사용자쿠폰이 수정되었습니다.");
     }
+
+    //모든 사용자 쿠폰을 확인해서 해당 쿠폰 정책 ID가 있는지 파악한 후에 삭제, 수정 가능하도록 구현은 가능
 }

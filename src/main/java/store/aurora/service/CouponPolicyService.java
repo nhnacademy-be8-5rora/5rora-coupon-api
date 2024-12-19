@@ -5,8 +5,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import store.aurora.dto.AddPolicyDTO;
 import store.aurora.dto.DiscountRuleDTO;
-import store.aurora.dto.RequestUserCouponDto;
 import store.aurora.dto.RequestCouponPolicyDTO;
+import store.aurora.dto.RequestUserCouponDTO;
+import store.aurora.dto.RequestUserCouponDto;
 
 import store.aurora.entity.*;
 import store.aurora.repository.*;
@@ -111,14 +112,14 @@ public class CouponPolicyService {
 
     //사용자 쿠폰 수정(요청한 유저 ID 리스트를 통해 해당 ID에 포함된 userCoupons 들을 수정)
     @Transactional
-    public void couponUpdate(RequestUserCouponDto requestUserCouponDto) {
+    public void couponUpdate(RequestUserCouponDTO requestUserCouponDTO) {
 
         couponRepository.updateCouponAttributesByUserIds(
-                requestUserCouponDto.getState(),                    // 쿠폰 상태
-                requestUserCouponDto.getPolicy().getId(),           // 정책 ID (CouponPolicy에서 가져옴)
-                requestUserCouponDto.getStartDate(),                // 시작일
-                requestUserCouponDto.getEndDate(),                  // 종료일
-                requestUserCouponDto.getUserId()                    // 유저 ID 리스트
+                requestUserCouponDTO.getState(),                    // 쿠폰 상태
+                requestUserCouponDTO.getPolicy().getId(),           // 정책 ID (CouponPolicy에서 가져옴)
+                requestUserCouponDTO.getStartDate(),                // 시작일
+                requestUserCouponDTO.getEndDate(),                  // 종료일
+                requestUserCouponDTO.getUserId()                    // 유저 ID 리스트
         );
     }
 
