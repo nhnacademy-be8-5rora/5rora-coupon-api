@@ -1,8 +1,11 @@
 package store.aurora;
 
+import static org.mockito.Mockito.*;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
+import org.mockito.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import store.aurora.domain.CouponState;
@@ -10,98 +13,87 @@ import store.aurora.domain.UserCoupon;
 import store.aurora.repository.CouponRepository;
 import store.aurora.service.CouponService;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
-
-import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class CouponServiceTest {
 
     @MockBean
-    private CouponRepository couponRepository; // Mock된 Repository
-
-    @InjectMocks
-    private CouponService couponService; // 테스트 대상 서비스
+    private CouponRepository couponRepository;
+    @InjectMocks private CouponService couponService;
 
     private UserCoupon userCoupon1;
     private UserCoupon userCoupon2;
 
     @BeforeEach
     void setUp() {
-        // 각 테스트 전에 사용자 쿠폰을 설정
+        // Setting up mock UserCoupon objects before each test
         userCoupon1 = new UserCoupon();
         userCoupon1.setCouponId(1L);
         userCoupon1.setCouponState(CouponState.USED);
-        userCoupon1.setUsedDate(LocalDate.now().minusDays(1));
+        userCoupon1.setUsedDate(java.time.LocalDate.now().minusDays(5));
 
         userCoupon2 = new UserCoupon();
         userCoupon2.setCouponId(2L);
         userCoupon2.setCouponState(CouponState.USED);
-        userCoupon2.setUsedDate(LocalDate.now().minusDays(2));
+        userCoupon2.setUsedDate(java.time.LocalDate.now().minusDays(3));
     }
 
     @Test
     void testRefund_Success() {
-        // given: 환불을 위한 ID 리스트
+        // Given: Setup mock behavior
         List<Long> userCouponIds = Arrays.asList(1L, 2L);
-        List<UserCoupon> userCoupons = Arrays.asList(userCoupon1, userCoupon2);
+        when(couponRepository.findAllById(userCouponIds)).thenReturn(Arrays.asList(userCoupon1, userCoupon2));
 
-        // Mocking: repository에서 ID로 유저 쿠폰들을 찾아온다
-        when(couponRepository.findAllById(userCouponIds)).thenReturn(userCoupons);
-
-        // when: 환불 처리
         couponService.refund(userCouponIds);
 
-        // then: 상태가 LIVE로 변경되었는지 검증
-        assertAll(
-                () -> assertEquals(CouponState.LIVE, userCoupon1.getCouponState()),
-                () -> assertEquals(CouponState.LIVE, userCoupon2.getCouponState()),
-                () -> assertNotNull(userCoupon1.getUsedDate()),
-                () -> assertNotNull(userCoupon2.getUsedDate())
-        );
+        // Then: Verify the interactions and assert state changes
+        verify(couponRepository).findAllById(userCouponIds);  // Verify repository was called
+        verify(couponRepository).saveAll(anyList()); // Ensure that saveAll was called to persist changes
 
-        // verify: saveAll 메서드가 호출되었는지 검증
-        verify(couponRepository, times(1)).saveAll(userCoupons);
+        // Verify state changes
+        assert userCoupon1.getCouponState() == CouponState.LIVE;
+        assert userCoupon1.getUsedDate() == null;
+
+        assert userCoupon2.getCouponState() == CouponState.LIVE;
+        assert userCoupon2.getUsedDate() == null;
     }
 
     @Test
     void testRefund_NoCouponsFound() {
-        // given: 존재하지 않는 쿠폰 ID 리스트
-        List<Long> userCouponIds = Arrays.asList(3L, 4L);
+        // Given: No coupons found for the provided IDs
+        List<Long> userCouponIds = Arrays.asList(1L, 2L);
+        when(couponRepository.findAllById(userCouponIds)).thenReturn(Arrays.asList());
 
-        // Mocking: repository에서 해당 ID로 유저 쿠폰을 찾을 수 없다고 설정
-        when(couponRepository.findAllById(userCouponIds)).thenReturn(List.of());
-
-        // when & then: 예외 발생 여부 확인
-        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> {
+        // When & Then: Expect an IllegalArgumentException
+        try {
             couponService.refund(userCouponIds);
-        });
+        } catch (IllegalArgumentException e) {
+            assert e.getMessage().equals("No coupons found for the provided IDs.");
+        }
 
-        assertEquals("No coupons found for the provided IDs.", thrown.getMessage());
+        verify(couponRepository).findAllById(userCouponIds);  // Ensure repository was called
+        verifyNoMoreInteractions(couponRepository);  // No further interactions should occur
     }
 
     @Test
     void testRefund_CouponNotUsed() {
-        // given: 사용되지 않은 쿠폰 상태
-        UserCoupon userCoupon3 = new UserCoupon();
-        userCoupon3.setCouponId(3L);
-        userCoupon3.setCouponState(CouponState.LIVE);
-        userCoupon3.setUsedDate(LocalDate.now().minusDays(1));
+        // Given: Set up a coupon that is not used
+        UserCoupon notUsedCoupon = new UserCoupon();
+        notUsedCoupon.setCouponId(3L);
+        notUsedCoupon.setCouponState(CouponState.LIVE);
+        List<Long> userCouponIds = Arrays.asList(3L);
+        when(couponRepository.findAllById(userCouponIds)).thenReturn(Arrays.asList(notUsedCoupon));
 
-        List<Long> userCouponIds = List.of(3L);
-        List<UserCoupon> userCoupons = List.of(userCoupon3);
-
-        // Mocking: repository에서 해당 쿠폰을 찾음
-        when(couponRepository.findAllById(userCouponIds)).thenReturn(userCoupons);
-
-        // when & then: 예외 발생 여부 확인
-        IllegalStateException thrown = assertThrows(IllegalStateException.class, () -> {
+        // When & Then: Expect an IllegalStateException for trying to refund a not-used coupon
+        try {
             couponService.refund(userCouponIds);
-        });
+        } catch (IllegalStateException e) {
+            assert e.getMessage().equals("Cannot refund not used coupon: ID = LIVE");
+        }
 
-        assertEquals("Cannot refund not used coupon: ID = LIVE", thrown.getMessage());
+        verify(couponRepository).findAllById(userCouponIds);  // Ensure repository was called
+        verifyNoMoreInteractions(couponRepository);  // No further interactions should occur
     }
 }

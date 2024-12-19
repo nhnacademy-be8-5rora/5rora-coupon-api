@@ -1,8 +1,10 @@
 package store.aurora;
 
 import jakarta.persistence.EntityManager;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @Transactional
+@TestInstance(TestInstance.Lifecycle.PER_CLASS) // @BeforeAll에서 @Autowired 필드를 사용할 수 있도록 설정
 class CouponRepositoryTest {
 
     @Autowired
@@ -32,14 +35,14 @@ class CouponRepositoryTest {
     @Autowired
     private EntityManager entityManager;
 
-    static Long count = 0L;
+    @BeforeAll
+    void beforeAll() {
+        // @BeforeAll은 static으로 선언되어야 하지만, @TestInstance(PER_CLASS)로 인스턴스 메서드처럼 사용할 수 있음
 
-    @BeforeEach
-    void setUp() {
-        //discountRule 설정
+        // discountRule 설정
         DiscountRule discountRule = new DiscountRule();
         discountRule.setSaleAmount(10000);
-        discountRule =discountRuleRepository.save(discountRule);
+        discountRule = discountRuleRepository.save(discountRule);
 
         // CouponPolicy 설정
         CouponPolicy couponPolicy = new CouponPolicy();
@@ -64,8 +67,6 @@ class CouponRepositoryTest {
 
         couponRepository.save(coupon1);
         couponRepository.save(coupon2);
-
-        count++;
     }
 
     @Test
@@ -74,7 +75,7 @@ class CouponRepositoryTest {
         List<UserCoupon> coupons = couponRepository.findByUserId(1L);
 
         assertThat(coupons).hasSize(1);
-        assertThat(coupons.getFirst().getUserId()).isEqualTo(1L);
+        assertThat(coupons.get(0).getUserId()).isEqualTo(1L);
     }
 
     @Test
@@ -96,7 +97,7 @@ class CouponRepositoryTest {
     @Test
     public void testUpdateCouponPolicyByUserIds() {
         // Arrange
-        Long newPolicyId = count;
+        Long newPolicyId = 1L;
         List<Long> userIds = List.of(1L, 2L);
 
         // Act
@@ -107,7 +108,7 @@ class CouponRepositoryTest {
 
         // Assert
         List<UserCoupon> updatedCoupons = couponRepository.findAllById(userIds);
-        assertThat(updatedCoupons).allMatch(c -> c.getPolicy().getId().equals(newPolicyId));
+        assertThat(updatedCoupons).allMatch(c -> c.getPolicy().getId().equals(1L));
     }
 
     @Test
@@ -157,3 +158,4 @@ class CouponRepositoryTest {
     }
 
 }
+

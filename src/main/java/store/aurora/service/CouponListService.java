@@ -26,7 +26,8 @@ public class CouponListService {
     }
 
     //결제창에서 각 상품별 쿠폰 목록
-    public List<UserCoupon> getCouponListByCategory(ProductInfoDTO productInfoDTO) {
+    public List<UserCoupon> getCouponListByCategory(List<ProductInfoDTO> productInfoDTO) {
+
         return null;
     }
 }
