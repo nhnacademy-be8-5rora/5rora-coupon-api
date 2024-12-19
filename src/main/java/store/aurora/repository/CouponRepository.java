@@ -36,7 +36,7 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
     //timeout 이 된 사용자 쿠폰 상태 변경(live -> timeout)
     @Modifying
     @Query("UPDATE UserCoupon u SET u.couponState = 'timeout', " +
-            "    u.changedDate = CURRENT_DATE " +
+            "    u.usedDate = CURRENT_DATE " +
             "WHERE u.endDate < CURRENT_DATE AND u.couponState = 'live'")
     void updateExpiredCoupons();
 
@@ -44,7 +44,7 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
     @Modifying
     @Query("DELETE FROM UserCoupon u " +
             "WHERE u.couponState IN (:usedState, :timeoutState) " +
-            "AND u.changedDate < :ninetyDaysAgo")
+            "AND u.usedDate < :ninetyDaysAgo")
     void deleteExpiredCoupons(
             @Param("usedState") CouponState usedState,
             @Param("timeoutState") CouponState timeoutState,

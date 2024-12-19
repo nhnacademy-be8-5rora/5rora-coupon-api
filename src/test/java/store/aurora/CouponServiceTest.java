@@ -3,7 +3,6 @@ package store.aurora;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import store.aurora.domain.CouponState;
@@ -36,12 +35,12 @@ class CouponServiceTest {
         userCoupon1 = new UserCoupon();
         userCoupon1.setCouponId(1L);
         userCoupon1.setCouponState(CouponState.USED);
-        userCoupon1.setChangedDate(LocalDate.now().minusDays(1));
+        userCoupon1.setUsedDate(LocalDate.now().minusDays(1));
 
         userCoupon2 = new UserCoupon();
         userCoupon2.setCouponId(2L);
         userCoupon2.setCouponState(CouponState.USED);
-        userCoupon2.setChangedDate(LocalDate.now().minusDays(2));
+        userCoupon2.setUsedDate(LocalDate.now().minusDays(2));
     }
 
     @Test
@@ -60,8 +59,8 @@ class CouponServiceTest {
         assertAll(
                 () -> assertEquals(CouponState.LIVE, userCoupon1.getCouponState()),
                 () -> assertEquals(CouponState.LIVE, userCoupon2.getCouponState()),
-                () -> assertNotNull(userCoupon1.getChangedDate()),
-                () -> assertNotNull(userCoupon2.getChangedDate())
+                () -> assertNotNull(userCoupon1.getUsedDate()),
+                () -> assertNotNull(userCoupon2.getUsedDate())
         );
 
         // verify: saveAll 메서드가 호출되었는지 검증
@@ -90,7 +89,7 @@ class CouponServiceTest {
         UserCoupon userCoupon3 = new UserCoupon();
         userCoupon3.setCouponId(3L);
         userCoupon3.setCouponState(CouponState.LIVE);
-        userCoupon3.setChangedDate(LocalDate.now().minusDays(1));
+        userCoupon3.setUsedDate(LocalDate.now().minusDays(1));
 
         List<Long> userCouponIds = List.of(3L);
         List<UserCoupon> userCoupons = List.of(userCoupon3);

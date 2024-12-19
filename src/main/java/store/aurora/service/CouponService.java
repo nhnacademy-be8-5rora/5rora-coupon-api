@@ -20,6 +20,7 @@ public class CouponService {
     @Transactional
     public void refund(List<Long> userCouponId) {
         List<UserCoupon> userCoupons = couponRepository.findAllById(userCouponId);
+
         if (userCoupons.isEmpty()) {
             throw new IllegalArgumentException("No coupons found for the provided IDs.");
         }
@@ -30,7 +31,7 @@ public class CouponService {
             }
 
             userCoupon.setCouponState(CouponState.LIVE);    //사용자 쿠폰 상태 live 변경(used -> live)
-            userCoupon.setChangedDate(LocalDate.now());
+            userCoupon.setUsedDate(null);    //사용기간 null로 변경
         }
 
         couponRepository.saveAll(userCoupons); // 상태 변경 후 저장
@@ -51,7 +52,7 @@ public class CouponService {
             }
 
             userCoupon.setCouponState(CouponState.USED);    //Live -> used 변경
-            userCoupon.setChangedDate(LocalDate.now());
+            userCoupon.setUsedDate(LocalDate.now());
         }
 
         couponRepository.saveAll(userCoupons); // 상태 변경 후 저장
