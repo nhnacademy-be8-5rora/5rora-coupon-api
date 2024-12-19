@@ -89,28 +89,33 @@ class CouponRepositoryTest {
         assertThat(coupons).allMatch(coupon -> coupon.getCouponState() == CouponState.TIMEOUT);
     }
 
-//    @Test
-//    void testUpdateCouponAttributesByUserIds() {
-//        LocalDate startDate = LocalDate.now().minusDays(5);
-//        LocalDate endDate = LocalDate.now().plusDays(10);
-//
-//        // UserCoupon 속성 업데이트(UserIds을 통한 사용자 쿠폰 수정)
-//        couponRepository.updateCouponAttributesByUserIds(
-//                CouponState.USED,
-//                couponPolicy.getId(),
-//                endDate,
-//                List.of(1L)
-//        );
-//
-//        entityManager.flush();
-//        entityManager.clear();
-//
-//        List<UserCoupon> coupons = couponRepository.findByUserId(1L);
-//        assertThat(coupons).isNotEmpty();
-//        assertThat(coupons).allMatch(coupon -> coupon.getCouponState() == CouponState.USED
-//                && coupon.getStartDate().equals(startDate)
-//                && coupon.getEndDate().equals(endDate));
-//    }
+    @Test
+    public void testUpdateCouponPolicyByUserIds() {
+        // Arrange
+        Long newPolicyId = 1L;
+        List<Long> userIds = List.of(1L, 2L);
+
+        // Act
+        couponRepository.updateCouponPolicyByUserIds(newPolicyId, userIds);
+
+        // Assert
+        List<UserCoupon> updatedCoupons = couponRepository.findAllById(userIds);
+        assertThat(updatedCoupons).allMatch(c -> c.getPolicy().getId().equals(newPolicyId));
+    }
+
+    @Test
+    public void testUpdateCouponEndDateByUserIds() {
+        // Arrange
+        LocalDate newEndDate = LocalDate.of(2024, 12, 31);
+        List<Long> userIds = List.of(1L, 2L);
+
+        // Act
+        couponRepository.updateCouponEndDateByUserIds(newEndDate, userIds);
+
+        // Assert
+        List<UserCoupon> updatedCoupons = couponRepository.findAllById(userIds);
+        assertThat(updatedCoupons).allMatch(c -> c.getEndDate().equals(newEndDate));
+    }
 
     @Test
     void testUpdateExpiredCoupons() {
