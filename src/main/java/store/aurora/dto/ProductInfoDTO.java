@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class ProductInfoDto {
+public class ProductInfoDTO {
     @NotNull
     private String productId;   //결제 상품 목록
     @NotNull

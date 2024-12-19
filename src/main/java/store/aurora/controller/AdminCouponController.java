@@ -52,6 +52,4 @@ public class AdminCouponController {
         couponPolicyService.couponUpdate(requestUserCouponDto);  // 실제 쿠폰 수정 처리
         return ResponseEntity.ok("사용자쿠폰이 수정되었습니다.");
     }
-
-    //모든 사용자 쿠폰을 확인해서 해당 쿠폰 정책 ID가 있는지 파악한 후에 삭제, 수정 가능하도록 구현은 가능
 }
