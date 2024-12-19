@@ -2,10 +2,10 @@ package store.aurora;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import store.aurora.domain.CouponState;
 import store.aurora.domain.UserCoupon;
 import store.aurora.repository.CouponRepository;
@@ -18,10 +18,10 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(MockitoExtension.class) // JUnit 5에서 Mockito 사용
+@SpringBootTest
 class CouponServiceTest {
 
-    @Mock
+    @MockBean
     private CouponRepository couponRepository; // Mock된 Repository
 
     @InjectMocks
