@@ -32,8 +32,6 @@ class CouponRepositoryTest {
     @Autowired
     private EntityManager entityManager;
 
-    private CouponPolicy couponPolicy;
-
     @BeforeEach
     void setUp() {
         //discountRule 설정
@@ -42,7 +40,7 @@ class CouponRepositoryTest {
         discountRule =discountRuleRepository.save(discountRule);
 
         // CouponPolicy 설정
-        couponPolicy = new CouponPolicy();
+        CouponPolicy couponPolicy = new CouponPolicy();
         couponPolicy.setName("Test Policy");
         couponPolicy.setSaleType(SaleType.AMOUNT);  // SaleType 설정
         couponPolicy.setDiscountRule(discountRule);
