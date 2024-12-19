@@ -4,10 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import store.aurora.dto.DiscountRuleDto;
-import store.aurora.dto.AddPolicyDto;
+import store.aurora.dto.AddPolicyDTO;
+import store.aurora.dto.DiscountRuleDTO;
 import store.aurora.dto.RequestCouponPolicyDTO;
-import store.aurora.dto.RequestUserCouponDto;
+import store.aurora.dto.RequestUserCouponDTO;
 import store.aurora.service.CouponPolicyService;
 
 //관리자용 쿠폰 생성 및 배포용
@@ -23,8 +23,8 @@ public class AdminCouponController {
     @PostMapping(value = "/coupon/create")
     public ResponseEntity<String> couponPolicyCreate(@RequestBody @Validated RequestCouponPolicyDTO requestCouponPolicyDTO) { //@Validated 유효 검증(무결성)
 
-        DiscountRuleDto discountRuleDTO = requestCouponPolicyDTO.getDiscountRuleDTO();
-        AddPolicyDto addPolicyDTO = requestCouponPolicyDTO.getAddPolicyDTO();
+        DiscountRuleDTO discountRuleDTO = requestCouponPolicyDTO.getDiscountRuleDTO();
+        AddPolicyDTO addPolicyDTO = requestCouponPolicyDTO.getAddPolicyDTO();
 
         //salePercent, saleAmount 둘 중 하나는 반드시 값이 있어야 한다
         if(discountRuleDTO.getSalePercent() == null && discountRuleDTO.getSaleAmount() == null){
@@ -38,18 +38,18 @@ public class AdminCouponController {
 
     //사용자 쿠폰 생성(특정 한명에게 줄 수 있으며, 특정 조건을 충족한 유저들에게 쿠폰을 뿌릴 수 있도록 함)
     @PostMapping("/coupon/distribution")
-    public ResponseEntity<String> userCouponCreate(@RequestBody @Validated RequestUserCouponDto requestUserCouponDto) {
+    public ResponseEntity<String> userCouponCreate(@RequestBody @Validated RequestUserCouponDTO requestUserCouponDTO) {
 
-        couponPolicyService.userCouponCreate(requestUserCouponDto);
+        couponPolicyService.userCouponCreate(requestUserCouponDTO);
 
         return ResponseEntity.ok("사용자쿠폰이 생성되었습니다.");
     }
 
     // 사용자쿠폰 수정 (관리자)
     @PutMapping(value = "/coupon/update/")
-    public ResponseEntity<String> userCouponUpdate(@RequestBody @Validated RequestUserCouponDto requestUserCouponDto) {
+    public ResponseEntity<String> userCouponUpdate(@RequestBody @Validated RequestUserCouponDTO requestUserCouponDTO) {
 
-        couponPolicyService.couponUpdate(requestUserCouponDto);  // 실제 쿠폰 수정 처리
+        couponPolicyService.couponUpdate(requestUserCouponDTO);  // 실제 쿠폰 수정 처리
         return ResponseEntity.ok("사용자쿠폰이 수정되었습니다.");
     }
 
