@@ -2,7 +2,6 @@ package store.aurora.repository;
 
 import feign.Param;
 import jakarta.transaction.Transactional;
-import org.apache.catalina.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -11,7 +10,6 @@ import store.aurora.entity.CouponState;
 import store.aurora.entity.UserCoupon;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -27,7 +25,7 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
                                    @Param("userIds") List<Long> userIds);
 
 
-    //사용자 쿠폰들 전체 수정
+    //사용자 ID을 통해 사용자 쿠폰들 전체 수정
     @Modifying
     @Transactional
     @Query("UPDATE UserCoupon uc SET uc.couponState = :couponState, " +
