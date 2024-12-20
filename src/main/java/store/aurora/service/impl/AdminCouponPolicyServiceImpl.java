@@ -85,8 +85,8 @@ public class AdminCouponPolicyServiceImpl implements AdminCouponService {
         saveBookPolicies(couponPolicy, addPolicyDTO);
     }
 
-    @Transactional
-    protected void saveCouponPolicy(CouponPolicy couponPolicy, RequestCouponPolicyDTO requestCouponPolicyDTO, DiscountRule discountRule) {
+
+    public void saveCouponPolicy(CouponPolicy couponPolicy, RequestCouponPolicyDTO requestCouponPolicyDTO, DiscountRule discountRule) {
         couponPolicy.setName(requestCouponPolicyDTO.getPolicyName());
         couponPolicy.setSaleType(requestCouponPolicyDTO.getSaleType());
         couponPolicy.setDiscountRule(discountRule);
