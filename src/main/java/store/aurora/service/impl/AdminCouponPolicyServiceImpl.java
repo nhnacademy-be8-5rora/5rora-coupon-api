@@ -7,13 +7,14 @@ import store.aurora.dto.*;
 
 import store.aurora.domain.*;
 import store.aurora.repository.*;
+import store.aurora.service.AdminCouponService;
 
 import java.util.List;
 import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
-public class AdminCouponServiceImpl {
+public class AdminCouponPolicyServiceImpl implements AdminCouponService {
 
     private final CouponPolicyRepository couponPolicyRepository;
     private final CouponRepository couponRepository;

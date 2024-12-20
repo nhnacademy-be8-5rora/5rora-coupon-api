@@ -6,13 +6,14 @@ import org.springframework.stereotype.Service;
 import store.aurora.domain.CouponState;
 import store.aurora.domain.UserCoupon;
 import store.aurora.repository.CouponRepository;
+import store.aurora.service.UserCouponService;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CouponServiceImpl {
+public class CouponServiceImpl implements UserCouponService {
 
     private final CouponRepository couponRepository;
 

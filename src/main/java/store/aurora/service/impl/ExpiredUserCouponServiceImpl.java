@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class UserCouponTimeServiceImpl {
+public class ExpiredUserCouponServiceImpl {
 
     private final CouponRepository couponRepository;
 
