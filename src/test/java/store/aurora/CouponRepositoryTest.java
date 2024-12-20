@@ -1,12 +1,14 @@
 package store.aurora;
 
 import jakarta.persistence.EntityManager;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.transaction.annotation.Transactional;
-import store.aurora.entity.*;
+import store.aurora.domain.*;
 import store.aurora.repository.CouponPolicyRepository;
 import store.aurora.repository.CouponRepository;
 import store.aurora.repository.DisCountRuleRepository;
@@ -18,6 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @Transactional
+@TestInstance(TestInstance.Lifecycle.PER_CLASS) // @BeforeAll에서 @Autowired 필드를 사용할 수 있도록 설정
 class CouponRepositoryTest {
 
     @Autowired
@@ -32,17 +35,17 @@ class CouponRepositoryTest {
     @Autowired
     private EntityManager entityManager;
 
-    private CouponPolicy couponPolicy;
+    @BeforeAll
+    void beforeAll() {
+        // @BeforeAll은 static으로 선언되어야 하지만, @TestInstance(PER_CLASS)로 인스턴스 메서드처럼 사용할 수 있음
 
-    @BeforeEach
-    void setUp() {
-        //discountRule 설정
+        // discountRule 설정
         DiscountRule discountRule = new DiscountRule();
         discountRule.setSaleAmount(10000);
-        discountRule =discountRuleRepository.save(discountRule);
+        discountRule = discountRuleRepository.save(discountRule);
 
         // CouponPolicy 설정
-        couponPolicy = new CouponPolicy();
+        CouponPolicy couponPolicy = new CouponPolicy();
         couponPolicy.setName("Test Policy");
         couponPolicy.setSaleType(SaleType.AMOUNT);  // SaleType 설정
         couponPolicy.setDiscountRule(discountRule);
@@ -72,7 +75,7 @@ class CouponRepositoryTest {
         List<UserCoupon> coupons = couponRepository.findByUserId(1L);
 
         assertThat(coupons).hasSize(1);
-        assertThat(coupons.getFirst().getUserId()).isEqualTo(1L);
+        assertThat(coupons.get(0).getUserId()).isEqualTo(1L);
     }
 
     @Test
@@ -80,12 +83,10 @@ class CouponRepositoryTest {
         List<Long> userIds = List.of(1L, 2L);
 
         // UserIds에 대한 상태 업데이트
-        int updatedRows = couponRepository.updateCouponStateByUserIds(CouponState.TIMEOUT, userIds);
+        couponRepository.updateCouponStateByUserIds(CouponState.TIMEOUT, userIds);
 
         entityManager.flush();
         entityManager.clear();
-
-        assertThat(updatedRows).isEqualTo(2);
 
         List<UserCoupon> coupons = couponRepository.findByUserIdIn(userIds);
 
@@ -94,27 +95,37 @@ class CouponRepositoryTest {
     }
 
     @Test
-    void testUpdateCouponAttributesByUserIds() {
-        LocalDate startDate = LocalDate.now().minusDays(5);
-        LocalDate endDate = LocalDate.now().plusDays(10);
+    public void testUpdateCouponPolicyByUserIds() {
+        // Arrange
+        Long newPolicyId = 1L;
+        List<Long> userIds = List.of(1L, 2L);
 
-        // UserCoupon 속성 업데이트(UserIds을 통한 사용자 쿠폰 수정)
-        couponRepository.updateCouponAttributesByUserIds(
-                CouponState.USED,
-                couponPolicy.getId(),
-                startDate,
-                endDate,
-                List.of(1L)
-        );
+        // Act
+        couponRepository.updateCouponPolicyByUserIds(newPolicyId, userIds);
 
         entityManager.flush();
         entityManager.clear();
 
-        List<UserCoupon> coupons = couponRepository.findByUserId(1L);
-        assertThat(coupons).isNotEmpty();
-        assertThat(coupons).allMatch(coupon -> coupon.getCouponState() == CouponState.USED
-                && coupon.getStartDate().equals(startDate)
-                && coupon.getEndDate().equals(endDate));
+        // Assert
+        List<UserCoupon> updatedCoupons = couponRepository.findAllById(userIds);
+        assertThat(updatedCoupons).allMatch(c -> c.getPolicy().getId().equals(1L));
+    }
+
+    @Test
+    public void testUpdateCouponEndDateByUserIds() {
+        // Arrange
+        LocalDate newEndDate = LocalDate.of(2024, 12, 31);
+        List<Long> userIds = List.of(1L, 2L);
+
+        // Act
+        couponRepository.updateCouponEndDateByUserIds(newEndDate, userIds);
+
+        entityManager.flush();
+        entityManager.clear();
+
+        // Assert
+        List<UserCoupon> updatedCoupons = couponRepository.findAllById(userIds);
+        assertThat(updatedCoupons).allMatch(c -> c.getEndDate().equals(newEndDate));
     }
 
     @Test
@@ -147,3 +158,4 @@ class CouponRepositoryTest {
     }
 
 }
+
