@@ -7,12 +7,13 @@ import store.aurora.domain.UserCoupon;
 import store.aurora.repository.BookPolicyRepository;
 import store.aurora.repository.CategoryPolicyRepository;
 import store.aurora.repository.CouponRepository;
+import store.aurora.service.UserCouponService;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CouponListServiceImpl {
+public class CouponListServiceImpl implements UserCouponService {
 
     private final CouponRepository couponRepository;
     private final BookPolicyRepository bookPolicyRepository;
