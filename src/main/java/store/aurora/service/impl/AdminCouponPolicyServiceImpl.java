@@ -47,13 +47,6 @@ public class AdminCouponPolicyServiceImpl implements AdminCouponService {
     //사용자 쿠폰 생성
     @Transactional
     public void userCouponCreate(RequestUserCouponDTO requestUserCouponDTO) {
-        if (requestUserCouponDTO.getUserId() == null || requestUserCouponDTO.getUserId().isEmpty()) {
-            throw new IllegalArgumentException("User ID list must not be empty");
-        }
-        if (requestUserCouponDTO.getPolicy() == null) {
-            throw new IllegalArgumentException("Policy must not be null");
-        }
-
         List<Long> userIds = requestUserCouponDTO.getUserId(); // 유저 ID 리스트
         CouponPolicy policy = requestUserCouponDTO.getPolicy(); // 적용할 정책
         CouponState state = requestUserCouponDTO.getState();   // 쿠폰 초기 상태
@@ -92,13 +85,15 @@ public class AdminCouponPolicyServiceImpl implements AdminCouponService {
         saveBookPolicies(couponPolicy, addPolicyDTO);
     }
 
-    private void saveCouponPolicy(CouponPolicy couponPolicy, RequestCouponPolicyDTO requestCouponPolicyDTO, DiscountRule discountRule) {
+    @Transactional
+    protected void saveCouponPolicy(CouponPolicy couponPolicy, RequestCouponPolicyDTO requestCouponPolicyDTO, DiscountRule discountRule) {
         couponPolicy.setName(requestCouponPolicyDTO.getPolicyName());
         couponPolicy.setSaleType(requestCouponPolicyDTO.getSaleType());
         couponPolicy.setDiscountRule(discountRule);
         couponPolicyRepository.save(couponPolicy);
     }
 
+    //계산룰 테이블 개체 생성
     private static DiscountRule getDiscountRule(DiscountRuleDTO discountRuleDTO) {
         DiscountRule discountRule = new DiscountRule();
         discountRule.setNeedCost(discountRuleDTO.getNeedCost());        //null 가능
