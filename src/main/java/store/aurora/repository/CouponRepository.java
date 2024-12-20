@@ -16,12 +16,11 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
 
     List<UserCoupon> findByUserId(Long userId);
 
-    //관리자가 특정 사용자 ID 리스트에 해당하는 UserCoupon들의 couponState 업데이트
+    //관리자가 특정 사용자 ID 리스트에 해당하는 UserCoupon들의 couponState/endDate/policyId 업데이트
     @Modifying
     @Query("UPDATE UserCoupon uc SET uc.couponState = :couponState WHERE uc.userId IN :userIds")
     void updateCouponStateByUserIds(@Param("couponState") CouponState couponState,
                                    @Param("userIds") List<Long> userIds);
-
     @Modifying
     @Query("UPDATE UserCoupon uc SET uc.endDate = :endDate WHERE uc.userId IN :userIds")
     void updateCouponEndDateByUserIds(@Param("endDate") LocalDate endDate,
@@ -30,7 +29,7 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
     @Modifying
     @Query("UPDATE UserCoupon uc SET uc.policy = (SELECT p FROM CouponPolicy p WHERE p.id = :policyId) " +
             "WHERE uc.userId IN :userIds AND EXISTS (SELECT 1 FROM CouponPolicy p WHERE p.id = :policyId)")
-    void updateCouponPolicyByUserIds(@Param("policyId") Long policyId,
+    void updateCouponPolicyByUserIds(@Param("policyId") Long policyId,  //해당 policyId을 가진 policy 없을시 퀴리 적용 안되게함
                                      @Param("userIds") List<Long> userIds);
 
     //timeout 이 된 사용자 쿠폰 상태 변경(live -> timeout)
