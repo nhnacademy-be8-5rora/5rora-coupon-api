@@ -13,7 +13,7 @@ import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
-public class CouponPolicyServiceImpl {
+public class AdminCouponServiceImpl {
 
     private final CouponPolicyRepository couponPolicyRepository;
     private final CouponRepository couponRepository;

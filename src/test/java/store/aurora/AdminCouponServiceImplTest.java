@@ -14,7 +14,7 @@ import store.aurora.domain.CouponState;
 import store.aurora.domain.DiscountRule;
 import store.aurora.domain.SaleType;
 import store.aurora.repository.*;
-import store.aurora.service.impl.CouponPolicyServiceImpl;
+import store.aurora.service.impl.AdminCouponServiceImpl;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -29,7 +29,7 @@ class AdminCouponServiceImplTest {
     @MockBean private BookPolicyRepository bookPolicyRepository;
 
     @Autowired
-    private CouponPolicyServiceImpl couponPolicyServiceImpl;
+    private AdminCouponServiceImpl adminCouponServiceImpl;
 
     @BeforeEach
     void setUp() {
@@ -51,7 +51,7 @@ class AdminCouponServiceImplTest {
         addPolicyDTO.setBookId(Arrays.asList(3L, 4L));
 
         // 사용자 쿠폰 생성
-        couponPolicyServiceImpl.couponPolicyCreate(requestCouponPolicyDTO, discountRuleDTO, addPolicyDTO);
+        adminCouponServiceImpl.couponPolicyCreate(requestCouponPolicyDTO, discountRuleDTO, addPolicyDTO);
 
         // Then
         verify(disCountRuleRepository).save(any(DiscountRule.class)); // DiscountRule 저장 검증
@@ -71,7 +71,7 @@ class AdminCouponServiceImplTest {
         dto.setUserIds(Arrays.asList(1L, 2L));      //받아올 유저 ID
 
         // 사용자 쿠폰 수정
-        couponPolicyServiceImpl.couponUpdate(dto);
+        adminCouponServiceImpl.couponUpdate(dto);
 
 
         // Assert
@@ -95,7 +95,7 @@ class AdminCouponServiceImplTest {
         requestUserCouponDto.setUserId(Arrays.asList(1L, 2L, 3L));
 
         // When
-        couponPolicyServiceImpl.userCouponCreate(requestUserCouponDto);
+        adminCouponServiceImpl.userCouponCreate(requestUserCouponDto);
 
         // Then
         verify(couponRepository).saveAll(anyList()); // couponRepository의 saveAll 호출 여부 검증
