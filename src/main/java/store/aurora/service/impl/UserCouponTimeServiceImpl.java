@@ -1,4 +1,4 @@
-package store.aurora.service;
+package store.aurora.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class UserCouponTimeService {
+public class UserCouponTimeServiceImpl {
 
     private final CouponRepository couponRepository;
 

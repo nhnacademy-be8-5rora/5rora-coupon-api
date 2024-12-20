@@ -5,23 +5,22 @@ import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import store.aurora.domain.CouponState;
 import store.aurora.domain.UserCoupon;
 import store.aurora.repository.CouponRepository;
-import store.aurora.service.CouponService;
+import store.aurora.service.impl.CouponServiceImpl;
 
 import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest
-class CouponServiceTest {
+class CouponServiceImplTest {
 
     @MockBean
     private CouponRepository couponRepository;
-    @InjectMocks private CouponService couponService;
+    @InjectMocks private CouponServiceImpl couponServiceImpl;
 
     private UserCoupon userCoupon1;
     private UserCoupon userCoupon2;
@@ -46,7 +45,7 @@ class CouponServiceTest {
         List<Long> userCouponIds = Arrays.asList(1L, 2L);
         when(couponRepository.findAllById(userCouponIds)).thenReturn(Arrays.asList(userCoupon1, userCoupon2));
 
-        couponService.refund(userCouponIds);
+        couponServiceImpl.refund(userCouponIds);
 
         // Then: Verify the interactions and assert state changes
         verify(couponRepository).findAllById(userCouponIds);  // Verify repository was called
@@ -68,7 +67,7 @@ class CouponServiceTest {
 
         // When & Then: Expect an IllegalArgumentException
         try {
-            couponService.refund(userCouponIds);
+            couponServiceImpl.refund(userCouponIds);
         } catch (IllegalArgumentException e) {
             assert e.getMessage().equals("No coupons found for the provided IDs.");
         }
@@ -88,7 +87,7 @@ class CouponServiceTest {
 
         // When & Then: Expect an IllegalStateException for trying to refund a not-used coupon
         try {
-            couponService.refund(userCouponIds);
+            couponServiceImpl.refund(userCouponIds);
         } catch (IllegalStateException e) {
             assert e.getMessage().equals("Cannot refund not used coupon: ID = LIVE");
         }

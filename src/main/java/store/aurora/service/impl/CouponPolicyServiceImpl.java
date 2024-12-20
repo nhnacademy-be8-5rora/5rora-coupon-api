@@ -1,4 +1,4 @@
-package store.aurora.service;
+package store.aurora.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
-public class CouponPolicyService {
+public class CouponPolicyServiceImpl {
 
     private final CouponPolicyRepository couponPolicyRepository;
     private final CouponRepository couponRepository;
