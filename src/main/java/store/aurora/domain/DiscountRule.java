@@ -1,6 +1,7 @@
 package store.aurora.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.AssertTrue;
 import lombok.Data;
 
 @Entity
@@ -24,9 +25,9 @@ public class DiscountRule {
     @Column(name = "sale_amount")
     private Integer saleAmount;
 
-//    // sale_percent와 sale_amount 둘 중 하나는 null이 아니어야 한다는 조건
-//    @AssertTrue(message = "Either salePercent or saleAmount must be provided.")
-//    public boolean isSaleValid() {
-//        return salePercent != null || saleAmount != null;
-//    }
+    // sale_percent와 sale_amount 둘 중 하나는 null이 아니어야 한다는 조건
+    @AssertTrue(message = "Either salePercent or saleAmount must be provided.")
+    public boolean isSaleValid() {
+        return salePercent != null || saleAmount != null;
+    }
 }
