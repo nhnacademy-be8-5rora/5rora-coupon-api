@@ -81,6 +81,7 @@ public class AdminCouponPolicyServiceImpl implements AdminCouponService {
         CouponPolicy couponPolicy = new CouponPolicy();
         saveCouponPolicy(couponPolicy, requestCouponPolicyDTO, discountRule);
 
+        //책, 카테고리 정책 테이블 생성
         saveCategoryPolicies(couponPolicy, addPolicyDTO);
         saveBookPolicies(couponPolicy, addPolicyDTO);
     }
