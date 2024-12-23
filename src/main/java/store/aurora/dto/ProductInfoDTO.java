@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 public class ProductInfoDTO {
     @NotNull
-    private String productId;   //결제 상품 목록
+    private Long productId;   //결제 상품 목록
     @NotNull
     private List<Integer> categoryIds;  //상품이 속해있는 카테고리 Id
     @NotNull

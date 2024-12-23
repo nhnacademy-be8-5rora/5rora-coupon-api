@@ -50,4 +50,11 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
             @Param("ninetyDaysAgo") LocalDate ninetyDaysAgo);
 
     List<UserCoupon> findByUserIdIn(List<Long> userIds);
+
+//    @Query("SELECT FROM UserCoupon u" +
+//            "WHERE")
+//    List<UserCoupon> findByUserIdInAndCouponStateIn(
+//            @Param("userId") Long userId,
+//            @Param()
+//    );
 }

@@ -3,6 +3,8 @@ package store.aurora.domain;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Table(name = "coupon_policy")
 @Data
@@ -22,5 +24,11 @@ public class CouponPolicy {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "discount_id", nullable = false)
     private DiscountRule discountRule;  // 할인 ID (옵션), discount 테이블과 외래 키 관계
+
+    @OneToMany(mappedBy = "policy", fetch = FetchType.LAZY)
+    private List<BookPolicy> bookPolicies;
+
+    @OneToMany(mappedBy = "policy", fetch = FetchType.LAZY)
+    private List<CategoryPolicy> categoryPolicies;
 
 }
