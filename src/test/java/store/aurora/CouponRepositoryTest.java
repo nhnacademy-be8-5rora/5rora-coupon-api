@@ -17,6 +17,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJpaTest
 @Transactional
@@ -155,6 +158,20 @@ class CouponRepositoryTest {
 
         List<UserCoupon> coupons = couponRepository.findAll();
         assertThat(coupons).hasSize(2); // 현재 테스트 데이터에는 조건에 맞는 삭제 없음
+    }
+
+    @Test
+    public void testFindAvailableCoupons() {
+        Long userId = 1L; // 테스트 사용자 ID
+        Long bookId = 101L; // 테스트 도서 ID
+        List<Long> categoryIds = List.of(201L, 202L); // 테스트 카테고리 ID 리스트
+        Integer totalPrice = 15000; // 테스트 가격
+
+        List<UserCoupon> availableCoupons = couponRepository.findAvailableCoupons(userId, bookId, categoryIds, totalPrice);
+
+        // 결과 확인
+        assertNotNull(availableCoupons);
+        assertFalse(availableCoupons.isEmpty()); // 사용 가능한 쿠폰이 있어야 함
     }
 
 }

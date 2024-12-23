@@ -47,6 +47,10 @@ public class ExpiredUserCouponServiceTest {
         expiredUserCouponService.deleteExpiredCoupons();
 
         // Then: couponRepository.deleteExpiredCoupons()가 호출된 것을 검증
-        verify(couponRepository, times(1)).deleteExpiredCoupons(CouponState.USED, CouponState.TIMEOUT, ninetyDaysAgo);
+        verify(couponRepository, times(1))
+                .deleteExpiredCoupons(CouponState.USED, CouponState.TIMEOUT, ninetyDaysAgo);
+
     }
+
+
 }

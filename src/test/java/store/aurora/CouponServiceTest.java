@@ -97,4 +97,6 @@ class CouponServiceTest {
         verify(couponRepository).findAllById(userCouponIds);  // Ensure repository was called
         verifyNoMoreInteractions(couponRepository);  // No further interactions should occur
     }
+
+
 }
