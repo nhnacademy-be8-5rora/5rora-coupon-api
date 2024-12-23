@@ -85,10 +85,6 @@ public class AdminCouponService {
         saveBookPolicies(couponPolicy, addPolicyDTO);
     }
 
-    @Transactional(readOnly = true)
-    public List<CouponPolicy> couponPolicyList() {
-        return couponPolicyRepository.findAll();
-    }
 
 
     public void saveCouponPolicy(CouponPolicy couponPolicy, RequestCouponPolicyDTO requestCouponPolicyDTO, DiscountRule discountRule) {

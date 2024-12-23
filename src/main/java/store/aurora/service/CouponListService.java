@@ -3,8 +3,10 @@ package store.aurora.service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import store.aurora.domain.CouponPolicy;
 import store.aurora.dto.ProductInfoDTO;
 import store.aurora.domain.UserCoupon;
+import store.aurora.repository.CouponPolicyRepository;
 import store.aurora.repository.CouponRepository;
 
 import java.util.HashMap;
@@ -16,6 +18,7 @@ import java.util.Map;
 public class CouponListService {
 
     private final CouponRepository couponRepository;
+    private final CouponPolicyRepository couponPolicyRepository;
 
     //사용자ID로 해당 사용자가 가진 사용자 쿠폰 목록 검색
     @Transactional(readOnly = true)
@@ -47,5 +50,11 @@ public class CouponListService {
 
 
         return couponRepository.findAvailableCoupons(userId, bookId, categoryIdList, price);
+    }
+
+    //쿠폰 정책 리스트 출력
+    @Transactional(readOnly = true)
+    public List<CouponPolicy> couponPolicyList() {
+        return couponPolicyRepository.findAll();
     }
 }
