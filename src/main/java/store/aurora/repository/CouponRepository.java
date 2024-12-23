@@ -58,8 +58,11 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
             "LEFT JOIN cp.categoryPolicies cpCat " +
             "WHERE uc.userId = :userId " +
             "AND uc.couponState = 'LIVE' " +
-            "AND (bp.bookId IS NULL OR bp.bookId = :bookId) " +
-            "AND (cpCat.categoryId IS NULL OR cpCat.categoryId IN :categoryIds) " +
+            "AND ( " +
+            "  (bp.bookId IS NULL OR bp.bookId = :bookId) " + // bookId가 null일 경우, bookId 비교하지 않음
+            "  OR " +
+            "  (cpCat.categoryId IS NULL OR cpCat.categoryId IN :categoryIds) " + // categoryId가 null일 경우, categoryId 비교하지 않음
+            ") " +
             "AND cp.discountRule.needCost <= :totalPrice")
     List<UserCoupon> findAvailableCoupons(@Param("userId") Long userId,
                                           @Param("bookId") Long bookId,

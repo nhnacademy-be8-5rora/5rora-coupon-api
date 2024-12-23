@@ -167,7 +167,9 @@ class CouponRepositoryTest {
         List<Long> categoryIds = List.of(201L, 202L); // 테스트 카테고리 ID 리스트
         Integer totalPrice = 15000; // 테스트 가격
 
-        List<UserCoupon> availableCoupons = couponRepository.findAvailableCoupons(userId, bookId, categoryIds, totalPrice);
+        List<UserCoupon> availableCoupons = couponRepository.
+                findAvailableCoupons(userId, bookId, categoryIds, totalPrice);
+
 
         // 결과 확인
         assertNotNull(availableCoupons);
