@@ -63,7 +63,7 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
             "  OR " +
             "  (cpCat.categoryId IS NULL OR cpCat.categoryId IN :categoryIds) " + // categoryId가 null일 경우, categoryId 비교하지 않음
             ") " +
-            "AND cp.discountRule.needCost <= :totalPrice")
+            "AND (cp.discountRule.needCost IS NULL OR cp.discountRule.needCost <= :totalPrice)")
     List<UserCoupon> findAvailableCoupons(@Param("userId") Long userId,
                                           @Param("bookId") Long bookId,
                                           @Param("categoryIds") List<Long> categoryIds,
