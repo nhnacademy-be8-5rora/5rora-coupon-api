@@ -14,7 +14,7 @@ import store.aurora.domain.CouponState;
 import store.aurora.domain.DiscountRule;
 import store.aurora.domain.SaleType;
 import store.aurora.repository.*;
-import store.aurora.service.impl.AdminCouponPolicyServiceImpl;
+import store.aurora.service.AdminCouponPolicyServiceImpl;
 
 import java.time.LocalDate;
 import java.util.Arrays;

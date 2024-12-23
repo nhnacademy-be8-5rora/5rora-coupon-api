@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import store.aurora.service.impl.CouponServiceImpl;
+import store.aurora.service.CouponServiceImpl;
 
 import java.util.List;
 

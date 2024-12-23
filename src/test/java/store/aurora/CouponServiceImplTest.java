@@ -10,7 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import store.aurora.domain.CouponState;
 import store.aurora.domain.UserCoupon;
 import store.aurora.repository.CouponRepository;
-import store.aurora.service.impl.CouponServiceImpl;
+import store.aurora.service.CouponServiceImpl;
 
 import java.util.Arrays;
 import java.util.List;

@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import store.aurora.domain.UserCoupon;
-import store.aurora.service.impl.CouponListServiceImpl;
+import store.aurora.service.CouponListServiceImpl;
 
 import java.util.List;
 

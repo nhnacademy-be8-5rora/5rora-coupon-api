@@ -1,4 +1,4 @@
-package store.aurora.service.impl;
+package store.aurora.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,15 +7,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import store.aurora.domain.CouponState;
 import store.aurora.repository.CouponRepository;
-import store.aurora.service.ExpiredCouponService;
-import store.aurora.service.UserCouponService;
 
 import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class ExpiredUserCouponServiceImpl implements ExpiredCouponService {
+public class ExpiredUserCouponServiceImpl {
 
     private final CouponRepository couponRepository;
 

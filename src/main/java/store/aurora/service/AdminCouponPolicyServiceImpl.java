@@ -1,4 +1,4 @@
-package store.aurora.service.impl;
+package store.aurora.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -7,14 +7,13 @@ import store.aurora.dto.*;
 
 import store.aurora.domain.*;
 import store.aurora.repository.*;
-import store.aurora.service.AdminCouponService;
 
 import java.util.List;
 import java.time.LocalDate;
 
 @Service
 @RequiredArgsConstructor
-public class AdminCouponPolicyServiceImpl implements AdminCouponService {
+public class AdminCouponPolicyServiceImpl {
 
     private final CouponPolicyRepository couponPolicyRepository;
     private final CouponRepository couponRepository;
