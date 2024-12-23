@@ -51,10 +51,19 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
 
     List<UserCoupon> findByUserIdIn(List<Long> userIds);
 
-//    @Query("SELECT FROM UserCoupon u" +
-//            "WHERE")
-//    List<UserCoupon> findByUserIdInAndCouponStateIn(
-//            @Param("userId") Long userId,
-//            @Param()
-//    );
+    @Query("SELECT uc " +
+            "FROM UserCoupon uc " +
+            "JOIN uc.policy cp " +
+            "LEFT JOIN cp.bookPolicies bp " +
+            "LEFT JOIN cp.categoryPolicies cpCat " +
+            "WHERE uc.userId = :userId " +
+            "AND uc.couponState = 'LIVE' " +
+            "AND (bp.bookId IS NULL OR bp.bookId IN :bookIds) " +
+            "AND (cpCat.categoryId IS NULL OR cpCat.categoryId IN :categoryIds) " +
+            "AND cp.discountRule.needCost <= :totalPrice")
+    List<UserCoupon> findAvailableCoupons(@Param("userId") Long userId,
+                                          @Param("bookIds") List<Long> bookIds,
+                                          @Param("categoryIds") List<Long> categoryIds,
+                                          @Param("totalPrice") Integer totalPrice);
+
 }
