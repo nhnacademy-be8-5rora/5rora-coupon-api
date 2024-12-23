@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import store.aurora.domain.CouponState;
@@ -16,13 +18,13 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 @ExtendWith(SpringExtension.class)
+@SpringBootTest
 public class ExpiredUserCouponServiceTest {
 
     @MockBean
     private CouponRepository couponRepository;
 
-
-    @InjectMocks
+    @Autowired
     private ExpiredUserCouponService expiredUserCouponService;
 
     @Test
