@@ -1,3 +1,4 @@
 /Users/asdf/5rora-coupon-api/src/test/java/store/aurora/AdminCouponServiceTest.java
-/Users/asdf/5rora-coupon-api/src/test/java/store/aurora/CouponControlTest.java
 /Users/asdf/5rora-coupon-api/src/test/java/store/aurora/CouponRepositoryTest.java
+/Users/asdf/5rora-coupon-api/src/test/java/store/aurora/CouponServiceTest.java
+/Users/asdf/5rora-coupon-api/src/test/java/store/aurora/ExpiredCouponTest.java

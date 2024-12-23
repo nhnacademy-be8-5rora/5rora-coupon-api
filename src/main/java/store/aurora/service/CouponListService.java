@@ -8,6 +8,7 @@ import store.aurora.repository.BookPolicyRepository;
 import store.aurora.repository.CategoryPolicyRepository;
 import store.aurora.repository.CouponRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -28,6 +29,6 @@ public class CouponListService {
     //결제창에서 각 상품별 쿠폰 목록
     public List<UserCoupon> getCouponListByCategory(List<ProductInfoDTO> productInfoDTO) {
 
-        return null;
+        return new ArrayList<>();
     }
 }

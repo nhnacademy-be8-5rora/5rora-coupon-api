@@ -105,9 +105,9 @@ public class AdminCouponService {
     }
 
     //카테고리 정책 테이블 개체 생성(addPolicy -> categoryId, bookId list null 구분으로 테이블 생성)
-    private void saveCategoryPolicies(CouponPolicy couponPolicy, AddPolicyDTO AddPolicyDto) {
-        if (AddPolicyDto.getCategoryId() != null) {
-            List<CategoryPolicy> categoryPolicies = AddPolicyDto.getCategoryId().stream()
+    private void saveCategoryPolicies(CouponPolicy couponPolicy, AddPolicyDTO addPolicyDto) {
+        if (addPolicyDto.getCategoryId() != null) {
+            List<CategoryPolicy> categoryPolicies = addPolicyDto.getCategoryId().stream()
                     .map(categoryId -> {
                         CategoryPolicy categoryPolicy = new CategoryPolicy();
                         categoryPolicy.setPolicy(couponPolicy); // CouponPolicy 참조
@@ -120,9 +120,9 @@ public class AdminCouponService {
     }
 
     //북 정책 테이블 생성
-    private void saveBookPolicies(CouponPolicy couponPolicy, AddPolicyDTO AddPolicyDto) {
-        if (AddPolicyDto.getBookId() != null) {
-            List<BookPolicy> bookPolicies = AddPolicyDto.getBookId().stream()
+    private void saveBookPolicies(CouponPolicy couponPolicy, AddPolicyDTO addPolicyDto) {
+        if (addPolicyDto.getBookId() != null) {
+            List<BookPolicy> bookPolicies = addPolicyDto.getBookId().stream()
                     .map(bookId -> {
                         BookPolicy bookPolicy = new BookPolicy();
                         bookPolicy.setPolicy(couponPolicy); // CouponPolicy 참조

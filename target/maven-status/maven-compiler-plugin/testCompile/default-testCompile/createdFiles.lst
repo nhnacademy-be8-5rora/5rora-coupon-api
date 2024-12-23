@@ -1,3 +1,4 @@
-store/aurora/CouponControlTest.class
-store/aurora/CouponRepositoryTest.class
+store/aurora/CouponServiceTest.class
 store/aurora/AdminCouponServiceTest.class
+store/aurora/ExpiredCouponTest.class
+store/aurora/CouponRepositoryTest.class
