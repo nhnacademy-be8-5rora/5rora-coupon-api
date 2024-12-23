@@ -5,6 +5,7 @@ import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import store.aurora.domain.CouponState;
@@ -20,7 +21,9 @@ class CouponServiceTest {
 
     @MockBean
     private CouponRepository couponRepository;
-    @InjectMocks private CouponService couponService;
+
+    @Autowired
+    private CouponService couponService;
 
     private UserCoupon userCoupon1;
     private UserCoupon userCoupon2;
@@ -63,7 +66,7 @@ class CouponServiceTest {
     void testRefund_NoCouponsFound() {
         // Given: No coupons found for the provided IDs
         List<Long> userCouponIds = Arrays.asList(1L, 2L);
-        when(couponRepository.findAllById(userCouponIds)).thenReturn(Arrays.asList());
+        when(couponRepository.findAllById(userCouponIds)).thenReturn(List.of());
 
         // When & Then: Expect an IllegalArgumentException
         try {
@@ -82,8 +85,8 @@ class CouponServiceTest {
         UserCoupon notUsedCoupon = new UserCoupon();
         notUsedCoupon.setCouponId(3L);
         notUsedCoupon.setCouponState(CouponState.LIVE);
-        List<Long> userCouponIds = Arrays.asList(3L);
-        when(couponRepository.findAllById(userCouponIds)).thenReturn(Arrays.asList(notUsedCoupon));
+        List<Long> userCouponIds = List.of(3L);
+        when(couponRepository.findAllById(userCouponIds)).thenReturn(List.of(notUsedCoupon));
 
         // When & Then: Expect an IllegalStateException for trying to refund a not-used coupon
         try {

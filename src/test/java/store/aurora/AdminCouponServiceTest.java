@@ -38,14 +38,14 @@ class AdminCouponServiceTest {
 
     @Test
     void testCouponPolicyCreate() {
-
-        // Given
+        //쿠폰정책 DTO
         RequestCouponPolicyDTO requestCouponPolicyDTO = new RequestCouponPolicyDTO();
         requestCouponPolicyDTO.setPolicyName("Test Policy");
         requestCouponPolicyDTO.setSaleType(SaleType.AMOUNT);
-
+        //계산 DTO
         DiscountRuleDTO discountRuleDTO = new DiscountRuleDTO();
         discountRuleDTO.setSaleAmount(10000);
+        //책/카테고리 DTO
         AddPolicyDTO addPolicyDTO = new AddPolicyDTO();
         addPolicyDTO.setCategoryId(Arrays.asList(1L, 2L));
         addPolicyDTO.setBookId(Arrays.asList(3L, 4L));

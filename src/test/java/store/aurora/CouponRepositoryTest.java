@@ -75,7 +75,7 @@ class CouponRepositoryTest {
         List<UserCoupon> coupons = couponRepository.findByUserId(1L);
 
         assertThat(coupons).hasSize(1);
-        assertThat(coupons.get(0).getUserId()).isEqualTo(1L);
+        assertThat(coupons.getFirst().getUserId()).isEqualTo(1L);
     }
 
     @Test
