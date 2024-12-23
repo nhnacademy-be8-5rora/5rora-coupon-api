@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import store.aurora.domain.UserCoupon;
-import store.aurora.service.CouponListServiceImpl;
+import store.aurora.service.CouponListService;
 
 import java.util.List;
 
@@ -14,12 +14,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserCouponListController {
 
-    private final CouponListServiceImpl couponListServiceImpl;
+    private final CouponListService couponListService;
     //사용자쿠폰 목록 확인
     @GetMapping(value = "/couponList/{userId}") //->외부 api로 보내는 링크
     public ResponseEntity<List<UserCoupon>> couponList(@PathVariable @NotNull Long userId) {
 
-        List<UserCoupon> userCoupons = couponListServiceImpl.getCouponList(userId);
+        List<UserCoupon> userCoupons = couponListService.getCouponList(userId);
 
         return ResponseEntity.ok(userCoupons);
     }

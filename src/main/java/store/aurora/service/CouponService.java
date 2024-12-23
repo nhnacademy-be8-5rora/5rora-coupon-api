@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CouponServiceImpl {
+public class CouponService {
 
     private final CouponRepository couponRepository;
 

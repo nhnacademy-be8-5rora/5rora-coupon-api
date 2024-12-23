@@ -10,17 +10,17 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import store.aurora.domain.CouponState;
 import store.aurora.domain.UserCoupon;
 import store.aurora.repository.CouponRepository;
-import store.aurora.service.CouponServiceImpl;
+import store.aurora.service.CouponService;
 
 import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest
-class CouponServiceImplTest {
+class CouponServiceTest {
 
     @MockBean
     private CouponRepository couponRepository;
-    @InjectMocks private CouponServiceImpl couponServiceImpl;
+    @InjectMocks private CouponService couponService;
 
     private UserCoupon userCoupon1;
     private UserCoupon userCoupon2;
@@ -45,7 +45,7 @@ class CouponServiceImplTest {
         List<Long> userCouponIds = Arrays.asList(1L, 2L);
         when(couponRepository.findAllById(userCouponIds)).thenReturn(Arrays.asList(userCoupon1, userCoupon2));
 
-        couponServiceImpl.refund(userCouponIds);
+        couponService.refund(userCouponIds);
 
         // Then: Verify the interactions and assert state changes
         verify(couponRepository).findAllById(userCouponIds);  // Verify repository was called
@@ -67,7 +67,7 @@ class CouponServiceImplTest {
 
         // When & Then: Expect an IllegalArgumentException
         try {
-            couponServiceImpl.refund(userCouponIds);
+            couponService.refund(userCouponIds);
         } catch (IllegalArgumentException e) {
             assert e.getMessage().equals("No coupons found for the provided IDs.");
         }
@@ -87,7 +87,7 @@ class CouponServiceImplTest {
 
         // When & Then: Expect an IllegalStateException for trying to refund a not-used coupon
         try {
-            couponServiceImpl.refund(userCouponIds);
+            couponService.refund(userCouponIds);
         } catch (IllegalStateException e) {
             assert e.getMessage().equals("Cannot refund not used coupon: ID = LIVE");
         }

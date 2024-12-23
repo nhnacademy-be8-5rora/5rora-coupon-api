@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import store.aurora.dto.*;
-import store.aurora.service.AdminCouponPolicyServiceImpl;
+import store.aurora.service.AdminCouponService;
 
 //관리자용 쿠폰 생성 및 배포용
 //관리자를 통해서 새 쿠폰을 데이터베이스에 저장하기 때문에 유효성, 무결성 중요(@Validated 사용)
@@ -14,7 +14,7 @@ import store.aurora.service.AdminCouponPolicyServiceImpl;
 @RequiredArgsConstructor
 public class AdminCouponController {
 
-    private final AdminCouponPolicyServiceImpl adminCouponPolicyServiceImpl;
+    private final AdminCouponService adminCouponService;
 
     // 쿠폰정책 생성 (관리자) -> 쿠폰 정책은 생성밖에 안됨(정책 수정, 삭제시 -> 이전에 해당 쿠폰을 가진 유저들이 피해를 볼 수 있음)
     @PostMapping(value = "/coupon/create")
@@ -28,7 +28,7 @@ public class AdminCouponController {
             throw new IllegalArgumentException("salePercent and saleAmount both must not be null");
         }
 
-        adminCouponPolicyServiceImpl.couponPolicyCreate(requestCouponPolicyDTO, discountRuleDTO, addPolicyDTO);  // 실제 쿠폰 생성 처리
+        adminCouponService.couponPolicyCreate(requestCouponPolicyDTO, discountRuleDTO, addPolicyDTO);  // 실제 쿠폰 생성 처리
 
         return ResponseEntity.ok("쿠폰정보가 생성되었습니다.");
     }
@@ -37,7 +37,7 @@ public class AdminCouponController {
     @PostMapping("/coupon/distribution")
     public ResponseEntity<String> userCouponCreate(@RequestBody @Validated RequestUserCouponDTO requestUserCouponDTO) {
 
-        adminCouponPolicyServiceImpl.userCouponCreate(requestUserCouponDTO);
+        adminCouponService.userCouponCreate(requestUserCouponDTO);
 
         return ResponseEntity.ok("사용자쿠폰이 생성되었습니다.");
     }
@@ -46,7 +46,7 @@ public class AdminCouponController {
     @PutMapping(value = "/coupon/update/")
     public ResponseEntity<String> userCouponUpdate(@RequestBody @Validated UpdateUserCouponByUserIdDto updateUserCouponByUserIdDto) {
 
-        adminCouponPolicyServiceImpl.couponUpdate(updateUserCouponByUserIdDto);  // 실제 쿠폰 수정 처리
+        adminCouponService.couponUpdate(updateUserCouponByUserIdDto);  // 실제 쿠폰 수정 처리
         return ResponseEntity.ok("사용자쿠폰이 수정되었습니다.");
     }
 
