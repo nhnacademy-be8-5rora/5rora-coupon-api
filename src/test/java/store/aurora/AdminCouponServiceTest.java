@@ -103,7 +103,7 @@ class AdminCouponServiceTest {
         // Given
         RequestUserCouponDTO requestUserCouponDto = new RequestUserCouponDTO();
         requestUserCouponDto.setState(CouponState.LIVE);
-        requestUserCouponDto.setPolicy(new CouponPolicy());
+        requestUserCouponDto.setCouponPolicyId(1L);
         requestUserCouponDto.setStartDate(LocalDate.now());
         requestUserCouponDto.setEndDate(LocalDate.now().plusDays(30));
         requestUserCouponDto.setUserId(Arrays.asList(1L, 2L, 3L));

@@ -10,6 +10,7 @@ import store.aurora.repository.*;
 
 import java.util.List;
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -47,16 +48,19 @@ public class AdminCouponService {
     @Transactional
     public void userCouponCreate(RequestUserCouponDTO requestUserCouponDTO) {
         List<Long> userIds = requestUserCouponDTO.getUserId(); // 유저 ID 리스트
-        CouponPolicy policy = requestUserCouponDTO.getPolicy(); // 적용할 정책
+        Long policyId = requestUserCouponDTO.getCouponPolicyId(); // 적용할 정책
         CouponState state = requestUserCouponDTO.getState();   // 쿠폰 초기 상태
         LocalDate startDate = requestUserCouponDTO.getStartDate(); // 시작일
         LocalDate endDate = requestUserCouponDTO.getEndDate();     // 종료일
+
+        Optional<CouponPolicy> optionalCouponPolicy = couponPolicyRepository.findById(policyId);
+        CouponPolicy couponPolicy = optionalCouponPolicy.orElse(null);
 
         List<UserCoupon> newCoupons = userIds.stream()
                 .map(userId -> {
                     UserCoupon userCoupon = new UserCoupon();
                     userCoupon.setUserId(userId); // 사용자 ID 설정
-                    userCoupon.setPolicy(policy); // 정책 설정
+                    userCoupon.setPolicy(couponPolicy); // 정책 설정
                     userCoupon.setCouponState(state); // 초기 상태 설정
                     userCoupon.setStartDate(startDate); // 시작일 설정
                     userCoupon.setEndDate(endDate); // 종료일 설정
