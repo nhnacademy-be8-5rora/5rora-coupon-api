@@ -59,9 +59,8 @@ class CouponListServiceTest {
         List<UserCoupon> result = couponListService.getCouponList(userId);
 
         // Assertions
-        assertNotNull(result);
-        assertEquals(1, result.size());
-        assertEquals(CouponState.LIVE, result.getFirst().getCouponState());
+        assertThat(result).hasSize(1);
+        assertThat(result.getFirst().getCouponState()).isEqualTo(CouponState.LIVE);
         verify(couponRepository, times(1)).findByUserId(userId);
     }
 
