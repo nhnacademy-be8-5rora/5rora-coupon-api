@@ -1,4 +1,4 @@
-package store.aurora;
+package store.aurora.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,6 @@ import store.aurora.domain.UserCoupon;
 import store.aurora.dto.ProductInfoDTO;
 import store.aurora.repository.CouponPolicyRepository;
 import store.aurora.repository.CouponRepository;
-import store.aurora.service.CouponListService;
 import store.aurora.domain.CouponPolicy;
 
 import static org.assertj.core.api.Assertions.assertThat;

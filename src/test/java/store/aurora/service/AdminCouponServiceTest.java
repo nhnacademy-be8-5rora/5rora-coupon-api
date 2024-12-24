@@ -1,4 +1,4 @@
-package store.aurora;
+package store.aurora.service;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.*;
@@ -16,7 +16,6 @@ import store.aurora.domain.CouponState;
 import store.aurora.domain.DiscountRule;
 import store.aurora.domain.SaleType;
 import store.aurora.repository.*;
-import store.aurora.service.AdminCouponService;
 
 import java.time.LocalDate;
 import java.util.Arrays;

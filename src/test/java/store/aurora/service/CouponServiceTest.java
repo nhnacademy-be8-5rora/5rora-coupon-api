@@ -1,4 +1,4 @@
-package store.aurora;
+package store.aurora.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -12,7 +12,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import store.aurora.domain.CouponState;
 import store.aurora.domain.UserCoupon;
 import store.aurora.repository.CouponRepository;
-import store.aurora.service.CouponService;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,4 +1,4 @@
-package store.aurora;
+package store.aurora.service;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,7 +9,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import store.aurora.domain.CouponState;
 import store.aurora.repository.CouponRepository;
-import store.aurora.service.ExpiredUserCouponService;
 
 import java.time.LocalDate;
 

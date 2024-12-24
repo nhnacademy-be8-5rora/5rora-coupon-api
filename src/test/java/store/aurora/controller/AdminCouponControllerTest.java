@@ -1,4 +1,4 @@
-package store.aurora;
+package store.aurora.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import store.aurora.controller.AdminCouponController;
 import store.aurora.domain.SaleType;
 import store.aurora.dto.AddPolicyDTO;
 import store.aurora.dto.DiscountRuleDTO;

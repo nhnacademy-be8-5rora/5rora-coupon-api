@@ -1,4 +1,4 @@
-package store.aurora;
+package store.aurora.repository;
 
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeAll;
@@ -8,9 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.transaction.annotation.Transactional;
 import store.aurora.domain.*;
-import store.aurora.repository.CouponPolicyRepository;
-import store.aurora.repository.CouponRepository;
-import store.aurora.repository.DisCountRuleRepository;
 
 import java.time.LocalDate;
 import java.util.List;
