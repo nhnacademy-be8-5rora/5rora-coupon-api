@@ -100,6 +100,4 @@ class AdminCouponServiceTest {
         // Then
         verify(couponRepository).saveAll(anyList()); // couponRepository의 saveAll 호출 여부 검증
     }
-
-
 }
