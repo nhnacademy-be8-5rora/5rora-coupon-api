@@ -35,11 +35,13 @@ class CouponServiceTest {
         userCoupon1 = new UserCoupon();
         userCoupon1.setCouponId(1L);
         userCoupon1.setCouponState(CouponState.USED);
+        userCoupon1.setUserId(1L);
         userCoupon1.setUsedDate(java.time.LocalDate.now().minusDays(5));
 
         userCoupon2 = new UserCoupon();
         userCoupon2.setCouponId(2L);
         userCoupon2.setCouponState(CouponState.USED);
+        userCoupon2.setUserId(2L);
         userCoupon2.setUsedDate(java.time.LocalDate.now().minusDays(3));
     }
 
