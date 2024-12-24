@@ -1,5 +1,7 @@
 package store.aurora;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -47,35 +49,32 @@ class CouponServiceTest {
         List<Long> userCouponIds = Arrays.asList(1L, 2L);
         when(couponRepository.findAllById(userCouponIds)).thenReturn(Arrays.asList(userCoupon1, userCoupon2));
 
+        // When: Execute refund
         couponService.refund(userCouponIds);
 
         // Then: Verify the interactions and assert state changes
         verify(couponRepository).findAllById(userCouponIds);  // Verify repository was called
         verify(couponRepository).saveAll(anyList()); // Ensure that saveAll was called to persist changes
 
-        // Verify state changes
-        assert userCoupon1.getCouponState() == CouponState.LIVE;
-        assert userCoupon1.getUsedDate() == null;
+        // Verify state changes using assertThat
+        assertThat(userCoupon1.getCouponState()).isEqualTo(CouponState.LIVE);
+        assertThat(userCoupon1.getUsedDate()).isNull();
 
-        assert userCoupon2.getCouponState() == CouponState.LIVE;
-        assert userCoupon2.getUsedDate() == null;
+        assertThat(userCoupon2.getCouponState()).isEqualTo(CouponState.LIVE);
+        assertThat(userCoupon2.getUsedDate()).isNull();
     }
 
     @Test
     void testRefund_NoCouponsFound() {
-        // Given: No coupons found for the provided IDs
         List<Long> userCouponIds = Arrays.asList(1L, 2L);
         when(couponRepository.findAllById(userCouponIds)).thenReturn(List.of());
 
         // When & Then: Expect an IllegalArgumentException
-        try {
-            couponService.refund(userCouponIds);
-        } catch (IllegalArgumentException e) {
-            assert e.getMessage().equals("No coupons found for the provided IDs.");
-        }
+        assertThatThrownBy(() -> couponService.refund(userCouponIds))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("No coupons found for the provided IDs.");
 
-        verify(couponRepository).findAllById(userCouponIds);  // Ensure repository was called
-        verifyNoMoreInteractions(couponRepository);  // No further interactions should occur
+        verify(couponRepository).findAllById(userCouponIds);
     }
 
     @Test
@@ -88,15 +87,11 @@ class CouponServiceTest {
         when(couponRepository.findAllById(userCouponIds)).thenReturn(List.of(notUsedCoupon));
 
         // When & Then: Expect an IllegalStateException for trying to refund a not-used coupon
-        try {
-            couponService.refund(userCouponIds);
-        } catch (IllegalStateException e) {
-            assert e.getMessage().equals("Cannot refund not used coupon: ID = LIVE");
-        }
+        assertThatThrownBy(() -> couponService.refund(userCouponIds))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage("Cannot refund not used coupon: ID = LIVE");
 
         verify(couponRepository).findAllById(userCouponIds);  // Ensure repository was called
         verifyNoMoreInteractions(couponRepository);  // No further interactions should occur
     }
-
-
 }
