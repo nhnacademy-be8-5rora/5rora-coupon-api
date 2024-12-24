@@ -1,9 +1,8 @@
 package store.aurora.repository;
 
 import jakarta.persistence.EntityManager;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +15,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @Transactional
-@TestInstance(TestInstance.Lifecycle.PER_CLASS) // @BeforeAll에서 @Autowired 필드를 사용할 수 있도록 설정
 class CouponRepositoryTest {
 
     @Autowired
@@ -31,22 +29,43 @@ class CouponRepositoryTest {
     @Autowired
     private EntityManager entityManager;
 
-    @BeforeAll
-    void beforeAll() {
+    @Autowired
+    private BookPolicyRepository bookPolicyRepository;
+
+    @Autowired
+    private CategoryPolicyRepository categoryPolicyRepository;
+
+
+    @BeforeEach
+    void setUp() {
         // @BeforeAll은 static으로 선언되어야 하지만, @TestInstance(PER_CLASS)로 인스턴스 메서드처럼 사용할 수 있음
 
         // discountRule 설정
         DiscountRule discountRule = new DiscountRule();
         discountRule.setSaleAmount(10000);
+        discountRule.setNeedCost(20000);
         discountRule = discountRuleRepository.save(discountRule);
 
         // CouponPolicy 설정
         CouponPolicy couponPolicy = new CouponPolicy();
         couponPolicy.setName("Test Policy");
         couponPolicy.setSaleType(SaleType.AMOUNT);  // SaleType 설정
+
         couponPolicy.setDiscountRule(discountRule);
 
         couponPolicy = couponPolicyRepository.save(couponPolicy);
+
+        BookPolicy bookPolicy = new BookPolicy();
+        bookPolicy.setBookId(1L);
+        bookPolicy.setPolicy(couponPolicy);
+
+        bookPolicyRepository.save(bookPolicy);
+
+        CategoryPolicy categoryPolicy = new CategoryPolicy();
+        categoryPolicy.setCategoryId(1L);
+        categoryPolicy.setPolicy(couponPolicy);
+
+        categoryPolicyRepository.save(categoryPolicy);
 
         // UserCoupon 데이터 추가
         UserCoupon coupon1 = new UserCoupon();
