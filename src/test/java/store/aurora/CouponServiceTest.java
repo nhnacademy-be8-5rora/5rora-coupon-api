@@ -69,6 +69,8 @@ class CouponServiceTest {
     @Test
     void testRefund_NoCouponsFound() {
         List<Long> userCouponIds = Arrays.asList(1L, 2L);
+
+        //findAllById 실행시에 빈 리스트 return
         when(couponRepository.findAllById(userCouponIds)).thenReturn(List.of());
 
         // When & Then: Expect an IllegalArgumentException
