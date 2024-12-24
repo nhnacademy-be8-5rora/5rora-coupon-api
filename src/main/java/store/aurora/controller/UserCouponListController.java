@@ -25,7 +25,7 @@ public class UserCouponListController {
     }
 
     //결제창에서 상품마다 사용가능 쿠폰 리스트 확인(매 상품마다 사용 가능한 쿠폰이 뜨게 해야 됨.
-    @GetMapping(value = "/couponList/{userId}")
+    @GetMapping(value = "/calculate/{userId}")
     public ResponseEntity<List<UserCoupon>> proCouponList(@PathVariable @NotNull Long userId,
                                                           @RequestBody List<String> orderId) {
 
