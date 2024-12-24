@@ -143,13 +143,13 @@
         </dependency>
 
         <!--        nhn 로그 관련 종속성-->
+
         <dependency>
             <groupId>com.toast.java.logncrash.logback</groupId>
             <artifactId>logncrash-java-sdk3</artifactId>
             <version>3.0.5</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/libs/toast-logncrash-logback-sdk-3.0.5.jar</systemPath>
         </dependency>
+
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
@@ -171,6 +171,18 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version> <!-- 최신 버전 확인 후 업데이트 -->
+            </plugin>
+
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>  <!-- 이 부분은 커버리지 측정을 위한 설정 -->
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

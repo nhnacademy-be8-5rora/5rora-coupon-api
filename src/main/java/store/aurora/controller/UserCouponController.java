@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import store.aurora.service.CouponService;
+import store.aurora.service.impl.CouponServiceImpl;
 
 import java.util.List;
 
@@ -13,13 +13,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserCouponController {
 
-    private final CouponService couponService;
+    private final CouponServiceImpl couponServiceImpl;
 
     //사용자 쿠폰 환불시 해당 사용자 쿠폰 상태 변경 및 데이터베이스 동기화
     @PutMapping(value = "/refund/")
     public ResponseEntity<String> userCouponRefund(@RequestBody @NotEmpty List<Long> userCouponId){
 
-        couponService.refund(userCouponId);
+        couponServiceImpl.refund(userCouponId);
 
         return ResponseEntity.ok("User Coupon refunded successfully.");
     }
@@ -28,7 +28,7 @@ public class UserCouponController {
     @PutMapping(value = "/using/")
     public ResponseEntity<String> userCouponUsing(@RequestBody @NotEmpty List<Long> userCouponId){
 
-        couponService.used(userCouponId);
+        couponServiceImpl.used(userCouponId);
 
         return ResponseEntity.ok("User Coupon used successfully.");
     }

@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-//@EnableDiscoveryClient    //클라우드 활성화
+@EnableDiscoveryClient    //클라우드 활성화
 @EnableFeignClients
 @EnableScheduling // 스케줄링 활성화
 public class CouponApplication {
