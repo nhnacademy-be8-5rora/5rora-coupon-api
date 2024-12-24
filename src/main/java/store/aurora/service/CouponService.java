@@ -21,10 +21,6 @@ public class CouponService {
     public void refund(List<Long> userCouponId) {
         List<UserCoupon> userCoupons = couponRepository.findAllById(userCouponId);
 
-        if (userCoupons.isEmpty()) {
-            throw new IllegalArgumentException("No coupons found for the provided IDs.");
-        }
-
         for (UserCoupon userCoupon : userCoupons) {
             if (userCoupon.getCouponState() != CouponState.USED) {
                 throw new IllegalStateException("Cannot refund not used coupon: ID = " + userCoupon.getCouponState());
