@@ -2,7 +2,6 @@ package store.aurora;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,7 +18,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class ExpiredUserCouponServiceTest {
+class ExpiredUserCouponServiceTest {
 
     @MockBean
     private CouponRepository couponRepository;
@@ -28,7 +27,7 @@ public class ExpiredUserCouponServiceTest {
     private ExpiredUserCouponService expiredUserCouponService;
 
     @Test
-    public void testUpdateExpiredCoupons() {
+    void testUpdateExpiredCoupons() {
         // Given: 쿠폰 만료 상태 업데이트 메서드 호출 전, 상태에 대한 설정
 
         // When: 만료된 쿠폰을 업데이트하는 메서드를 호출
@@ -39,7 +38,7 @@ public class ExpiredUserCouponServiceTest {
     }
 
     @Test
-    public void testDeleteExpiredCoupons() {
+    void testDeleteExpiredCoupons() {
         // Given: 쿠폰 삭제 시나리오에 대한 설정
         LocalDate ninetyDaysAgo = LocalDate.now().minusDays(90);
 

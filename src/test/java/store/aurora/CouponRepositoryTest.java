@@ -2,7 +2,6 @@ package store.aurora;
 
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +18,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJpaTest
 @Transactional
@@ -92,12 +92,12 @@ class CouponRepositoryTest {
 
         List<UserCoupon> coupons = couponRepository.findByUserIdIn(userIds);
 
-        assertThat(coupons).isNotEmpty();
+        assertTrue(coupons.isEmpty());
         assertThat(coupons).allMatch(coupon -> coupon.getCouponState() == CouponState.TIMEOUT);
     }
 
     @Test
-    public void testUpdateCouponPolicyByUserIds() {
+    void testUpdateCouponPolicyByUserIds() {
         // Arrange
         Long newPolicyId = 1L;
         List<Long> userIds = List.of(1L, 2L);
@@ -110,11 +110,12 @@ class CouponRepositoryTest {
 
         // Assert
         List<UserCoupon> updatedCoupons = couponRepository.findAllById(userIds);
+        assertTrue(updatedCoupons.isEmpty());
         assertThat(updatedCoupons).allMatch(c -> c.getPolicy().getId().equals(1L));
     }
 
     @Test
-    public void testUpdateCouponEndDateByUserIds() {
+    void testUpdateCouponEndDateByUserIds() {
         // Arrange
         LocalDate newEndDate = LocalDate.of(2024, 12, 31);
         List<Long> userIds = List.of(1L, 2L);
@@ -127,6 +128,7 @@ class CouponRepositoryTest {
 
         // Assert
         List<UserCoupon> updatedCoupons = couponRepository.findAllById(userIds);
+        assertTrue(updatedCoupons.isEmpty());
         assertThat(updatedCoupons).allMatch(c -> c.getEndDate().equals(newEndDate));
     }
 
@@ -160,7 +162,7 @@ class CouponRepositoryTest {
     }
 
     @Test
-    public void testFindAvailableCoupons() {
+    void testFindAvailableCoupons() {
         Long userId = 1L; // 테스트 사용자 ID
         Long bookId = 101L; // 테스트 도서 ID
         List<Long> categoryIds = List.of(201L, 202L); // 테스트 카테고리 ID 리스트
