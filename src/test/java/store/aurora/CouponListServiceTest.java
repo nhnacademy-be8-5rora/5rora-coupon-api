@@ -10,12 +10,12 @@ import store.aurora.repository.CouponPolicyRepository;
 import store.aurora.repository.CouponRepository;
 import store.aurora.service.CouponListService;
 import store.aurora.domain.CouponPolicy;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.*;
 
 import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class CouponListServiceTest {
 
@@ -27,7 +27,6 @@ class CouponListServiceTest {
 
     @InjectMocks
     private CouponListService couponListService;
-
 
     private ProductInfoDTO productInfoDTO;
 
@@ -58,8 +57,10 @@ class CouponListServiceTest {
         // Service method call
         List<UserCoupon> result = couponListService.getCouponList(userId);
 
-        // Assertions
-        assertThat(result).hasSize(1);
+        // Assertions using assertThat
+        assertThat(result)
+                .isNotNull()
+                .hasSize(1);
         assertThat(result.getFirst().getCouponState()).isEqualTo(CouponState.LIVE);
         verify(couponRepository, times(1)).findByUserId(userId);
     }
@@ -83,11 +84,12 @@ class CouponListServiceTest {
         // Service method call
         Map<Long, List<UserCoupon>> result = couponListService.getCouponListByCategory(productInfoDTOList, userId);
 
-        // Assertions
-        assertNotNull(result);
-        assertTrue(result.containsKey(productInfoDTO.getProductId()));
-        assertEquals(1, result.get(productInfoDTO.getProductId()).size());
-        assertEquals(CouponState.LIVE, result.get(productInfoDTO.getProductId()).getFirst().getCouponState());
+        // Assertions using assertThat
+        assertThat(result)
+                .isNotNull()
+                .containsKey(productInfoDTO.getProductId());
+        assertThat(result.get(productInfoDTO.getProductId())).hasSize(1);
+        assertThat(result.get(productInfoDTO.getProductId()).getFirst().getCouponState()).isEqualTo(CouponState.LIVE);
 
         verify(couponRepository, times(1)).findAvailableCoupons(userId, 123L, Arrays.asList(1L, 2L), 1000);
     }
@@ -109,10 +111,11 @@ class CouponListServiceTest {
         // Service method call
         List<UserCoupon> result = couponListService.getAvailableCouponList(productInfoDTO, userId);
 
-        // Assertions
-        assertNotNull(result);
-        assertEquals(1, result.size());
-        assertEquals(CouponState.LIVE, result.getFirst().getCouponState());
+        // Assertions using assertThat
+        assertThat(result)
+                .isNotNull()
+                .hasSize(1);
+        assertThat(result.getFirst().getCouponState()).isEqualTo(CouponState.LIVE);
 
         verify(couponRepository, times(1)).findAvailableCoupons(userId, 123L, Arrays.asList(1L, 2L), 1000);
     }
@@ -133,10 +136,12 @@ class CouponListServiceTest {
 
         List<CouponPolicy> result = couponListService.couponPolicyList();
 
-        // then: 결과 검증
-        assertThat(result).hasSize(2); // 반환된 리스트 크기 확인
-        assertThat(result).contains(policy1, policy2); // 리스트에 포함된 객체 확인
-        assertThat(result.getFirst().getName()).isEqualTo("Policy 1"); // 첫 번째 정책 이름 확인
-    }
+        assertThat(result)
+                .hasSize(2) // 반환된 리스트 크기 확인
+                .contains(policy1, policy2) // 리스트에 포함된 객체 확인
+                .first() // 첫 번째 요소에 대한 assertion 체인 시작
+                .extracting(CouponPolicy::getName) // `getName()` 값을 추출
+                .isEqualTo("Policy 1"); // 첫 번째 정책 이름 확인
 
+    }
 }
