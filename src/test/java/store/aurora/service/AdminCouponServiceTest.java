@@ -88,7 +88,6 @@ class AdminCouponServiceTest {
         // 사용자 쿠폰 수정
         adminCouponService.couponUpdate(dto);
 
-
         // Assert
         verify(couponRepository, times(1))
                 .updateCouponStateByUserIds(CouponState.USED, dto.getUserIds());

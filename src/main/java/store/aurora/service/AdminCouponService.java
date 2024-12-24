@@ -10,7 +10,6 @@ import store.aurora.repository.*;
 
 import java.util.List;
 import java.time.LocalDate;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -53,8 +52,7 @@ public class AdminCouponService {
         LocalDate startDate = requestUserCouponDTO.getStartDate(); // 시작일
         LocalDate endDate = requestUserCouponDTO.getEndDate();     // 종료일
 
-        Optional<CouponPolicy> optionalCouponPolicy = couponPolicyRepository.findById(policyId);
-        CouponPolicy couponPolicy = optionalCouponPolicy.orElse(null);
+        CouponPolicy couponPolicy = couponPolicyRepository.findById(policyId).orElse(null);
 
         List<UserCoupon> newCoupons = userIds.stream()
                 .map(userId -> {
