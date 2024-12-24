@@ -1,5 +1,6 @@
 package store.aurora;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -50,14 +51,27 @@ class AdminCouponServiceTest {
         addPolicyDTO.setCategoryId(Arrays.asList(1L, 2L));
         addPolicyDTO.setBookId(Arrays.asList(3L, 4L));
 
-        // 사용자 쿠폰 생성
+        // When
         adminCouponService.couponPolicyCreate(requestCouponPolicyDTO, discountRuleDTO, addPolicyDTO);
 
-        // Then
-        verify(disCountRuleRepository).save(any(DiscountRule.class)); // DiscountRule 저장 검증
-        verify(couponPolicyRepository).save(any(CouponPolicy.class)); // CouponPolicy 저장 검증
-        verify(categoryPolicyRepository).saveAll(anyList()); // CategoryPolicy 저장 검증
-        verify(bookPolicyRepository).saveAll(anyList()); // BookPolicy 저장 검증
+        // DiscountRule 검증
+        ArgumentCaptor<DiscountRule> discountRuleCaptor = ArgumentCaptor.forClass(DiscountRule.class);
+        verify(disCountRuleRepository).save(discountRuleCaptor.capture());
+
+        DiscountRule capturedDiscountRule = discountRuleCaptor.getValue();
+        assertThat(capturedDiscountRule.getSaleAmount()).isEqualTo(10000);
+
+        // CouponPolicy 검증
+        ArgumentCaptor<CouponPolicy> couponPolicyCaptor = ArgumentCaptor.forClass(CouponPolicy.class);
+        verify(couponPolicyRepository).save(couponPolicyCaptor.capture());
+
+        CouponPolicy capturedCouponPolicy = couponPolicyCaptor.getValue();
+        assertThat(capturedCouponPolicy.getName()).isEqualTo("Test Policy");
+        assertThat(capturedCouponPolicy.getSaleType()).isEqualTo(SaleType.AMOUNT);
+
+        // CategoryPolicy와 BookPolicy는 리스트로 검증
+        verify(categoryPolicyRepository).saveAll(anyList());
+        verify(bookPolicyRepository).saveAll(anyList());
     }
 
     @Test

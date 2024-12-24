@@ -1,7 +1,6 @@
 store/aurora/repository/DisCountRuleRepository.class
 store/aurora/config/AppConfig.class
 store/aurora/domain/SaleType.class
-store/aurora/exception/CouponInsertException.class
 store/aurora/dto/RequestCouponPolicyDTO.class
 store/aurora/dto/UpdateUserCouponByUserIdDto.class
 store/aurora/repository/BookPolicyRepository.class
@@ -26,6 +25,5 @@ store/aurora/domain/UserCoupon.class
 store/aurora/controller/UserCouponController.class
 store/aurora/dto/AddPolicyDTO.class
 store/aurora/dto/ProductInfoDTO.class
-store/aurora/dto/CreateCouponDTO.class
 store/aurora/repository/CouponPolicyRepository.class
 store/aurora/controller/AdminCouponController.class

@@ -16,9 +16,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJpaTest
 @Transactional
@@ -92,8 +89,9 @@ class CouponRepositoryTest {
 
         List<UserCoupon> coupons = couponRepository.findByUserIdIn(userIds);
 
-        assertTrue(coupons.isEmpty());
-        assertThat(coupons).allMatch(coupon -> coupon.getCouponState() == CouponState.TIMEOUT);
+        assertThat(coupons).
+                isNotEmpty().
+                allMatch(coupon -> coupon.getCouponState() == CouponState.TIMEOUT);
     }
 
     @Test
@@ -110,8 +108,9 @@ class CouponRepositoryTest {
 
         // Assert
         List<UserCoupon> updatedCoupons = couponRepository.findAllById(userIds);
-        assertTrue(updatedCoupons.isEmpty());
-        assertThat(updatedCoupons).allMatch(c -> c.getPolicy().getId().equals(1L));
+        assertThat(updatedCoupons).
+                isNotEmpty().
+                allMatch(c -> c.getPolicy().getId().equals(1L));
     }
 
     @Test
@@ -128,8 +127,10 @@ class CouponRepositoryTest {
 
         // Assert
         List<UserCoupon> updatedCoupons = couponRepository.findAllById(userIds);
-        assertTrue(updatedCoupons.isEmpty());
-        assertThat(updatedCoupons).allMatch(c -> c.getEndDate().equals(newEndDate));
+        assertThat(updatedCoupons)
+                .isNotEmpty()
+                .allSatisfy(coupon -> assertThat(coupon.getEndDate()).isEqualTo(newEndDate));
+
     }
 
     @Test
@@ -173,9 +174,8 @@ class CouponRepositoryTest {
 
 
         // 결과 확인
-        assertNotNull(availableCoupons);
-        assertFalse(availableCoupons.isEmpty()); // 사용 가능한 쿠폰이 있어야 함
+        assertThat(availableCoupons)
+                .isNotNull() // null이 아님을 확인
+                .isNotEmpty(); // 사용 가능한 쿠폰이 존재함을 확인
     }
-
 }
-

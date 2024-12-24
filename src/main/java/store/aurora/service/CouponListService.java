@@ -42,7 +42,6 @@ public class CouponListService {
     }
 
     //ProductInfoDto(쿠폰 적용에 필요한 상품의 정보)
-    @Transactional(readOnly = true)
     public List<UserCoupon> getAvailableCouponList(ProductInfoDTO productInfoDTO, long userId) {
         List<Long> categoryIdList = productInfoDTO.getCategoryIds();
         Long bookId = productInfoDTO.getBookId();
