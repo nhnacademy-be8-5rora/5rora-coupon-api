@@ -17,6 +17,7 @@ import java.util.*;
 
 import static org.mockito.Mockito.*;
 
+
 class CouponListServiceTest {
 
     @Mock

@@ -3,3 +3,4 @@ store/aurora/AdminCouponServiceTest.class
 store/aurora/ExpiredUserCouponServiceTest.class
 store/aurora/CouponRepositoryTest.class
 store/aurora/CouponListServiceTest.class
+store/aurora/AdminCouponControllerTest.class

@@ -9,6 +9,7 @@ import org.mockito.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.transaction.annotation.Transactional;
 import store.aurora.dto.*;
 import store.aurora.domain.CouponPolicy;
 import store.aurora.domain.CouponState;
@@ -21,6 +22,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 
 @SpringBootTest
+@Transactional
 class AdminCouponServiceTest {
 
     @MockBean private CouponPolicyRepository couponPolicyRepository;

@@ -11,9 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableFeignClients
 @EnableScheduling // 스케줄링 활성화
 public class CouponApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(CouponApplication.class, args);
     }
-
 }

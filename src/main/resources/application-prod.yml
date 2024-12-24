@@ -18,3 +18,14 @@ spring:
 
 server:
   port: 8481
+
+#  spring:
+#    application:
+#      name: coupon-api
+#    cloud:
+#      discovery:
+#        enabled: true
+#        service-id: coupon-api
+#        eureka:
+#          client:
+#            service-url: http://localhost:8761/eureka/
