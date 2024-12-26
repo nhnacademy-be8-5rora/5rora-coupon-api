@@ -31,7 +31,11 @@
                     } else {
                         data.forEach(coupon => {
                             const listItem = document.createElement('li');
-                            listItem.textContent = `쿠폰 코드: ${coupon.code}, 할인율: ${coupon.discount}%`;
+                            listItem.textContent = `발급일: ${coupon.code}
+                                                    , 종료일: ${coupon.policyId}
+                                                    , 쿠폰 정책: `;
+
+
                             couponList.appendChild(listItem);
                         });
                     }
