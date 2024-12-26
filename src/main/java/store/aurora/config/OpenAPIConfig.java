@@ -2,23 +2,19 @@ package store.aurora.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.info.Contact;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class OpenAPIConfig {
 
+    private static final String API_NAME = "Coupon-Api";
+    private static final String API_VERSION = "1.0.0";
+    private static final String API_DESCRIPTION = "쿠폰 관리 생성 shop api";
+
     @Bean
-    public OpenAPI customOpenAPI() {
+    public OpenAPI openAPIConfig() {
         return new OpenAPI()
-                .info(new Info()
-                        .title("My API Documentation")
-                        .version("1.0")
-                        .description("This is the API documentation for my application.")
-                        .contact(new Contact()
-                                .name("Your Name")
-                                .email("your-email@example.com")
-                                .url("https://your-website.com")));
+                .info(new Info().title(API_NAME).description(API_DESCRIPTION).version(API_VERSION));
     }
 }

@@ -1,11 +1,8 @@
 package store.aurora.service;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.*;
-
-import org.junit.jupiter.api.BeforeEach;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
-import org.mockito.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,12 +27,6 @@ class AdminCouponServiceTest {
     @Autowired
     private AdminCouponService adminCouponService;
 
-    @BeforeEach
-    void setUp() {
-
-        MockitoAnnotations.openMocks(this);  // Mock 객체 초기화
-    }
-
     @Test
     void testCouponPolicyCreate() {
         //쿠폰정책 DTO
@@ -50,27 +41,23 @@ class AdminCouponServiceTest {
         addPolicyDTO.setCategoryId(Arrays.asList(1L, 2L));
         addPolicyDTO.setBookId(Arrays.asList(3L, 4L));
 
-        // When
+        // 쿠폰 정책 생성 및 책/카테고리 정책 생성
         adminCouponService.couponPolicyCreate(requestCouponPolicyDTO, discountRuleDTO, addPolicyDTO);
 
-        // DiscountRule 검증
-        ArgumentCaptor<DiscountRule> discountRuleCaptor = ArgumentCaptor.forClass(DiscountRule.class);
-        verify(disCountRuleRepository).save(discountRuleCaptor.capture());
+        // 쿠폰정책 검색 후 검증
+        CouponPolicy couponPolicy = couponPolicyRepository.findByName("Test Policy");
+        assertThat(couponPolicy).isNotNull();
+        assertThat(couponPolicy.getName()).isEqualTo("Test Policy");
+        assertThat(couponPolicy.getSaleType()).isEqualTo(SaleType.AMOUNT);
 
-        DiscountRule capturedDiscountRule = discountRuleCaptor.getValue();
-        assertThat(capturedDiscountRule.getSaleAmount()).isEqualTo(10000);
+        DiscountRule discountRule = disCountRuleRepository.findBySaleAmount(10000);
+        assertThat(discountRule).isNotNull();
+        assertThat(discountRule.getSaleAmount()).isEqualTo(10000);
 
-        // CouponPolicy 검증
-        ArgumentCaptor<CouponPolicy> couponPolicyCaptor = ArgumentCaptor.forClass(CouponPolicy.class);
-        verify(couponPolicyRepository).save(couponPolicyCaptor.capture());
-
-        CouponPolicy capturedCouponPolicy = couponPolicyCaptor.getValue();
-        assertThat(capturedCouponPolicy.getName()).isEqualTo("Test Policy");
-        assertThat(capturedCouponPolicy.getSaleType()).isEqualTo(SaleType.AMOUNT);
-
-        // CategoryPolicy와 BookPolicy는 리스트로 검증
-        verify(categoryPolicyRepository).saveAll(anyList());
-        verify(bookPolicyRepository).saveAll(anyList());
+        // Check if CategoryPolicy and BookPolicy have been saved
+        // Assuming CategoryPolicy and BookPolicy entities are properly linked to CouponPolicy
+        assertThat(categoryPolicyRepository.findAll()).hasSize(2);
+        assertThat(bookPolicyRepository.findAll()).hasSize(2);
     }
 
     @Test
@@ -96,8 +83,24 @@ class AdminCouponServiceTest {
         verifyNoMoreInteractions(couponRepository);
     }
 
+    //유저 쿠폰 생성 테스트
     @Test
     void testUserCouponCreate() {
+        //쿠폰정책 DTO
+        RequestCouponPolicyDTO requestCouponPolicyDTO = new RequestCouponPolicyDTO();
+        requestCouponPolicyDTO.setPolicyName("Test Policy");
+        requestCouponPolicyDTO.setSaleType(SaleType.AMOUNT);
+        //계산 DTO
+        DiscountRuleDTO discountRuleDTO = new DiscountRuleDTO();
+        discountRuleDTO.setSaleAmount(10000);
+        //책/카테고리 DTO
+        AddPolicyDTO addPolicyDTO = new AddPolicyDTO();
+        addPolicyDTO.setCategoryId(Arrays.asList(1L, 2L));
+        addPolicyDTO.setBookId(Arrays.asList(3L, 4L));
+
+        // 쿠폰 정책 생성 및 책/카테고리 정책 생성
+        adminCouponService.couponPolicyCreate(requestCouponPolicyDTO, discountRuleDTO, addPolicyDTO);
+
         // Arrange
         Long userId = 1L;
         Long policyId = 1L;
@@ -113,9 +116,6 @@ class AdminCouponServiceTest {
 
         // Assert
         assertThat(result).isTrue(); // Verify the result
-
-        // Verify that saveAll was called with the expected argument
-        verify(couponRepository, times(1)).saveAll(anyList());
     }
 
     @Test

@@ -7,4 +7,5 @@ import store.aurora.domain.DiscountRule;
 @Repository
 public interface DisCountRuleRepository extends JpaRepository<DiscountRule, Long> {
 
+    DiscountRule findBySaleAmount(int i);
 }
