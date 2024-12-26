@@ -33,6 +33,7 @@ public class AdminCouponService {
         CouponState couponState = updateUserCouponByUserIdDto.getState();
         Long policyId = updateUserCouponByUserIdDto.getPolicyId();
         LocalDate endDate = updateUserCouponByUserIdDto.getEndDate();
+
         List<Long> userIds = updateUserCouponByUserIdDto.getUserIds();
 
         if (couponState != null) {
@@ -46,6 +47,7 @@ public class AdminCouponService {
         if (endDate != null) {
             couponRepository.updateCouponEndDateByUserIds(endDate, userIds);
         }
+
 
     }
 
@@ -79,6 +81,7 @@ public class AdminCouponService {
                     .toList();
 
             couponRepository.saveAll(newCoupons); // 한 번에 저장
+
             return true; // 성공적으로 저장되면 true 반환
         } catch (Exception e) {
             USER_LOG.info("사용자 쿠폰 생성 실패"); // 예외 발생 시 로그 출력

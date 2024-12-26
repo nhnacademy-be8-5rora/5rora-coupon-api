@@ -15,7 +15,7 @@ public class UserCoupon {
     @Column(name = "coupon_id", nullable = false)
     private Long couponId;
 
-    @ManyToOne(fetch = FetchType.LAZY)  // Many UserCoupon -> One Policy
+    @ManyToOne  // Many UserCoupon -> One Policy
     @JoinColumn(name = "policy_id", nullable = false)  // 외래 키로 policy_id 지정
     private CouponPolicy policy;
 

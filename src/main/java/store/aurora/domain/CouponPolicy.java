@@ -25,10 +25,10 @@ public class CouponPolicy {
     @JoinColumn(name = "discount_id", nullable = false)
     private DiscountRule discountRule;  // 할인 ID (옵션), discount 테이블과 외래 키 관계
 
-    @OneToMany(mappedBy = "policy", fetch = FetchType.LAZY)
+    @OneToMany
     private List<BookPolicy> bookPolicies;
 
-    @OneToMany(mappedBy = "policy", fetch = FetchType.LAZY)
+    @OneToMany
     private List<CategoryPolicy> categoryPolicies;
 
 }

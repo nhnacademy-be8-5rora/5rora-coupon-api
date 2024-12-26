@@ -1,11 +1,11 @@
 package store.aurora.service;
 
-import static org.mockito.Mockito.*;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 import store.aurora.domain.*;
 import store.aurora.dto.*;
 import store.aurora.repository.*;
@@ -62,25 +62,51 @@ class AdminCouponServiceTest {
 
     @Test
     void testCouponUpdate() {
-        // 유저 ID을 통해 사용자 쿠폰 변경
+        //쿠폰정책 DTO
+        RequestCouponPolicyDTO requestCouponPolicyDTO = new RequestCouponPolicyDTO();
+        requestCouponPolicyDTO.setPolicyName("Test Policy");
+        requestCouponPolicyDTO.setSaleType(SaleType.AMOUNT);
+        //계산 DTO
+        DiscountRuleDTO discountRuleDTO = new DiscountRuleDTO();
+        discountRuleDTO.setSaleAmount(10000);
+        //책/카테고리 DTO
+        AddPolicyDTO addPolicyDTO = new AddPolicyDTO();
+        addPolicyDTO.setCategoryId(Arrays.asList(1L, 2L));
+        addPolicyDTO.setBookId(Arrays.asList(3L, 4L));
+
+        // 쿠폰 정책 생성 및 책/카테고리 정책 생성
+        adminCouponService.couponPolicyCreate(requestCouponPolicyDTO, discountRuleDTO, addPolicyDTO);
+
+        // 수정할 요소
+        Long userId = 1L;
+        Long policyId = 1L;
+        LocalDate currentDate = LocalDate.now();
+
+        RequestUserCouponDTO requestUserCouponDTO = new RequestUserCouponDTO();
+        requestUserCouponDTO.setUserId(List.of(userId));
+        requestUserCouponDTO.setCouponPolicyId(policyId);
+        requestUserCouponDTO.setStartDate(currentDate);
+        requestUserCouponDTO.setEndDate(currentDate.plusDays(50));
+
+        //유저 쿠폰 생성
+        adminCouponService.userCouponCreate(requestUserCouponDTO);
+
+        // 수정할 설정 생성
         UpdateUserCouponByUserIdDto dto = new UpdateUserCouponByUserIdDto();
 
-        dto.setState(CouponState.USED);
+        dto.setState(CouponState.TIMEOUT);
         dto.setPolicyId(1L);
-        dto.setEndDate(LocalDate.now().plusDays(10));
-        dto.setUserIds(Arrays.asList(1L, 2L));      //받아올 유저 ID
+        dto.setEndDate(LocalDate.now().plusDays(50));
+        dto.setUserIds(Arrays.asList(1L, 2L));      //변경할 유저 ID
 
         // 사용자 쿠폰 수정
         adminCouponService.couponUpdate(dto);
 
-        // Assert
-        verify(couponRepository, times(1))
-                .updateCouponStateByUserIds(CouponState.USED, dto.getUserIds());
-        verify(couponRepository, times(1))
-                .updateCouponPolicyByUserIds(1L, dto.getUserIds());
-        verify(couponRepository, times(1))
-                .updateCouponEndDateByUserIds(LocalDate.now().plusDays(10), dto.getUserIds());
-        verifyNoMoreInteractions(couponRepository);
+        List<UserCoupon> userCoupon = couponRepository.findByUserId(userId);
+
+        assertThat(userCoupon.get(0).getEndDate()).isEqualTo(currentDate.plusDays(50));
+        assertThat(userCoupon.get(0).getPolicy().getId()).isEqualTo(1L);
+        assertThat(userCoupon.get(0).getCouponState()).isEqualTo(CouponState.TIMEOUT);
     }
 
     //유저 쿠폰 생성 테스트
@@ -123,7 +149,6 @@ class AdminCouponServiceTest {
         // Arrange
         Long userId = 1L;
         Long policyId = 1L;
-        when(couponRepository.existsByUserIdAndPolicyId(userId, policyId)).thenReturn(false);
 
         // Act
         boolean result = adminCouponService.existWelcomeCoupon(userId, policyId);

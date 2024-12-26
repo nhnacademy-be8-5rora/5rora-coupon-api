@@ -13,7 +13,7 @@ public class CategoryPolicy {
     @Column(name = "category_coupon")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "policy_id", nullable = false)
     private CouponPolicy policy;
 
