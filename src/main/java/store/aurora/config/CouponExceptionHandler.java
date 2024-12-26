@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 //DTO 무결성 검증 오류시 오류 메시지 반환하는 역할
 @RestControllerAdvice
-public class GlobalExceptionHandler {
+public class CouponExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<String> handleValidationExceptions(MethodArgumentNotValidException ex) {
