@@ -69,4 +69,7 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
                                           @Param("categoryIds") List<Long> categoryIds,
                                           @Param("totalPrice") Integer totalPrice);
 
+    List<UserCoupon> findAllByEndDate(LocalDate newEndDate);
+
+    List<UserCoupon> findAllByPolicyId(Long newPolicyId);
 }

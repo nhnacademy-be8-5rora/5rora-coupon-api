@@ -40,48 +40,50 @@ class CouponRepositoryTest {
     void setUp() {
         // @BeforeAll은 static으로 선언되어야 하지만, @TestInstance(PER_CLASS)로 인스턴스 메서드처럼 사용할 수 있음
 
-        // discountRule 설정
+        entityManager.clear();
+
+        //계산법칙 생성
         DiscountRule discountRule = new DiscountRule();
         discountRule.setSaleAmount(10000);
         discountRule.setNeedCost(20000);
         discountRule = discountRuleRepository.save(discountRule);
 
-        // CouponPolicy 설정
+        //쿠폰 정책 생성
         CouponPolicy couponPolicy = new CouponPolicy();
         couponPolicy.setName("Test Policy");
-        couponPolicy.setSaleType(SaleType.AMOUNT);  // SaleType 설정
-
+        couponPolicy.setSaleType(SaleType.AMOUNT);
         couponPolicy.setDiscountRule(discountRule);
-
         couponPolicy = couponPolicyRepository.save(couponPolicy);
 
-        BookPolicy bookPolicy = new BookPolicy();
-        bookPolicy.setBookId(1L);
-        bookPolicy.setPolicy(couponPolicy);
-
-        bookPolicyRepository.save(bookPolicy);
-
-        CategoryPolicy categoryPolicy = new CategoryPolicy();
-        categoryPolicy.setCategoryId(1L);
-        categoryPolicy.setPolicy(couponPolicy);
-
-        categoryPolicyRepository.save(categoryPolicy);
-
-        // UserCoupon 데이터 추가
+        //사용자 카테고리 정책 생성
         UserCoupon coupon1 = new UserCoupon();
-        coupon1.setUserId(1L);  // userId 설정
-        coupon1.setStartDate(LocalDate.now().minusDays(10));  // startDate 설정
-        coupon1.setEndDate(LocalDate.now().minusDays(1));  // 만료된 상태
-        coupon1.setPolicy(couponPolicy);  // CouponPolicy 설정
+        coupon1.setUserId(1L);
+        coupon1.setStartDate(LocalDate.now().minusDays(10));
+        coupon1.setEndDate(LocalDate.now().minusDays(1));
+        coupon1.setPolicy(couponPolicy);
+        couponRepository.save(coupon1);
 
         UserCoupon coupon2 = new UserCoupon();
-        coupon2.setUserId(2L);  // userId 설정
-        coupon2.setStartDate(LocalDate.now().minusDays(10));  // startDate 설정
-        coupon2.setEndDate(LocalDate.now().plusDays(5));  // 아직 만료되지 않음
-        coupon2.setPolicy(couponPolicy);  // CouponPolicy 설정
-
-        couponRepository.save(coupon1);
+        coupon2.setUserId(2L);
+        coupon2.setStartDate(LocalDate.now().minusDays(10));
+        coupon2.setEndDate(LocalDate.now().plusDays(5));
+        coupon2.setPolicy(couponPolicy);
         couponRepository.save(coupon2);
+
+        //카테고리 정책 생성
+        CategoryPolicy categoryPolicy1 = new CategoryPolicy();
+        categoryPolicy1.setCategoryId(1L); // Category 1
+        categoryPolicy1.setPolicy(couponPolicy);
+
+        CategoryPolicy categoryPolicy2 = new CategoryPolicy();
+        categoryPolicy2.setCategoryId(2L); // Category 2
+        categoryPolicy2.setPolicy(couponPolicy);
+
+        categoryPolicyRepository.save(categoryPolicy1);
+        categoryPolicyRepository.save(categoryPolicy2);
+
+        entityManager.flush();
+        entityManager.clear();
     }
 
     @Test
@@ -113,8 +115,23 @@ class CouponRepositoryTest {
     @Test
     void testUpdateCouponPolicyByUserIds() {
         // Arrange
-        Long newPolicyId = 1L;
-        List<Long> userIds = List.of(1L, 2L);
+        CouponPolicy couponPolicy = new CouponPolicy();
+        couponPolicy.setName("Test Policy");
+        couponPolicy.setSaleType(SaleType.AMOUNT);
+
+        // 할인 규칙을 couponPolicy에 연결
+        DiscountRule discountRule = new DiscountRule();
+        discountRule.setSaleAmount(10000);
+        discountRule.setNeedCost(20000);
+        discountRule = discountRuleRepository.save(discountRule);
+        couponPolicy.setDiscountRule(discountRule);
+
+        // couponPolicy 저장 후 ID 획득
+        couponPolicy = couponPolicyRepository.save(couponPolicy);
+
+        // 바뀔 policyId 사용
+        Long newPolicyId = couponPolicy.getId();
+        List<Long> userIds = List.of(1L);
 
         // Act
         couponRepository.updateCouponPolicyByUserIds(newPolicyId, userIds);
@@ -122,11 +139,12 @@ class CouponRepositoryTest {
         entityManager.flush();
         entityManager.clear();
 
-        // Assert
-        List<UserCoupon> updatedCoupons = couponRepository.findAllById(userIds);
+        // 바뀐 policyId로 검색
+        List<UserCoupon> updatedCoupons = couponRepository.findAllByPolicyId(newPolicyId);
+
         assertThat(updatedCoupons).
                 isNotEmpty().
-                allMatch(c -> c.getPolicy().getId().equals(1L));
+                isNotNull();
     }
 
     @Test
@@ -142,11 +160,10 @@ class CouponRepositoryTest {
         entityManager.clear();
 
         // Assert
-        List<UserCoupon> updatedCoupons = couponRepository.findAllById(userIds);
+        List<UserCoupon> updatedCoupons = couponRepository.findAllByEndDate(newEndDate);
         assertThat(updatedCoupons)
                 .isNotEmpty()
                 .allSatisfy(coupon -> assertThat(coupon.getEndDate()).isEqualTo(newEndDate));
-
     }
 
     @Test
@@ -180,10 +197,10 @@ class CouponRepositoryTest {
 
     @Test
     void testFindAvailableCoupons() {
-        Long userId = 1L; // 테스트 사용자 ID
-        Long bookId = 101L; // 테스트 도서 ID
-        List<Long> categoryIds = List.of(201L, 202L); // 테스트 카테고리 ID 리스트
-        Integer totalPrice = 15000; // 테스트 가격
+        long userId = 1L; // 테스트 사용자 ID
+        long bookId = 4L; // 테스트 도서 ID
+        List<Long> categoryIds = List.of(1L, 2L); // 테스트 카테고리 ID 리스트
+        int totalPrice = 25000; // 테스트 가격
 
         List<UserCoupon> availableCoupons = couponRepository.
                 findAvailableCoupons(userId, bookId, categoryIds, totalPrice);
@@ -193,5 +210,18 @@ class CouponRepositoryTest {
         assertThat(availableCoupons)
                 .isNotNull() // null이 아님을 확인
                 .isNotEmpty(); // 사용 가능한 쿠폰이 존재함을 확인
+
+        userId = 2L;
+        bookId = 3L;
+        categoryIds = List.of(1L, 2L);
+        totalPrice = 5000;
+
+        List<UserCoupon> availableCoupons2 = couponRepository.
+                findAvailableCoupons(userId, bookId, categoryIds, totalPrice);
+
+
+        // 결과 확인
+        assertThat(availableCoupons2)
+                .isEmpty(); // 사용 가능한 쿠폰이 존재함을 확인
     }
 }

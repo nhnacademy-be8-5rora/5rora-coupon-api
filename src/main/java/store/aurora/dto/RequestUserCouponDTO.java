@@ -1,5 +1,6 @@
 package store.aurora.dto;
 
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import store.aurora.domain.CouponState;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Data
 public class RequestUserCouponDTO {
-    @NotNull
+    @NotEmpty
     private List<Long> userId;    // 유저 ID 리스트
     @NotNull
     private Long couponPolicyId; // 정책 ID

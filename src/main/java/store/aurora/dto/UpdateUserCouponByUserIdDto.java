@@ -1,6 +1,6 @@
 package store.aurora.dto;
 
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import store.aurora.domain.CouponState;
 
@@ -9,7 +9,7 @@ import java.util.List;
 
 @Data
 public class UpdateUserCouponByUserIdDto {
-    @NotNull
+    @NotEmpty
     private List<Long> userIds;    // 바꿀 유저 쿠폰 ID 리스트
     private Long policyId; // 바꿀 정책의 ID
     private CouponState state;   // 변경할 쿠폰 상태

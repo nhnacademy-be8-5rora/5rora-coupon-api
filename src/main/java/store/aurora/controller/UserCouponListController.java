@@ -1,5 +1,6 @@
 package store.aurora.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -20,7 +21,7 @@ public class UserCouponListController {
 
     //사용자쿠폰 목록 확인
     @PostMapping(value = "/couponList/{userId}") //->외부 api로 보내는 링크
-    public ResponseEntity<List<UserCoupon>> couponList(@PathVariable Long userId) {
+    public ResponseEntity<List<UserCoupon>> couponList(@PathVariable @Valid Long userId) {
 
         List<UserCoupon> userCoupons = couponListService.getCouponList(userId);
 

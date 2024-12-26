@@ -17,6 +17,5 @@ public class RequestCouponPolicyDTO {
 
     @NotNull
     private DiscountRuleDTO discountRuleDTO;
-
 }
 
