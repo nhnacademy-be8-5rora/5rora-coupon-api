@@ -1,6 +1,5 @@
 package store.aurora.dto;
 
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -10,7 +9,7 @@ import java.util.List;
 public class ProductInfoDTO {
     @NotNull
     private Long productId;   //결제 상품 목록
-    @NotEmpty
+    @NotNull
     private List<Long> categoryIds;  //상품이 속해있는 카테고리 Id
     @NotNull
     private Long bookId; //상품의 고유 ID
