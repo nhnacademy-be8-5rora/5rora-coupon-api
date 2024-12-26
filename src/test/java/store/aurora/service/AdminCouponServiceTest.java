@@ -8,33 +8,31 @@ import org.junit.jupiter.api.Test;
 import org.mockito.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.transaction.annotation.Transactional;
+import store.aurora.domain.*;
 import store.aurora.dto.*;
-import store.aurora.domain.CouponPolicy;
-import store.aurora.domain.CouponState;
-import store.aurora.domain.DiscountRule;
-import store.aurora.domain.SaleType;
 import store.aurora.repository.*;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
 
 @SpringBootTest
 @Transactional
 class AdminCouponServiceTest {
 
-    @MockBean private CouponPolicyRepository couponPolicyRepository;
-    @MockBean private CouponRepository couponRepository;
-    @MockBean private DisCountRuleRepository disCountRuleRepository;
-    @MockBean private CategoryPolicyRepository categoryPolicyRepository;
-    @MockBean private BookPolicyRepository bookPolicyRepository;
+    @Autowired private CouponPolicyRepository couponPolicyRepository;
+    @Autowired private CouponRepository couponRepository;
+    @Autowired private DisCountRuleRepository disCountRuleRepository;
+    @Autowired private CategoryPolicyRepository categoryPolicyRepository;
+    @Autowired private BookPolicyRepository bookPolicyRepository;
 
     @Autowired
     private AdminCouponService adminCouponService;
 
     @BeforeEach
     void setUp() {
+
         MockitoAnnotations.openMocks(this);  // Mock 객체 초기화
     }
 
@@ -100,18 +98,39 @@ class AdminCouponServiceTest {
 
     @Test
     void testUserCouponCreate() {
-        // Given
-        RequestUserCouponDTO requestUserCouponDto = new RequestUserCouponDTO();
-        requestUserCouponDto.setState(CouponState.LIVE);
-        requestUserCouponDto.setCouponPolicyId(1L);
-        requestUserCouponDto.setStartDate(LocalDate.now());
-        requestUserCouponDto.setEndDate(LocalDate.now().plusDays(30));
-        requestUserCouponDto.setUserId(Arrays.asList(1L, 2L, 3L));
+        // Arrange
+        Long userId = 1L;
+        Long policyId = 1L;
+        LocalDate currentDate = LocalDate.now();
+        RequestUserCouponDTO requestUserCouponDTO = new RequestUserCouponDTO();
+        requestUserCouponDTO.setUserId(List.of(userId));
+        requestUserCouponDTO.setCouponPolicyId(policyId);
+        requestUserCouponDTO.setStartDate(currentDate);
+        requestUserCouponDTO.setEndDate(currentDate.plusDays(30));
 
-        // When
-        adminCouponService.userCouponCreate(requestUserCouponDto);
+        // Act
+        boolean result = adminCouponService.userCouponCreate(requestUserCouponDTO);
 
-        // Then
-        verify(couponRepository).saveAll(anyList()); // couponRepository의 saveAll 호출 여부 검증
+        // Assert
+        assertThat(result).isTrue(); // Verify the result
+
+        // Verify that saveAll was called with the expected argument
+        verify(couponRepository, times(1)).saveAll(anyList());
+    }
+
+    @Test
+    void testExistWelcomeCoupon_WhenCouponDoesNotExist() {
+        // Arrange
+        Long userId = 1L;
+        Long policyId = 1L;
+        when(couponRepository.existsByUserIdAndPolicyId(userId, policyId)).thenReturn(false);
+
+        // Act
+        boolean result = adminCouponService.existWelcomeCoupon(userId, policyId);
+
+        // Assert
+        assertThat(result)
+                .as("Check if the coupon does not exist")
+                .isFalse();  // Asserting that the result is false
     }
 }

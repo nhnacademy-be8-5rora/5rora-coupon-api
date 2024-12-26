@@ -70,6 +70,18 @@ class CouponRepositoryTest {
         coupon2.setPolicy(couponPolicy);
         couponRepository.save(coupon2);
 
+        //북 정책 생성
+        BookPolicy bookPolicy1 = new BookPolicy();
+        bookPolicy1.setBookId(1L); // Category 1
+        bookPolicy1.setPolicy(couponPolicy);
+
+        BookPolicy bookPolicy2 = new BookPolicy();
+        bookPolicy2.setBookId(2L); // Category 2
+        bookPolicy2.setPolicy(couponPolicy);
+
+        bookPolicyRepository.save(bookPolicy2);
+        bookPolicyRepository.save(bookPolicy2);
+
         //카테고리 정책 생성
         CategoryPolicy categoryPolicy1 = new CategoryPolicy();
         categoryPolicy1.setCategoryId(1L); // Category 1
