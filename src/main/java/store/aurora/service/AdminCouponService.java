@@ -45,28 +45,39 @@ public class AdminCouponService {
 
     //사용자 쿠폰 생성
     @Transactional
-    public void userCouponCreate(RequestUserCouponDTO requestUserCouponDTO) {
-        List<Long> userIds = requestUserCouponDTO.getUserId(); // 유저 ID 리스트
-        Long policyId = requestUserCouponDTO.getCouponPolicyId(); // 적용할 정책
-        CouponState state = requestUserCouponDTO.getState();   // 쿠폰 초기 상태
-        LocalDate startDate = requestUserCouponDTO.getStartDate(); // 시작일
-        LocalDate endDate = requestUserCouponDTO.getEndDate();     // 종료일
+    public boolean userCouponCreate(RequestUserCouponDTO requestUserCouponDTO) {
+        try {
+            List<Long> userIds = requestUserCouponDTO.getUserId(); // 유저 ID 리스트
+            Long policyId = requestUserCouponDTO.getCouponPolicyId(); // 적용할 정책
+            CouponState state = requestUserCouponDTO.getState();   // 쿠폰 초기 상태
+            LocalDate startDate = requestUserCouponDTO.getStartDate(); // 시작일
+            LocalDate endDate = requestUserCouponDTO.getEndDate();     // 종료일
 
-        CouponPolicy couponPolicy = couponPolicyRepository.findById(policyId).orElse(null);
+            CouponPolicy couponPolicy = couponPolicyRepository.findById(policyId).orElse(null);
 
-        List<UserCoupon> newCoupons = userIds.stream()
-                .map(userId -> {
-                    UserCoupon userCoupon = new UserCoupon();
-                    userCoupon.setUserId(userId); // 사용자 ID 설정
-                    userCoupon.setPolicy(couponPolicy); // 정책 설정
-                    userCoupon.setCouponState(state); // 초기 상태 설정
-                    userCoupon.setStartDate(startDate); // 시작일 설정
-                    userCoupon.setEndDate(endDate); // 종료일 설정
-                    return userCoupon;
-                })
-                .toList();
+            // 만약 정책이 없으면 false 반환
+            if (couponPolicy == null) {
+                return false;
+            }
 
-        couponRepository.saveAll(newCoupons); // 한 번에 저장
+            List<UserCoupon> newCoupons = userIds.stream()
+                    .map(userId -> {
+                        UserCoupon userCoupon = new UserCoupon();
+                        userCoupon.setUserId(userId); // 사용자 ID 설정
+                        userCoupon.setPolicy(couponPolicy); // 정책 설정
+                        userCoupon.setCouponState(state); // 초기 상태 설정
+                        userCoupon.setStartDate(startDate); // 시작일 설정
+                        userCoupon.setEndDate(endDate); // 종료일 설정
+                        return userCoupon;
+                    })
+                    .toList();
+
+            couponRepository.saveAll(newCoupons); // 한 번에 저장
+            return true; // 성공적으로 저장되면 true 반환
+        } catch (Exception e) {
+            e.printStackTrace(); // 예외 발생 시 로그 출력
+            return false; // 예외가 발생하면 false 반환
+        }
     }
 
     //쿠폰 정책 생성(쿠폰계산 및 쿠폰 정책 개체 생성)
