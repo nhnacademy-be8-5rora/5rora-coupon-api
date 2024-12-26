@@ -72,4 +72,7 @@ public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
     List<UserCoupon> findAllByEndDate(LocalDate newEndDate);
 
     List<UserCoupon> findAllByPolicyId(Long newPolicyId);
+
+    // userId, policyId, couponState에 맞는 데이터가 존재하는지 확인
+    boolean existsByUserIdAndPolicyId(Long userId, Long policyId);
 }

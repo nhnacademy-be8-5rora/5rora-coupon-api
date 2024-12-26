@@ -12,17 +12,25 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping
 @RequiredArgsConstructor
 public class WelcomeCouponController {
 
     private final AdminCouponService adminCouponService;
 
     // 회원가입 API
-    @PostMapping("/register")
+    @PostMapping("/welcomeCoupon")
     public String registerUser(@RequestBody Long userId) {
-        LocalDate currentDate = LocalDate.now();
 
+        // 사용자가 이미 Welcome 쿠폰을 보유하고 있는지 확인
+        boolean alreadyHasCoupon = adminCouponService.existWelcomeCoupon(userId, 1L);
+
+        if (alreadyHasCoupon) {
+            return "이미 Welcome 쿠폰이 발급되었습니다.";
+        }
+
+        LocalDate currentDate = LocalDate.now();
+        //WelcomeCoupon 생성
         RequestUserCouponDTO requestUserCouponDTO = new RequestUserCouponDTO();
         requestUserCouponDTO.setUserId(List.of(userId));
         requestUserCouponDTO.setCouponPolicyId(1L); //사용자 환영 쿠폰 정책
@@ -34,7 +42,6 @@ public class WelcomeCouponController {
         if (success) {
             return "회원가입 성공! Welcome 쿠폰 발급 요청이 처리되었습니다.";
         }
-
 
         return "Welcome 쿠폰 발급 요청이 실패되었습니다. 재발급 버튼을 눌러주세요.";
     }

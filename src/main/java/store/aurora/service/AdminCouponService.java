@@ -80,6 +80,9 @@ public class AdminCouponService {
         }
     }
 
+
+
+
     //쿠폰 정책 생성(쿠폰계산 및 쿠폰 정책 개체 생성)
     @Transactional
     public void couponPolicyCreate(RequestCouponPolicyDTO requestCouponPolicyDTO
@@ -96,6 +99,13 @@ public class AdminCouponService {
         //책, 카테고리 정책 테이블 생성
         saveCategoryPolicies(couponPolicy, addPolicyDTO);
         saveBookPolicies(couponPolicy, addPolicyDTO);
+    }
+
+    //Welcome 쿠폰 확인
+    @Transactional(readOnly = true)
+    public boolean existWelcomeCoupon(Long userId, Long policyId){
+
+        return couponRepository.existsByUserIdAndPolicyId(userId, policyId);
     }
 
 
