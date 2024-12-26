@@ -24,6 +24,7 @@ public class CouponService {
             throw new IllegalArgumentException("No coupons found for the provided IDs.");
         }
 
+        //지정된 사용자 쿠폰들 중에서 couponStat.USED가 아닌 것일 경우 오류처리
         for (UserCoupon userCoupon : userCoupons) {
             if (userCoupon.getCouponState() != CouponState.USED) {
                 throw new IllegalStateException("Cannot refund not used coupon: ID = " + userCoupon.getCouponState());

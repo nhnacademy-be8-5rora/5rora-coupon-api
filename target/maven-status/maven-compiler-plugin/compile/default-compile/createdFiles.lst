@@ -8,7 +8,6 @@ store/aurora/dto/DiscountRuleDTO.class
 store/aurora/domain/BookPolicy.class
 store/aurora/dto/RequestUserCouponDTO.class
 store/aurora/domain/CouponPolicy.class
-store/aurora/config/GlobalExceptionHandler.class
 store/aurora/controller/UserCouponListController.class
 store/aurora/CouponApplication.class
 store/aurora/service/CouponService.class
@@ -27,3 +26,4 @@ store/aurora/dto/AddPolicyDTO.class
 store/aurora/dto/ProductInfoDTO.class
 store/aurora/repository/CouponPolicyRepository.class
 store/aurora/controller/AdminCouponController.class
+store/aurora/config/CouponExceptionHandler.class

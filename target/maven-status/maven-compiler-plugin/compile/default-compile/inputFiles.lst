@@ -1,6 +1,6 @@
 /Users/asdf/5rora-coupon-api/src/main/java/store/aurora/CouponApplication.java
 /Users/asdf/5rora-coupon-api/src/main/java/store/aurora/config/AppConfig.java
-/Users/asdf/5rora-coupon-api/src/main/java/store/aurora/config/GlobalExceptionHandler.java
+/Users/asdf/5rora-coupon-api/src/main/java/store/aurora/config/CouponExceptionHandler.java
 /Users/asdf/5rora-coupon-api/src/main/java/store/aurora/controller/AdminCouponController.java
 /Users/asdf/5rora-coupon-api/src/main/java/store/aurora/controller/ReTryCouponController.java
 /Users/asdf/5rora-coupon-api/src/main/java/store/aurora/controller/UserCouponController.java

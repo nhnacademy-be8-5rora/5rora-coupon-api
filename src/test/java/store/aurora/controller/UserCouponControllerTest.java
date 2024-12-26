@@ -33,7 +33,7 @@ class UserCouponControllerTest {
         doNothing().when(couponService).refund(userCouponIds);
 
         // Test the controller
-        mockMvc.perform(put("/coupon/refund/")
+        mockMvc.perform(put("/coupon/refund")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("[1, 2, 3]"))
                 .andExpect(status().isOk())
