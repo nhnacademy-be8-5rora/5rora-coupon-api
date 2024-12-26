@@ -24,8 +24,7 @@ class AdminCouponServiceTest {
     @Autowired private CategoryPolicyRepository categoryPolicyRepository;
     @Autowired private BookPolicyRepository bookPolicyRepository;
 
-    @Autowired
-    private AdminCouponService adminCouponService;
+    @Autowired private AdminCouponService adminCouponService;
 
     @Test
     void testCouponPolicyCreate() {
