@@ -30,7 +30,7 @@ public class WelcomeCouponController {
         }
 
         LocalDate currentDate = LocalDate.now();
-        //WelcomeCoupon 생성
+        //WelcomeCoupon 생성(5만원 이상 구매시 1만 할인 쿠폰, 기간 30일)
         RequestUserCouponDTO requestUserCouponDTO = new RequestUserCouponDTO();
         requestUserCouponDTO.setUserId(List.of(userId));
         requestUserCouponDTO.setCouponPolicyId(1L); //사용자 환영 쿠폰 정책
