@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Coupon List</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<h1>User Coupon List</h1>
+
+<!-- User ID input form -->
+<div>
+    <label for="userId">Enter User ID:</label>
+    <input type="number" id="userId" placeholder="User ID">
+    <button onclick="fetchCouponList()">Get Coupons</button>
+</div>
+
+<!-- Displaying the coupon list -->
+<div id="couponListSection" style="display:none;">
+    <h2>User Coupons:</h2>
+    <ul id="couponList">
+        <!-- Coupon list will be populated here -->
+    </ul>
+</div>
+
+<!-- Displaying available coupons for products -->
+<div id="productCouponSection" style="display:none;">
+    <h2>Available Coupons for Products:</h2>
+    <div id="productCouponList">
+        <!-- Coupons for products will be populated here -->
+    </div>
+</div>
+
+<script>
+    // Function to fetch and display user's coupon list
+    function fetchCouponList() {
+        const userId = document.getElementById('userId').value;
+
+        // Get coupons for the user
+        $.ajax({
+            url: `/couponList/${userId}`,
+            type: 'POST',
+            success: function(data) {
+                // Clear previous data
+                $('#couponList').empty();
+
+                if (data && data.length > 0) {
+                    data.forEach(function(coupon) {
+                        $('#couponList').append(`<li>Coupon Code: ${coupon.code}, Discount: ${coupon.discount}%</li>`);
+                    });
+                    $('#couponListSection').show();
+                } else {
+                    $('#couponListSection').html('<p>No coupons found for this user.</p>').show();
+                }
+            },
+            error: function(err) {
+                alert('Error fetching coupon list.');
+            }
+        });
+
+        // Get available coupons for products (this is just an example, you may want to pass product info)
+        fetchProductCoupons(userId);
+    }
+
+    // Function to fetch and display available coupons for products
+    function fetchProductCoupons(userId) {
+        const productInfo = [
+            // Example product info, this can be dynamic based on your use case
+            { productId: 1, categoryId: 101 },
+            { productId: 2, categoryId: 102 }
+        ];
+
+        $.ajax({
+            url: `/calculate/${userId}`,
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(productInfo),
+            success: function(data) {
+                // Clear previous data
+                $('#productCouponList').empty();
+
+                if (data && Object.keys(data).length > 0) {
+                    for (const productId in data) {
+                        $('#productCouponList').append(`<h3>Product ID: ${productId}</h3>`);
+                        const coupons = data[productId];
+                        coupons.forEach(function(coupon) {
+                            $('#productCouponList').append(`<p>Coupon Code: ${coupon.code}, Discount: ${coupon.discount}%</p>`);
+                        });
+                    }
+                    $('#productCouponSection').show();
+                } else {
+                    $('#productCouponList').html('<p>No available coupons for products.</p>');
+                    $('#productCouponSection').show();
+                }
+            },
+            error: function(err) {
+                alert('Error fetching product coupons.');
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
