@@ -11,9 +11,15 @@ import store.aurora.repository.*;
 import java.util.List;
 import java.time.LocalDate;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 @Service
 @RequiredArgsConstructor
 public class AdminCouponService {
+
+    private static final Logger USER_LOG = LoggerFactory.getLogger("user-logger");
 
     private final CouponPolicyRepository couponPolicyRepository;
     private final CouponRepository couponRepository;
@@ -75,7 +81,7 @@ public class AdminCouponService {
             couponRepository.saveAll(newCoupons); // 한 번에 저장
             return true; // 성공적으로 저장되면 true 반환
         } catch (Exception e) {
-            e.printStackTrace(); // 예외 발생 시 로그 출력
+            USER_LOG.info("사용자 쿠폰 생성 실패"); // 예외 발생 시 로그 출력
             return false; // 예외가 발생하면 false 반환
         }
     }
