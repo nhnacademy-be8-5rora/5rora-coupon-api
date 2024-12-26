@@ -13,11 +13,12 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        // 유효성 검사 오류 메시지를 하나씩 가져와서 적절한 형식으로 반환
         String message = ex.getBindingResult()
                 .getFieldErrors()
                 .stream()
-                .map(error -> error.getField() + ": " + error.getDefaultMessage())
-                .collect(Collectors.joining(", "));
+                .map(error -> error.getField() + ": " + error.getDefaultMessage())  // 필드와 메시지
+                .collect(Collectors.joining(", "));  // 쉼표로 구분하여 메시지 결합
         return ResponseEntity.badRequest().body(message);
     }
 }
