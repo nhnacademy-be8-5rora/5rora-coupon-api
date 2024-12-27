@@ -48,7 +48,6 @@ public class AdminCouponService {
             couponRepository.updateCouponEndDateByUserIds(endDate, userIds);
         }
 
-
     }
 
     //사용자 쿠폰 생성
@@ -89,8 +88,12 @@ public class AdminCouponService {
         }
     }
 
+    //Welcome 쿠폰 확인
+    @Transactional(readOnly = true)
+    public boolean existWelcomeCoupon(Long userId, Long policyId){
 
-
+        return couponRepository.existsByUserIdAndPolicyId(userId, policyId);
+    }
 
     //쿠폰 정책 생성(쿠폰계산 및 쿠폰 정책 개체 생성)
     @Transactional
@@ -109,15 +112,6 @@ public class AdminCouponService {
         saveCategoryPolicies(couponPolicy, addPolicyDTO);
         saveBookPolicies(couponPolicy, addPolicyDTO);
     }
-
-    //Welcome 쿠폰 확인
-    @Transactional(readOnly = true)
-    public boolean existWelcomeCoupon(Long userId, Long policyId){
-
-        return couponRepository.existsByUserIdAndPolicyId(userId, policyId);
-    }
-
-
 
     public void saveCouponPolicy(CouponPolicy couponPolicy, RequestCouponPolicyDTO requestCouponPolicyDTO, DiscountRule discountRule) {
         couponPolicy.setName(requestCouponPolicyDTO.getPolicyName());

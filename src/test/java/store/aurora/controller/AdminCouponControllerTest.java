@@ -73,7 +73,7 @@ class AdminCouponControllerTest {
         requestDto.setUserId(List.of(1L));
         requestDto.setCouponPolicyId(2L);
 
-        doNothing().when(adminCouponService).userCouponCreate(Mockito.any());
+        when(adminCouponService.userCouponCreate(Mockito.any())).thenReturn(true);
 
         var result = mockMvc.perform(post("/admin/coupon/distribution")
                         .contentType(MediaType.APPLICATION_JSON)

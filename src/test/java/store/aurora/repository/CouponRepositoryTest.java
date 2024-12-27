@@ -13,32 +13,21 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DataJpaTest
+@DataJpaTest    //repository 테스트용 어노테이션
 @Transactional
 class CouponRepositoryTest {
 
-    @Autowired
-    private CouponRepository couponRepository;
+    @Autowired private CouponRepository couponRepository;
+    @Autowired private CouponPolicyRepository couponPolicyRepository;
+    @Autowired private DisCountRuleRepository discountRuleRepository;
+    @Autowired private EntityManager entityManager;
+    @Autowired private BookPolicyRepository bookPolicyRepository;
+    @Autowired private CategoryPolicyRepository categoryPolicyRepository;
 
-    @Autowired
-    private CouponPolicyRepository couponPolicyRepository;
-
-    @Autowired
-    private DisCountRuleRepository discountRuleRepository;
-
-    @Autowired
-    private EntityManager entityManager;
-
-    @Autowired
-    private BookPolicyRepository bookPolicyRepository;
-
-    @Autowired
-    private CategoryPolicyRepository categoryPolicyRepository;
-
-
+    // @BeforeAll은 static으로 선언되어야 하지만, @TestInstance(PER_CLASS)로 인스턴스 메서드처럼 사용할 수 있음
     @BeforeEach
     void setUp() {
-        // @BeforeAll은 static으로 선언되어야 하지만, @TestInstance(PER_CLASS)로 인스턴스 메서드처럼 사용할 수 있음
+
 
         entityManager.clear();
 
@@ -79,7 +68,7 @@ class CouponRepositoryTest {
         bookPolicy2.setBookId(2L); // Category 2
         bookPolicy2.setPolicy(couponPolicy);
 
-        bookPolicyRepository.save(bookPolicy2);
+        bookPolicyRepository.save(bookPolicy1);
         bookPolicyRepository.save(bookPolicy2);
 
         //카테고리 정책 생성
@@ -180,15 +169,27 @@ class CouponRepositoryTest {
 
     @Test
     void testUpdateExpiredCoupons() {
-        // 만료된 쿠폰 상태 업데이트
-        couponRepository.updateExpiredCoupons();
+        // Given
+        List<UserCoupon> couponsBeforeUpdate = couponRepository.findAll();
+        assertThat(couponsBeforeUpdate)
+                .isNotEmpty()
+                .anyMatch(coupon -> coupon.getEndDate().isBefore(LocalDate.now()));
 
+        // When
+        couponRepository.updateExpiredCoupons();
         entityManager.flush();
         entityManager.clear();
 
-        List<UserCoupon> coupons = couponRepository.findAll();
-
-        assertThat(coupons).anyMatch(coupon -> coupon.getCouponState() == CouponState.TIMEOUT);
+        // Then
+        List<UserCoupon> updatedCoupons = couponRepository.findAll();
+        assertThat(updatedCoupons)
+                .isNotEmpty()
+                .allMatch(coupon -> {
+                    if (coupon.getEndDate().isBefore(LocalDate.now())) {
+                        return coupon.getCouponState() == CouponState.TIMEOUT;
+                    }
+                    return true;
+                });
     }
 
     @Test
