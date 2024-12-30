@@ -54,7 +54,7 @@ public class AdminCouponService {
     @Transactional
     public boolean userCouponCreate(RequestUserCouponDTO requestUserCouponDTO) {
         try {
-            List<Long> userIds = requestUserCouponDTO.getUserId(); // 유저 ID 리스트
+            List<String> userIds = requestUserCouponDTO.getUserId(); // 유저 ID 리스트
             Long policyId = requestUserCouponDTO.getCouponPolicyId(); // 적용할 정책
             CouponState state = requestUserCouponDTO.getState();   // 쿠폰 초기 상태
             LocalDate startDate = requestUserCouponDTO.getStartDate(); // 시작일

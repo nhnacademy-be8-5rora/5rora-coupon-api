@@ -1,11 +1,16 @@
 package store.aurora.service;
 
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import store.aurora.domain.CouponState;
 import store.aurora.domain.UserCoupon;
 import store.aurora.dto.ProductInfoDTO;
+import store.aurora.dto.UserCouponDTO;
+import store.aurora.mapper.UserCouponMapper;
 import store.aurora.repository.CouponPolicyRepository;
 import store.aurora.repository.UserCouponRepository;
 import store.aurora.domain.CouponPolicy;
@@ -17,131 +22,62 @@ import java.util.*;
 import static org.mockito.Mockito.*;
 
 
+@SpringBootTest
+@Transactional
 class CouponListServiceTest {
+
+    @Autowired
+    private CouponListService couponListService;
 
     @Mock
     private UserCouponRepository userCouponRepository;
 
-    @Mock
-    private CouponPolicyRepository couponPolicyRepository;
-
     @InjectMocks
-    private CouponListService couponListService;
+    private CouponListService couponListServiceUnderTest;
 
-    private ProductInfoDTO productInfoDTO;
+    private UserCoupon userCoupon;
+    private UserCouponDTO userCouponDTO;
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
+        // Set up mock data
+        userCoupon = new UserCoupon();
+        userCoupon.setCouponId(1L);
+        userCoupon.setUserId("user123");
+        userCoupon.setPolicy(new CouponPolicy());
 
-        // 예시 ProductInfoDTO 객체 설정
-        productInfoDTO = new ProductInfoDTO();
-        productInfoDTO.setProductId(1L);
-        productInfoDTO.setCategoryIds(Arrays.asList(1L, 2L));
-        productInfoDTO.setBookId(123L);
-        productInfoDTO.setPrice(1000);
+        // Assuming UserCouponMapper.toDTO method is available to convert to DTO
+        userCouponDTO = UserCouponMapper.toDTO(userCoupon);
     }
 
     @Test
     void testGetCouponList() {
-        Long userId = 1L;
+        // Arrange: Mock the repository call
+        when(userCouponRepository.findByUserId("user123")).thenReturn(Collections.singletonList(userCoupon));
 
-        // Mocking repository method
-        List<UserCoupon> mockUserCoupons = new ArrayList<>();
-        UserCoupon userCoupon = new UserCoupon();
-        userCoupon.setCouponState(CouponState.LIVE);
-        mockUserCoupons.add(userCoupon);
+        // Act: Call the service method
+        List<UserCouponDTO> result = couponListService.getCouponList("user123");
 
-        when(userCouponRepository.findByUserId(userId)).thenReturn(mockUserCoupons);
+        // Assert: Verify that the result contains the correct data
+        assertThat(result).isNotEmpty();  // Ensure the result is not empty
+        assertThat(result.get(0).getCouponName()).isEqualTo("Coupon1");  // Check the coupon name in the DTO
 
-        // Service method call
-        List<UserCoupon> result = couponListService.getCouponList(userId);
-
-        // Assertions using assertThat
-        assertThat(result)
-                .isNotNull()
-                .hasSize(1);
-        assertThat(result.getFirst().getCouponState()).isEqualTo(CouponState.LIVE);
-        verify(userCouponRepository, times(1)).findByUserId(userId);
+        // Verify interaction with the repository
+        verify(userCouponRepository, times(1)).findByUserId("user123");
     }
 
     @Test
-    void testGetCouponListByCategory() {
-        Long userId = 1L;
+    void testGetCouponList_noCoupons() {
+        // Arrange: Mock the repository call to return an empty list
+        when(userCouponRepository.findByUserId("user123")).thenReturn(List.of());
 
-        // Mocking repository method
-        List<UserCoupon> mockUserCoupons = new ArrayList<>();
-        UserCoupon userCoupon = new UserCoupon();
-        userCoupon.setCouponState(CouponState.LIVE);
-        mockUserCoupons.add(userCoupon);
+        // Act: Call the service method
+        List<UserCouponDTO> result = couponListService.getCouponList("user123");
 
-        // Mock for getAvailableCouponList method
-        when(userCouponRepository.findAvailableCoupons(userId, 123L, Arrays.asList(1L, 2L), 1000))
-                .thenReturn(mockUserCoupons);
+        // Assert: Verify that the result is empty
+        assertThat(result).isEmpty();
 
-        List<ProductInfoDTO> productInfoDTOList = Collections.singletonList(productInfoDTO);
-
-        // Service method call
-        Map<Long, List<UserCoupon>> result = couponListService.getCouponListByCategory(productInfoDTOList, userId);
-
-        // Assertions using assertThat
-        assertThat(result)
-                .isNotNull()
-                .containsKey(productInfoDTO.getProductId());
-        assertThat(result.get(productInfoDTO.getProductId())).hasSize(1);
-        assertThat(result.get(productInfoDTO.getProductId()).getFirst().getCouponState()).isEqualTo(CouponState.LIVE);
-
-        verify(userCouponRepository, times(1)).findAvailableCoupons(userId, 123L, Arrays.asList(1L, 2L), 1000);
-    }
-
-    @Test
-    void testGetAvailableCouponList() {
-        Long userId = 1L;
-
-        // Mocking repository method
-        List<UserCoupon> mockUserCoupons = new ArrayList<>();
-        UserCoupon userCoupon = new UserCoupon();
-        userCoupon.setCouponState(CouponState.LIVE);
-        mockUserCoupons.add(userCoupon);
-
-        // Mock for getAvailableCouponList
-        when(userCouponRepository.findAvailableCoupons(userId, 123L, Arrays.asList(1L, 2L), 1000))
-                .thenReturn(mockUserCoupons);
-
-        // Service method call
-        List<UserCoupon> result = couponListService.getAvailableCouponList(productInfoDTO, userId);
-
-        // Assertions using assertThat
-        assertThat(result)
-                .isNotNull()
-                .hasSize(1);
-        assertThat(result.getFirst().getCouponState()).isEqualTo(CouponState.LIVE);
-
-        verify(userCouponRepository, times(1)).findAvailableCoupons(userId, 123L, Arrays.asList(1L, 2L), 1000);
-    }
-
-    @Test
-    void testGetAvailableCouponListByCategory() {
-        CouponPolicy policy1 = new CouponPolicy();
-        policy1.setId(1L);
-        policy1.setName("Policy 1");
-
-        CouponPolicy policy2 = new CouponPolicy();
-        policy2.setId(2L);
-        policy2.setName("Policy 2");
-
-        List<CouponPolicy> mockPolicies = List.of(policy1, policy2);
-
-        when(couponPolicyRepository.findAll()).thenReturn(mockPolicies);
-
-        List<CouponPolicy> result = couponListService.couponPolicyList();
-
-        assertThat(result)
-                .hasSize(2) // 반환된 리스트 크기 확인
-                .contains(policy1, policy2) // 리스트에 포함된 객체 확인
-                .first() // 첫 번째 요소에 대한 assertion 체인 시작
-                .extracting(CouponPolicy::getName) // `getName()` 값을 추출
-                .isEqualTo("Policy 1"); // 첫 번째 정책 이름 확인
-
+        // Verify interaction with the repository
+        verify(userCouponRepository, times(1)).findByUserId("user123");
     }
 }

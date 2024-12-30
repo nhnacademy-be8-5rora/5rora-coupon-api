@@ -31,7 +31,7 @@ class AdminCouponServiceTest {
     @MockBean private BookPolicyRepository bookPolicyRepository;
 
     @Captor
-    private ArgumentCaptor<List<Long>> userIdsCaptor;
+    private ArgumentCaptor<List<String>> userIdsCaptor;
     @Captor
     private ArgumentCaptor<List<UserCoupon>> userCouponCaptor;
     @Captor
@@ -51,7 +51,7 @@ class AdminCouponServiceTest {
         // given
         UpdateUserCouponByUserIdDto dto = new UpdateUserCouponByUserIdDto();
         dto.setState(CouponState.LIVE);
-        dto.setUserIds(List.of(1L, 2L, 3L));
+        dto.setUserIds(List.of("1", "2", "asdf"));
 
         ArgumentCaptor<CouponState> stateCaptor = ArgumentCaptor.forClass(CouponState.class);
 
@@ -61,7 +61,7 @@ class AdminCouponServiceTest {
         verify(userCouponRepository).updateCouponStateByUserIds(stateCaptor.capture(), userIdsCaptor.capture());
 
         assertThat(stateCaptor.getValue()).isEqualTo(CouponState.LIVE);
-        assertThat(userIdsCaptor.getValue()).containsExactly(1L, 2L, 3L);
+        assertThat(userIdsCaptor.getValue()).containsExactly("1", "2","asdf");
     }
 
     @Test
@@ -70,7 +70,7 @@ class AdminCouponServiceTest {
         // given
         UpdateUserCouponByUserIdDto dto = new UpdateUserCouponByUserIdDto();
         dto.setPolicyId(10L);
-        dto.setUserIds(List.of(4L, 5L));
+        dto.setUserIds(List.of("4", "5"));
 
         ArgumentCaptor<Long> policyIdCaptor = ArgumentCaptor.forClass(Long.class);
 
@@ -81,7 +81,7 @@ class AdminCouponServiceTest {
         verify(userCouponRepository).updateCouponPolicyByUserIds(policyIdCaptor.capture(), userIdsCaptor.capture());
 
         assertThat(policyIdCaptor.getValue()).isEqualTo(10L);
-        assertThat(userIdsCaptor.getValue()).containsExactly(4L, 5L);
+        assertThat(userIdsCaptor.getValue()).containsExactly("4", "5");
     }
 
     @Test
@@ -91,7 +91,7 @@ class AdminCouponServiceTest {
         UpdateUserCouponByUserIdDto dto = new UpdateUserCouponByUserIdDto();
         LocalDate endDate = LocalDate.of(2025, 12, 31);
         dto.setEndDate(endDate);
-        dto.setUserIds(List.of(6L, 7L));
+        dto.setUserIds(List.of("6", "7"));
 
         ArgumentCaptor<LocalDate> endDateCaptor = ArgumentCaptor.forClass(LocalDate.class);
 
@@ -102,7 +102,7 @@ class AdminCouponServiceTest {
         verify(userCouponRepository).updateCouponEndDateByUserIds(endDateCaptor.capture(), userIdsCaptor.capture());
 
         assertThat(endDateCaptor.getValue()).isEqualTo(endDate);
-        assertThat(userIdsCaptor.getValue()).containsExactly(6L, 7L);
+        assertThat(userIdsCaptor.getValue()).containsExactly("6", "7");
     }
 
     @Test
@@ -114,7 +114,7 @@ class AdminCouponServiceTest {
         dto.setPolicyId(20L);
         LocalDate endDate = LocalDate.of(2026, 1, 1);
         dto.setEndDate(endDate);
-        dto.setUserIds(List.of(8L, 9L));
+        dto.setUserIds(List.of("8", "9"));
 
         ArgumentCaptor<CouponState> stateCaptor = ArgumentCaptor.forClass(CouponState.class);
         ArgumentCaptor<Long> policyIdCaptor = ArgumentCaptor.forClass(Long.class);
@@ -127,17 +127,17 @@ class AdminCouponServiceTest {
         // 상태 변경 검증
         verify(userCouponRepository).updateCouponStateByUserIds(stateCaptor.capture(), userIdsCaptor.capture());
         assertThat(stateCaptor.getValue()).isEqualTo(CouponState.TIMEOUT);
-        assertThat(userIdsCaptor.getValue()).containsExactly(8L, 9L);
+        assertThat(userIdsCaptor.getValue()).containsExactly("8", "9");
 
         // 정책 ID 변경 검증
         verify(userCouponRepository).updateCouponPolicyByUserIds(policyIdCaptor.capture(), userIdsCaptor.capture());
         assertThat(policyIdCaptor.getValue()).isEqualTo(20L);
-        assertThat(userIdsCaptor.getValue()).containsExactly(8L, 9L);
+        assertThat(userIdsCaptor.getValue()).containsExactly("8", "9");
 
         // 종료 날짜 변경 검증
         verify(userCouponRepository).updateCouponEndDateByUserIds(endDateCaptor.capture(), userIdsCaptor.capture());
         assertThat(endDateCaptor.getValue()).isEqualTo(endDate);
-        assertThat(userIdsCaptor.getValue()).containsExactly(8L, 9L);
+        assertThat(userIdsCaptor.getValue()).containsExactly("8", "9");
     }
 
     @Test
@@ -148,7 +148,7 @@ class AdminCouponServiceTest {
         CouponState state = CouponState.LIVE;
         LocalDate startDate = LocalDate.now();
         LocalDate endDate = startDate.plusDays(30);
-        List<Long> userIds = List.of(1L, 2L, 3L);
+        List<String> userIds = List.of("1","2","asdf");
 
         CouponPolicy couponPolicy = new CouponPolicy();
         couponPolicy.setId(policyId);  // 정책 설정
@@ -190,7 +190,7 @@ class AdminCouponServiceTest {
         CouponState state = CouponState.LIVE;
         LocalDate startDate = LocalDate.now();
         LocalDate endDate = startDate.plusDays(30);
-        List<Long> userIds = List.of(1L, 2L, 3L);
+        List<String> userIds = List.of("1", "2", "asdf");
 
         // mock
         when(couponPolicyRepository.findById(policyId)).thenReturn(Optional.empty());
@@ -217,7 +217,7 @@ class AdminCouponServiceTest {
         CouponState state = CouponState.LIVE;
         LocalDate startDate = LocalDate.now();
         LocalDate endDate = startDate.plusDays(30);
-        List<Long> userIds = List.of(1L, 2L, 3L);
+        List<String> userIds = List.of("1", "2", "asdf");
 
         CouponPolicy couponPolicy = new CouponPolicy();
         couponPolicy.setId(policyId);
@@ -293,7 +293,7 @@ class AdminCouponServiceTest {
     @DisplayName("Welcome 쿠폰 생성 확인 테스트")
     void testExistWelcomeCoupon_WhenCouponDoesNotExist() {
         // Arrange
-        Long userId = 1L;
+        String userId = "asdf";
         Long policyId = 1L;
 
         // Act

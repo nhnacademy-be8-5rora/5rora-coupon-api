@@ -34,13 +34,13 @@ class CouponServiceTest {
         userCoupon1 = new UserCoupon();
         userCoupon1.setCouponId(1L);
         userCoupon1.setCouponState(CouponState.USED);
-        userCoupon1.setUserId(1L);
+        userCoupon1.setUserId("1");
         userCoupon1.setUsedDate(java.time.LocalDate.now().minusDays(5));
 
         userCoupon2 = new UserCoupon();
         userCoupon2.setCouponId(2L);
         userCoupon2.setCouponState(CouponState.USED);
-        userCoupon2.setUserId(2L);
+        userCoupon2.setUserId("2");
         userCoupon2.setUsedDate(java.time.LocalDate.now().minusDays(3));
     }
 
@@ -67,7 +67,7 @@ class CouponServiceTest {
 
     @Test
     void testRefund_NoCouponsFound() {
-        List<Long> userCouponIds = Arrays.asList(1L, 2L);
+        List<String> userCouponIds = Arrays.asList("1", "2");
 
         //findAllById 실행시에 빈 리스트 return
         when(userCouponRepository.findAllById(userCouponIds)).thenReturn(List.of());

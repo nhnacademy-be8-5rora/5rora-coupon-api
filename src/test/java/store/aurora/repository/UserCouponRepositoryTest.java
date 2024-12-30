@@ -33,8 +33,8 @@ class UserCouponRepositoryTest {
 
         //계산법칙 생성
         DiscountRule discountRule = new DiscountRule();
-        discountRule.setSaleAmount(10000L);
-        discountRule.setNeedCost(20000L);
+        discountRule.setSaleAmount(10000);
+        discountRule.setNeedCost(20000);
         discountRule = discountRuleRepository.save(discountRule);
 
         //쿠폰 정책 생성
@@ -46,14 +46,14 @@ class UserCouponRepositoryTest {
 
         //사용자 카테고리 정책 생성
         UserCoupon coupon1 = new UserCoupon();
-        coupon1.setUserId(1L);
+        coupon1.setUserId("1L");
         coupon1.setStartDate(LocalDate.now().minusDays(10));
         coupon1.setEndDate(LocalDate.now().minusDays(1));
         coupon1.setPolicy(couponPolicy);
         userCouponRepository.save(coupon1);
 
         UserCoupon coupon2 = new UserCoupon();
-        coupon2.setUserId(2L);
+        coupon2.setUserId("2L");
         coupon2.setStartDate(LocalDate.now().minusDays(10));
         coupon2.setEndDate(LocalDate.now().plusDays(5));
         coupon2.setPolicy(couponPolicy);
@@ -132,7 +132,7 @@ class UserCouponRepositoryTest {
 
         // 바뀔 policyId 사용
         Long newPolicyId = couponPolicy.getId();
-        List<Long> userIds = List.of(1L);
+        List<String> userIds = List.of("1L");
 
         // Act
         userCouponRepository.updateCouponPolicyByUserIds(newPolicyId, userIds);
@@ -152,7 +152,7 @@ class UserCouponRepositoryTest {
     void testUpdateCouponEndDateByUserIds() {
         // Arrange
         LocalDate newEndDate = LocalDate.of(2024, 12, 31);
-        List<Long> userIds = List.of(1L, 2L);
+        List<String> userIds = List.of("1", "2");
 
         // Act
         userCouponRepository.updateCouponEndDateByUserIds(newEndDate, userIds);
@@ -210,7 +210,7 @@ class UserCouponRepositoryTest {
 
     @Test
     void testFindAvailableCoupons() {
-        long userId = 1L; // 테스트 사용자 ID
+        String userId = "1L"; // 테스트 사용자 ID
         long bookId = 4L; // 테스트 도서 ID
         List<Long> categoryIds = List.of(1L, 2L); // 테스트 카테고리 ID 리스트
         int totalPrice = 25000; // 테스트 가격
@@ -224,7 +224,7 @@ class UserCouponRepositoryTest {
                 .isNotNull() // null이 아님을 확인
                 .isNotEmpty(); // 사용 가능한 쿠폰이 존재함을 확인
 
-        userId = 2L;
+        userId = "2L";
         bookId = 3L;
         categoryIds = List.of(1L, 2L);
         totalPrice = 5000;
