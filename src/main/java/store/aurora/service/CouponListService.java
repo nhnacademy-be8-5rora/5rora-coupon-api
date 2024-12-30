@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -32,7 +31,7 @@ public class CouponListService {
         // List<UserCoupon>을 List<UserCouponDTO>로 변환
         return userCoupons.stream()
                 .map(UserCouponMapper::toDTO) // toDTO 메서드를 사용하여 변환
-                .collect(Collectors.toList());
+                .toList();
     }
 
     //결제창에서 각 상품별 사용 가능 쿠폰 목록
