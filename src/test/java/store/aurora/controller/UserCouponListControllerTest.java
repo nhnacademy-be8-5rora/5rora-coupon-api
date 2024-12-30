@@ -62,8 +62,8 @@ class UserCouponListControllerTest {
 
         // discountRule 설정
         DiscountRule discountRule = new DiscountRule();
-        discountRule.setSaleAmount(10000L);
-        discountRule.setNeedCost(20000L);
+        discountRule.setSaleAmount(10000);
+        discountRule.setNeedCost(20000);
         discountRule = discountRuleRepository.save(discountRule);
 
         // CouponPolicy 설정
@@ -89,13 +89,13 @@ class UserCouponListControllerTest {
 
         // UserCoupon 데이터 추가
         UserCoupon coupon1 = new UserCoupon();
-        coupon1.setUserId(1L);  // userId 설정
+        coupon1.setUserId("asdf");  // userId 설정
         coupon1.setStartDate(LocalDate.now().minusDays(10));  // startDate 설정
         coupon1.setEndDate(LocalDate.now().minusDays(1));  // 만료된 상태
         coupon1.setPolicy(couponPolicy);  // CouponPolicy 설정
 
         UserCoupon coupon2 = new UserCoupon();
-        coupon2.setUserId(2L);  // userId 설정
+        coupon2.setUserId("asdf2");  // userId 설정
         coupon2.setStartDate(LocalDate.now().minusDays(10));  // startDate 설정
         coupon2.setEndDate(LocalDate.now().plusDays(5));  // 아직 만료되지 않음
         coupon2.setPolicy(couponPolicy);  // CouponPolicy 설정
@@ -108,7 +108,7 @@ class UserCouponListControllerTest {
     @Test
     void testCouponList() throws Exception {
 
-        Long userId = 1L;
+        String userId = "asdf";
 
         List<UserCoupon> userCoupon = userCouponRepository.findByUserId(userId);
 
@@ -133,7 +133,7 @@ class UserCouponListControllerTest {
     @Test
     void testProCouponList() throws Exception {
 
-        long userId = 1L;
+        String userId = "asdf";
 
         List<UserCoupon> userCoupon = userCouponRepository.findByUserId(userId);
 

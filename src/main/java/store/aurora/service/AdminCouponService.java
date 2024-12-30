@@ -34,7 +34,7 @@ public class AdminCouponService {
         Long policyId = updateUserCouponByUserIdDto.getPolicyId();
         LocalDate endDate = updateUserCouponByUserIdDto.getEndDate();
 
-        List<Long> userIds = updateUserCouponByUserIdDto.getUserIds();
+        List<String> userIds = updateUserCouponByUserIdDto.getUserIds();
 
         if (couponState != null) {
             userCouponRepository.updateCouponStateByUserIds(couponState, userIds);
@@ -90,7 +90,7 @@ public class AdminCouponService {
 
     //Welcome 쿠폰 확인
     @Transactional(readOnly = true)
-    public boolean existWelcomeCoupon(Long userId, Long policyId){
+    public boolean existWelcomeCoupon(String userId, Long policyId){
 
         return userCouponRepository.existsByUserIdAndPolicyId(userId, policyId);
     }

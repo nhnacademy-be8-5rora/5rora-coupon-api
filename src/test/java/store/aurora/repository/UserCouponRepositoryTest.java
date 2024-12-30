@@ -90,7 +90,7 @@ class UserCouponRepositoryTest {
     @Test
     void testFindByUserId() {
         // UserId로 조회
-        List<UserCoupon> coupons = userCouponRepository.findByUserId(1L);
+        List<UserCoupon> coupons = userCouponRepository.findByUserId("asdf");
 
         assertThat(coupons).hasSize(1);
         assertThat(coupons.getFirst().getUserId()).isEqualTo(1L);
@@ -98,7 +98,7 @@ class UserCouponRepositoryTest {
 
     @Test
     void testUpdateCouponStateByUserIds() {
-        List<Long> userIds = List.of(1L, 2L);
+        List<String> userIds = List.of("12", "12");
 
         // UserIds에 대한 상태 업데이트
         userCouponRepository.updateCouponStateByUserIds(CouponState.TIMEOUT, userIds);

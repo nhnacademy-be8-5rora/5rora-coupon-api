@@ -26,7 +26,7 @@ public class CouponListService {
 
     //사용자ID로 해당 사용자가 가진 사용자 쿠폰 목록 검색
     @Transactional(readOnly = true)
-    public List<UserCouponDTO> getCouponList(Long userId) {
+    public List<UserCouponDTO> getCouponList(String userId) {
         List<UserCoupon> userCoupons =userCouponRepository.findByUserId(userId);
 
         // List<UserCoupon>을 List<UserCouponDTO>로 변환
@@ -37,14 +37,15 @@ public class CouponListService {
 
     //결제창에서 각 상품별 사용 가능 쿠폰 목록
     @Transactional(readOnly = true)
-    public Map<Long, List<String>> getCouponListByCategory(List<ProductInfoDTO> productInfoDTO, long userId) {
-        Map<Long, List<String>> couponListMap = new HashMap<>();
+    public Map<Long, List<String>> getCouponListByCategory(List<ProductInfoDTO> productInfoDTO, String userId) {
+        Map<Long, List<String>> couponListMap = new HashMap<>();    //상품별 사용가능한 쿠폰먕
 
         //상품별 사용 가능한 쿠폰 리스트 생성 및 hashmap에 삽입
         for(ProductInfoDTO product : productInfoDTO){
             List<UserCoupon> couponListName = getAvailableCouponList(product, userId);
-            List<String> couponList = new ArrayList<>();
+            List<String> couponList = new ArrayList<>();    //상품별 쿠폰명 리스트 생성
 
+            //유저 리스트에서 상품명 리스트로 변환
             for(UserCoupon userCoupon : couponListName){
                 couponList.add(userCoupon.getPolicy().getName());
             }
@@ -56,7 +57,7 @@ public class CouponListService {
     }
 
     //ProductInfoDto(쿠폰 적용에 필요한 상품의 정보)
-    public List<UserCoupon> getAvailableCouponList(ProductInfoDTO productInfoDTO, long userId) {
+    public List<UserCoupon> getAvailableCouponList(ProductInfoDTO productInfoDTO, String userId) {
         Long bookId = productInfoDTO.getBookId();
         List<Long> categoryIds = productInfoDTO.getCategoryIds();
         Integer totalPrice = productInfoDTO.getPrice();

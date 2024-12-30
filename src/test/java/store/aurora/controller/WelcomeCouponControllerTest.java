@@ -27,12 +27,12 @@ class WelcomeCouponControllerTest {
     @MockBean
     private AdminCouponService adminCouponService;
 
-    private Long userId;
+    private String userId;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        userId = 1L;  // 예시 유저 ID
+        userId = "asdf";  // 예시 유저 ID
         RequestUserCouponDTO requestUserCouponDTO = new RequestUserCouponDTO();
         requestUserCouponDTO.setUserId(List.of(userId));
         requestUserCouponDTO.setCouponPolicyId(1L); // 정책 ID
