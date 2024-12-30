@@ -18,7 +18,7 @@ public class CouponService {
 
     //사용자 쿠폰 환불
     @Transactional
-    public void refund(List<Long> userCouponId) {
+    public void refund(List<String> userCouponId) {
         List<UserCoupon> userCoupons = userCouponRepository.findAllById(userCouponId);
         if (userCoupons.isEmpty()) {
             throw new IllegalArgumentException("No coupons found for the provided IDs.");

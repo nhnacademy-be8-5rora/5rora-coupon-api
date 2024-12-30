@@ -47,7 +47,7 @@ class CouponServiceTest {
     @Test
     void testRefund_Success() {
         // Given: Setup mock behavior
-        List<Long> userCouponIds = Arrays.asList(1L, 2L);
+        List<String> userCouponIds = Arrays.asList("1", "2");
         when(userCouponRepository.findAllById(userCouponIds)).thenReturn(Arrays.asList(userCoupon1, userCoupon2));
 
         // When: Execute refund
@@ -86,7 +86,7 @@ class CouponServiceTest {
         UserCoupon notUsedCoupon = new UserCoupon();
         notUsedCoupon.setCouponId(3L);
         notUsedCoupon.setCouponState(CouponState.LIVE);
-        List<Long> userCouponIds = List.of(3L);
+        List<String> userCouponIds = List.of("3L");
         when(userCouponRepository.findAllById(userCouponIds)).thenReturn(List.of(notUsedCoupon));
 
         // When & Then: Expect an IllegalStateException for trying to refund a not-used coupon

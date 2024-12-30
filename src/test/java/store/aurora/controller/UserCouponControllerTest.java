@@ -27,7 +27,7 @@ class UserCouponControllerTest {
 
     @Test
     void testUserCouponRefund() throws Exception {
-        List<Long> userCouponIds = List.of(1L, 2L, 3L);
+        List<String> userCouponIds = List.of("1", "2", "3");
 
         // Mock the service behavior
         doNothing().when(couponService).refund(userCouponIds);
