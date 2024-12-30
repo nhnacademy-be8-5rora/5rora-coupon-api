@@ -15,9 +15,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest    //repository 테스트용 어노테이션
 @Transactional
-class CouponRepositoryTest {
+class UserCouponRepositoryTest {
 
-    @Autowired private CouponRepository couponRepository;
+    @Autowired private UserCouponRepository userCouponRepository;
     @Autowired private CouponPolicyRepository couponPolicyRepository;
     @Autowired private DisCountRuleRepository discountRuleRepository;
     @Autowired private EntityManager entityManager;
@@ -33,8 +33,8 @@ class CouponRepositoryTest {
 
         //계산법칙 생성
         DiscountRule discountRule = new DiscountRule();
-        discountRule.setSaleAmount(10000);
-        discountRule.setNeedCost(20000);
+        discountRule.setSaleAmount(10000L);
+        discountRule.setNeedCost(20000L);
         discountRule = discountRuleRepository.save(discountRule);
 
         //쿠폰 정책 생성
@@ -50,14 +50,14 @@ class CouponRepositoryTest {
         coupon1.setStartDate(LocalDate.now().minusDays(10));
         coupon1.setEndDate(LocalDate.now().minusDays(1));
         coupon1.setPolicy(couponPolicy);
-        couponRepository.save(coupon1);
+        userCouponRepository.save(coupon1);
 
         UserCoupon coupon2 = new UserCoupon();
         coupon2.setUserId(2L);
         coupon2.setStartDate(LocalDate.now().minusDays(10));
         coupon2.setEndDate(LocalDate.now().plusDays(5));
         coupon2.setPolicy(couponPolicy);
-        couponRepository.save(coupon2);
+        userCouponRepository.save(coupon2);
 
         //북 정책 생성
         BookPolicy bookPolicy1 = new BookPolicy();
@@ -90,7 +90,7 @@ class CouponRepositoryTest {
     @Test
     void testFindByUserId() {
         // UserId로 조회
-        List<UserCoupon> coupons = couponRepository.findByUserId(1L);
+        List<UserCoupon> coupons = userCouponRepository.findByUserId(1L);
 
         assertThat(coupons).hasSize(1);
         assertThat(coupons.getFirst().getUserId()).isEqualTo(1L);
@@ -101,12 +101,12 @@ class CouponRepositoryTest {
         List<Long> userIds = List.of(1L, 2L);
 
         // UserIds에 대한 상태 업데이트
-        couponRepository.updateCouponStateByUserIds(CouponState.TIMEOUT, userIds);
+        userCouponRepository.updateCouponStateByUserIds(CouponState.TIMEOUT, userIds);
 
         entityManager.flush();
         entityManager.clear();
 
-        List<UserCoupon> coupons = couponRepository.findByUserIdIn(userIds);
+        List<UserCoupon> coupons = userCouponRepository.findByUserIdIn(userIds);
 
         assertThat(coupons).
                 isNotEmpty().
@@ -135,13 +135,13 @@ class CouponRepositoryTest {
         List<Long> userIds = List.of(1L);
 
         // Act
-        couponRepository.updateCouponPolicyByUserIds(newPolicyId, userIds);
+        userCouponRepository.updateCouponPolicyByUserIds(newPolicyId, userIds);
 
         entityManager.flush();
         entityManager.clear();
 
         // 바뀐 policyId로 검색
-        List<UserCoupon> updatedCoupons = couponRepository.findAllByPolicyId(newPolicyId);
+        List<UserCoupon> updatedCoupons = userCouponRepository.findAllByPolicyId(newPolicyId);
 
         assertThat(updatedCoupons).
                 isNotEmpty().
@@ -155,13 +155,13 @@ class CouponRepositoryTest {
         List<Long> userIds = List.of(1L, 2L);
 
         // Act
-        couponRepository.updateCouponEndDateByUserIds(newEndDate, userIds);
+        userCouponRepository.updateCouponEndDateByUserIds(newEndDate, userIds);
 
         entityManager.flush();
         entityManager.clear();
 
         // Assert
-        List<UserCoupon> updatedCoupons = couponRepository.findAllByEndDate(newEndDate);
+        List<UserCoupon> updatedCoupons = userCouponRepository.findAllByEndDate(newEndDate);
         assertThat(updatedCoupons)
                 .isNotEmpty()
                 .allSatisfy(coupon -> assertThat(coupon.getEndDate()).isEqualTo(newEndDate));
@@ -170,18 +170,18 @@ class CouponRepositoryTest {
     @Test
     void testUpdateExpiredCoupons() {
         // Given
-        List<UserCoupon> couponsBeforeUpdate = couponRepository.findAll();
+        List<UserCoupon> couponsBeforeUpdate = userCouponRepository.findAll();
         assertThat(couponsBeforeUpdate)
                 .isNotEmpty()
                 .anyMatch(coupon -> coupon.getEndDate().isBefore(LocalDate.now()));
 
         // When
-        couponRepository.updateExpiredCoupons();
+        userCouponRepository.updateExpiredCoupons();
         entityManager.flush();
         entityManager.clear();
 
         // Then
-        List<UserCoupon> updatedCoupons = couponRepository.findAll();
+        List<UserCoupon> updatedCoupons = userCouponRepository.findAll();
         assertThat(updatedCoupons)
                 .isNotEmpty()
                 .allMatch(coupon -> {
@@ -195,7 +195,7 @@ class CouponRepositoryTest {
     @Test
     void testDeleteExpiredCoupons() {
         // 만료된 쿠폰 삭제
-        couponRepository.deleteExpiredCoupons(
+        userCouponRepository.deleteExpiredCoupons(
                 CouponState.USED,
                 CouponState.TIMEOUT,
                 LocalDate.now().minusDays(90)
@@ -204,7 +204,7 @@ class CouponRepositoryTest {
         entityManager.flush();
         entityManager.clear();
 
-        List<UserCoupon> coupons = couponRepository.findAll();
+        List<UserCoupon> coupons = userCouponRepository.findAll();
         assertThat(coupons).hasSize(2); // 현재 테스트 데이터에는 조건에 맞는 삭제 없음
     }
 
@@ -215,7 +215,7 @@ class CouponRepositoryTest {
         List<Long> categoryIds = List.of(1L, 2L); // 테스트 카테고리 ID 리스트
         int totalPrice = 25000; // 테스트 가격
 
-        List<UserCoupon> availableCoupons = couponRepository.
+        List<UserCoupon> availableCoupons = userCouponRepository.
                 findAvailableCoupons(userId, bookId, categoryIds, totalPrice);
 
 
@@ -229,7 +229,7 @@ class CouponRepositoryTest {
         categoryIds = List.of(1L, 2L);
         totalPrice = 5000;
 
-        List<UserCoupon> availableCoupons2 = couponRepository.
+        List<UserCoupon> availableCoupons2 = userCouponRepository.
                 findAvailableCoupons(userId, bookId, categoryIds, totalPrice);
 
 

@@ -22,7 +22,7 @@ public class AdminCouponService {
     private static final Logger USER_LOG = LoggerFactory.getLogger("user-logger");
 
     private final CouponPolicyRepository couponPolicyRepository;
-    private final CouponRepository couponRepository;
+    private final UserCouponRepository userCouponRepository;
     private final DisCountRuleRepository disCountRuleRepository;
     private  final CategoryPolicyRepository categoryPolicyRepository;
     private  final BookPolicyRepository bookPolicyRepository;
@@ -37,15 +37,15 @@ public class AdminCouponService {
         List<Long> userIds = updateUserCouponByUserIdDto.getUserIds();
 
         if (couponState != null) {
-            couponRepository.updateCouponStateByUserIds(couponState, userIds);
+            userCouponRepository.updateCouponStateByUserIds(couponState, userIds);
         }
 
         if (policyId != null) {
-            couponRepository.updateCouponPolicyByUserIds(policyId, userIds);
+            userCouponRepository.updateCouponPolicyByUserIds(policyId, userIds);
         }
 
         if (endDate != null) {
-            couponRepository.updateCouponEndDateByUserIds(endDate, userIds);
+            userCouponRepository.updateCouponEndDateByUserIds(endDate, userIds);
         }
 
     }
@@ -79,7 +79,7 @@ public class AdminCouponService {
                     })
                     .toList();
 
-            couponRepository.saveAll(newCoupons); // 한 번에 저장
+            userCouponRepository.saveAll(newCoupons); // 한 번에 저장
 
             return true; // 성공적으로 저장되면 true 반환
         } catch (Exception e) {
@@ -92,7 +92,7 @@ public class AdminCouponService {
     @Transactional(readOnly = true)
     public boolean existWelcomeCoupon(Long userId, Long policyId){
 
-        return couponRepository.existsByUserIdAndPolicyId(userId, policyId);
+        return userCouponRepository.existsByUserIdAndPolicyId(userId, policyId);
     }
 
     //쿠폰 정책 생성(쿠폰계산 및 쿠폰 정책 개체 생성)

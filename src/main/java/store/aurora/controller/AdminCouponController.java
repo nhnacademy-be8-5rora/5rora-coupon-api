@@ -10,7 +10,7 @@ import store.aurora.service.AdminCouponService;
 //관리자용 쿠폰 생성 및 배포용
 //관리자를 통해서 새 쿠폰을 데이터베이스에 저장하기 때문에 유효성, 무결성 중요(@Validated 사용)
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/api/coupon/admin")
 @RequiredArgsConstructor
 public class AdminCouponController {
 

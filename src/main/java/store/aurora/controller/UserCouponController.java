@@ -12,7 +12,7 @@ import store.aurora.service.CouponService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/coupon")
+@RequestMapping("/api/coupon")
 @RequiredArgsConstructor
 public class UserCouponController {
 

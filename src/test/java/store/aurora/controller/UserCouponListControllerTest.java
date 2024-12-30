@@ -41,7 +41,7 @@ class UserCouponListControllerTest {
     private CouponListService couponListService;
 
     @Autowired
-    private CouponRepository couponRepository;
+    private UserCouponRepository userCouponRepository;
 
     @Autowired
     private CouponPolicyRepository couponPolicyRepository;
@@ -62,8 +62,8 @@ class UserCouponListControllerTest {
 
         // discountRule 설정
         DiscountRule discountRule = new DiscountRule();
-        discountRule.setSaleAmount(10000);
-        discountRule.setNeedCost(20000);
+        discountRule.setSaleAmount(10000L);
+        discountRule.setNeedCost(20000L);
         discountRule = discountRuleRepository.save(discountRule);
 
         // CouponPolicy 설정
@@ -100,8 +100,8 @@ class UserCouponListControllerTest {
         coupon2.setEndDate(LocalDate.now().plusDays(5));  // 아직 만료되지 않음
         coupon2.setPolicy(couponPolicy);  // CouponPolicy 설정
 
-        couponRepository.save(coupon1);
-        couponRepository.save(coupon2);
+        userCouponRepository.save(coupon1);
+        userCouponRepository.save(coupon2);
     }
 
     // 사용자 쿠폰 목록 조회 테스트
@@ -110,7 +110,7 @@ class UserCouponListControllerTest {
 
         Long userId = 1L;
 
-        List<UserCoupon> userCoupon = couponRepository.findByUserId(userId);
+        List<UserCoupon> userCoupon = userCouponRepository.findByUserId(userId);
 
         Mockito.when(couponListService.getCouponList(userId))
                 .thenReturn(userCoupon);
@@ -135,7 +135,7 @@ class UserCouponListControllerTest {
 
         long userId = 1L;
 
-        List<UserCoupon> userCoupon = couponRepository.findByUserId(userId);
+        List<UserCoupon> userCoupon = userCouponRepository.findByUserId(userId);
 
         List<ProductInfoDTO> productInfoDTOList = new ArrayList<>();
         productInfoDTOList.add(new ProductInfoDTO(1L, List.of(1L), 1L, 1000));

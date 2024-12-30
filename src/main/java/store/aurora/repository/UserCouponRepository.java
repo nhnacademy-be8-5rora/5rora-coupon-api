@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface CouponRepository extends JpaRepository<UserCoupon, Long> {
+public interface UserCouponRepository extends JpaRepository<UserCoupon, Long> {
 
     List<UserCoupon> findByUserId(Long userId);
 

@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import store.aurora.domain.CouponState;
-import store.aurora.repository.CouponRepository;
+import store.aurora.repository.UserCouponRepository;
 
 import java.time.LocalDate;
 
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.*;
 class ExpiredUserCouponServiceTest {
 
     @MockBean
-    private CouponRepository couponRepository;
+    private UserCouponRepository userCouponRepository;
 
     @Autowired
     private ExpiredUserCouponService expiredUserCouponService;
@@ -33,7 +33,7 @@ class ExpiredUserCouponServiceTest {
         expiredUserCouponService.updateExpiredCoupons();
 
         // Then: couponRepository.updateExpiredCoupons()가 호출된 것을 검증
-        verify(couponRepository, times(1)).updateExpiredCoupons();
+        verify(userCouponRepository, times(1)).updateExpiredCoupons();
     }
 
     @Test
@@ -45,7 +45,7 @@ class ExpiredUserCouponServiceTest {
         expiredUserCouponService.deleteExpiredCoupons();
 
         // Then: couponRepository.deleteExpiredCoupons()가 호출된 것을 검증
-        verify(couponRepository, times(1))
+        verify(userCouponRepository, times(1))
                 .deleteExpiredCoupons(CouponState.USED, CouponState.TIMEOUT, ninetyDaysAgo);
 
     }

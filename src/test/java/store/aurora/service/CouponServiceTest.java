@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import store.aurora.domain.CouponState;
 import store.aurora.domain.UserCoupon;
-import store.aurora.repository.CouponRepository;
+import store.aurora.repository.UserCouponRepository;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.List;
 class CouponServiceTest {
 
     @MockBean
-    private CouponRepository couponRepository;
+    private UserCouponRepository userCouponRepository;
 
     @Autowired
     private CouponService couponService;
@@ -48,14 +48,14 @@ class CouponServiceTest {
     void testRefund_Success() {
         // Given: Setup mock behavior
         List<Long> userCouponIds = Arrays.asList(1L, 2L);
-        when(couponRepository.findAllById(userCouponIds)).thenReturn(Arrays.asList(userCoupon1, userCoupon2));
+        when(userCouponRepository.findAllById(userCouponIds)).thenReturn(Arrays.asList(userCoupon1, userCoupon2));
 
         // When: Execute refund
         couponService.refund(userCouponIds);
 
         // Then: Verify the interactions and assert state changes
-        verify(couponRepository).findAllById(userCouponIds);  // Verify repository was called
-        verify(couponRepository).saveAll(anyList()); // Ensure that saveAll was called to persist changes
+        verify(userCouponRepository).findAllById(userCouponIds);  // Verify repository was called
+        verify(userCouponRepository).saveAll(anyList()); // Ensure that saveAll was called to persist changes
 
         // Verify state changes using assertThat
         assertThat(userCoupon1.getCouponState()).isEqualTo(CouponState.LIVE);
@@ -70,14 +70,14 @@ class CouponServiceTest {
         List<Long> userCouponIds = Arrays.asList(1L, 2L);
 
         //findAllById 실행시에 빈 리스트 return
-        when(couponRepository.findAllById(userCouponIds)).thenReturn(List.of());
+        when(userCouponRepository.findAllById(userCouponIds)).thenReturn(List.of());
 
         // When & Then: Expect an IllegalArgumentException
         assertThatThrownBy(() -> couponService.refund(userCouponIds))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("No coupons found for the provided IDs.");
 
-        verify(couponRepository).findAllById(userCouponIds);
+        verify(userCouponRepository).findAllById(userCouponIds);
     }
 
     @Test
@@ -87,14 +87,14 @@ class CouponServiceTest {
         notUsedCoupon.setCouponId(3L);
         notUsedCoupon.setCouponState(CouponState.LIVE);
         List<Long> userCouponIds = List.of(3L);
-        when(couponRepository.findAllById(userCouponIds)).thenReturn(List.of(notUsedCoupon));
+        when(userCouponRepository.findAllById(userCouponIds)).thenReturn(List.of(notUsedCoupon));
 
         // When & Then: Expect an IllegalStateException for trying to refund a not-used coupon
         assertThatThrownBy(() -> couponService.refund(userCouponIds))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessage("Cannot refund not used coupon: ID = LIVE");
 
-        verify(couponRepository).findAllById(userCouponIds);  // Ensure repository was called
-        verifyNoMoreInteractions(couponRepository);  // No further interactions should occur
+        verify(userCouponRepository).findAllById(userCouponIds);  // Ensure repository was called
+        verifyNoMoreInteractions(userCouponRepository);  // No further interactions should occur
     }
 }

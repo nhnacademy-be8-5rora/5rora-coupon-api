@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/coupon")
 @RequiredArgsConstructor
 public class WelcomeCouponController {
 

@@ -25,7 +25,7 @@ class AdminCouponServiceTest {
 
     @Autowired private AdminCouponService adminCouponService;
     @MockBean private CouponPolicyRepository couponPolicyRepository;
-    @MockBean private CouponRepository couponRepository;
+    @MockBean private UserCouponRepository userCouponRepository;
     @MockBean private DisCountRuleRepository disCountRuleRepository;
     @MockBean private CategoryPolicyRepository categoryPolicyRepository;
     @MockBean private BookPolicyRepository bookPolicyRepository;
@@ -58,7 +58,7 @@ class AdminCouponServiceTest {
         // when
         adminCouponService.couponUpdate(dto);
 
-        verify(couponRepository).updateCouponStateByUserIds(stateCaptor.capture(), userIdsCaptor.capture());
+        verify(userCouponRepository).updateCouponStateByUserIds(stateCaptor.capture(), userIdsCaptor.capture());
 
         assertThat(stateCaptor.getValue()).isEqualTo(CouponState.LIVE);
         assertThat(userIdsCaptor.getValue()).containsExactly(1L, 2L, 3L);
@@ -78,7 +78,7 @@ class AdminCouponServiceTest {
         adminCouponService.couponUpdate(dto);
 
         // then
-        verify(couponRepository).updateCouponPolicyByUserIds(policyIdCaptor.capture(), userIdsCaptor.capture());
+        verify(userCouponRepository).updateCouponPolicyByUserIds(policyIdCaptor.capture(), userIdsCaptor.capture());
 
         assertThat(policyIdCaptor.getValue()).isEqualTo(10L);
         assertThat(userIdsCaptor.getValue()).containsExactly(4L, 5L);
@@ -99,7 +99,7 @@ class AdminCouponServiceTest {
         adminCouponService.couponUpdate(dto);
 
         // then
-        verify(couponRepository).updateCouponEndDateByUserIds(endDateCaptor.capture(), userIdsCaptor.capture());
+        verify(userCouponRepository).updateCouponEndDateByUserIds(endDateCaptor.capture(), userIdsCaptor.capture());
 
         assertThat(endDateCaptor.getValue()).isEqualTo(endDate);
         assertThat(userIdsCaptor.getValue()).containsExactly(6L, 7L);
@@ -125,17 +125,17 @@ class AdminCouponServiceTest {
 
         // then
         // 상태 변경 검증
-        verify(couponRepository).updateCouponStateByUserIds(stateCaptor.capture(), userIdsCaptor.capture());
+        verify(userCouponRepository).updateCouponStateByUserIds(stateCaptor.capture(), userIdsCaptor.capture());
         assertThat(stateCaptor.getValue()).isEqualTo(CouponState.TIMEOUT);
         assertThat(userIdsCaptor.getValue()).containsExactly(8L, 9L);
 
         // 정책 ID 변경 검증
-        verify(couponRepository).updateCouponPolicyByUserIds(policyIdCaptor.capture(), userIdsCaptor.capture());
+        verify(userCouponRepository).updateCouponPolicyByUserIds(policyIdCaptor.capture(), userIdsCaptor.capture());
         assertThat(policyIdCaptor.getValue()).isEqualTo(20L);
         assertThat(userIdsCaptor.getValue()).containsExactly(8L, 9L);
 
         // 종료 날짜 변경 검증
-        verify(couponRepository).updateCouponEndDateByUserIds(endDateCaptor.capture(), userIdsCaptor.capture());
+        verify(userCouponRepository).updateCouponEndDateByUserIds(endDateCaptor.capture(), userIdsCaptor.capture());
         assertThat(endDateCaptor.getValue()).isEqualTo(endDate);
         assertThat(userIdsCaptor.getValue()).containsExactly(8L, 9L);
     }
@@ -168,7 +168,7 @@ class AdminCouponServiceTest {
 
         // then
         assertThat(result).isTrue();
-        verify(couponRepository).saveAll(userCouponCaptor.capture());
+        verify(userCouponRepository).saveAll(userCouponCaptor.capture());
         List<UserCoupon> capturedCoupons = userCouponCaptor.getValue();
 
         // UserCoupon이 3개가 생성된 것을 확인
@@ -224,7 +224,7 @@ class AdminCouponServiceTest {
 
         // mock
         when(couponPolicyRepository.findById(policyId)).thenReturn(Optional.of(couponPolicy));
-        when(couponRepository.saveAll(anyList())).thenThrow(new RuntimeException("Database error"));
+        when(userCouponRepository.saveAll(anyList())).thenThrow(new RuntimeException("Database error"));
 
         RequestUserCouponDTO requestDto = new RequestUserCouponDTO();
         requestDto.setUserId(userIds);

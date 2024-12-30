@@ -7,7 +7,7 @@ import store.aurora.domain.CouponState;
 import store.aurora.domain.UserCoupon;
 import store.aurora.dto.ProductInfoDTO;
 import store.aurora.repository.CouponPolicyRepository;
-import store.aurora.repository.CouponRepository;
+import store.aurora.repository.UserCouponRepository;
 import store.aurora.domain.CouponPolicy;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.*;
 class CouponListServiceTest {
 
     @Mock
-    private CouponRepository couponRepository;
+    private UserCouponRepository userCouponRepository;
 
     @Mock
     private CouponPolicyRepository couponPolicyRepository;
@@ -52,7 +52,7 @@ class CouponListServiceTest {
         userCoupon.setCouponState(CouponState.LIVE);
         mockUserCoupons.add(userCoupon);
 
-        when(couponRepository.findByUserId(userId)).thenReturn(mockUserCoupons);
+        when(userCouponRepository.findByUserId(userId)).thenReturn(mockUserCoupons);
 
         // Service method call
         List<UserCoupon> result = couponListService.getCouponList(userId);
@@ -62,7 +62,7 @@ class CouponListServiceTest {
                 .isNotNull()
                 .hasSize(1);
         assertThat(result.getFirst().getCouponState()).isEqualTo(CouponState.LIVE);
-        verify(couponRepository, times(1)).findByUserId(userId);
+        verify(userCouponRepository, times(1)).findByUserId(userId);
     }
 
     @Test
@@ -76,7 +76,7 @@ class CouponListServiceTest {
         mockUserCoupons.add(userCoupon);
 
         // Mock for getAvailableCouponList method
-        when(couponRepository.findAvailableCoupons(userId, 123L, Arrays.asList(1L, 2L), 1000))
+        when(userCouponRepository.findAvailableCoupons(userId, 123L, Arrays.asList(1L, 2L), 1000))
                 .thenReturn(mockUserCoupons);
 
         List<ProductInfoDTO> productInfoDTOList = Collections.singletonList(productInfoDTO);
@@ -91,7 +91,7 @@ class CouponListServiceTest {
         assertThat(result.get(productInfoDTO.getProductId())).hasSize(1);
         assertThat(result.get(productInfoDTO.getProductId()).getFirst().getCouponState()).isEqualTo(CouponState.LIVE);
 
-        verify(couponRepository, times(1)).findAvailableCoupons(userId, 123L, Arrays.asList(1L, 2L), 1000);
+        verify(userCouponRepository, times(1)).findAvailableCoupons(userId, 123L, Arrays.asList(1L, 2L), 1000);
     }
 
     @Test
@@ -105,7 +105,7 @@ class CouponListServiceTest {
         mockUserCoupons.add(userCoupon);
 
         // Mock for getAvailableCouponList
-        when(couponRepository.findAvailableCoupons(userId, 123L, Arrays.asList(1L, 2L), 1000))
+        when(userCouponRepository.findAvailableCoupons(userId, 123L, Arrays.asList(1L, 2L), 1000))
                 .thenReturn(mockUserCoupons);
 
         // Service method call
@@ -117,7 +117,7 @@ class CouponListServiceTest {
                 .hasSize(1);
         assertThat(result.getFirst().getCouponState()).isEqualTo(CouponState.LIVE);
 
-        verify(couponRepository, times(1)).findAvailableCoupons(userId, 123L, Arrays.asList(1L, 2L), 1000);
+        verify(userCouponRepository, times(1)).findAvailableCoupons(userId, 123L, Arrays.asList(1L, 2L), 1000);
     }
 
     @Test
