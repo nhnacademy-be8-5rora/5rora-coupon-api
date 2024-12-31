@@ -19,16 +19,16 @@ public class UserCouponListController {
 
     private final CouponListService couponListService;
 
-    @GetMapping(value = "/couponList/{userId}")
-    public ResponseEntity<List<UserCouponDTO>> couponList(@PathVariable @Valid String userId) {
+    @GetMapping(value = "/couponList")
+    public ResponseEntity<List<UserCouponDTO>> couponList(@RequestHeader(value = "X-USER-ID") String userId) {
         List<UserCouponDTO> userCouponList = couponListService.getCouponList(userId);
 
         return ResponseEntity.ok(userCouponList);
     }
 
     //결제창에서 상품마다 사용가능 쿠폰 리스트 확인(매 상품마다 사용 가능한 쿠폰이 뜨게 해야 됨.
-    @PostMapping(value = "/calculate/{userId}")
-    public ResponseEntity<Map<Long, List<String>>>proCouponList(@PathVariable String userId,
+    @PostMapping(value = "/calculate")
+    public ResponseEntity<Map<Long, List<String>>>proCouponList(@RequestHeader(value = "X-USER-ID") String userId,
                                                           @RequestBody @Validated List<ProductInfoDTO> productInfoDTO) {   //결제 API에서 필요한 값을 받아야함
 
         //orderId에 있는 카테고리, 북 ID을 불러와서 해당 사용자 쿠폰의 쿠폰정책과 비교해서 쓸 있는지 없는지 확인

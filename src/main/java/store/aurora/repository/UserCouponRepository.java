@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public interface UserCouponRepository extends JpaRepository<UserCoupon, Long> {
 
-    List<UserCoupon> findAllById(List<String> ids);
+    List<UserCoupon> findAllByUserId(String id);
 
     List<UserCoupon> findByUserId(String userId);
 

@@ -18,8 +18,8 @@ public class CouponService {
 
     //사용자 쿠폰 환불
     @Transactional
-    public void refund(List<String> userCouponId) {
-        List<UserCoupon> userCoupons = userCouponRepository.findAllById(userCouponId);
+    public void refund(String userCouponId) {
+        List<UserCoupon> userCoupons = userCouponRepository.findAllByUserId(userCouponId);
         if (userCoupons.isEmpty()) {
             throw new IllegalArgumentException("No coupons found for the provided IDs.");
         }
@@ -40,8 +40,8 @@ public class CouponService {
 
     //사용자 쿠폰 사용
     @Transactional
-    public void used(List<Long> userCouponId) {
-        List<UserCoupon> userCoupons = userCouponRepository.findAllById(userCouponId);
+    public void used(String userCouponId) {
+        List<UserCoupon> userCoupons = userCouponRepository.findAllByUserId(userCouponId);
         if (userCoupons.isEmpty()) {
             throw new IllegalArgumentException("No coupons found for the provided IDs.");
         }

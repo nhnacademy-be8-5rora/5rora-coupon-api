@@ -18,7 +18,7 @@ public class AdminCouponController {
 
     // 쿠폰정책 생성 (관리자) -> 쿠폰 정책은 생성밖에 안됨(정책 수정, 삭제시 -> 이전에 해당 쿠폰을 가진 유저들이 피해를 볼 수 있음)
     //@Validated 유효 검증(무결성)
-    @PostMapping(value = "/coupon/create")
+    @PostMapping(value = "/create")
     public ResponseEntity<String> couponPolicyCreate(@RequestBody @Validated
                                                          RequestCouponPolicyDTO requestCouponPolicyDTO) {
 
@@ -37,7 +37,7 @@ public class AdminCouponController {
     }
 
     //사용자 쿠폰 생성(특정 한명에게 줄 수 있으며, 특정 조건을 충족한 유저들에게 쿠폰을 뿌릴 수 있도록 함)
-    @PostMapping("/coupon/distribution")
+    @PostMapping("/distribution")
     public ResponseEntity<String> userCouponCreate(@RequestBody @Validated
                                                        RequestUserCouponDTO requestUserCouponDTO) {
 
