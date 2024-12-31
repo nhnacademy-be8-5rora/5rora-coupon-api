@@ -70,7 +70,7 @@ class AdminCouponControllerTest {
     @Test
     void testUserCouponCreate_Success() throws Exception {
         RequestUserCouponDTO requestDto = new RequestUserCouponDTO();
-        requestDto.setUserId(List.of(1L));
+        requestDto.setUserId(List.of("1L"));
         requestDto.setCouponPolicyId(2L);
 
         when(adminCouponService.userCouponCreate(Mockito.any())).thenReturn(true);
@@ -93,7 +93,7 @@ class AdminCouponControllerTest {
         dto.setState(CouponState.USED);  // 쿠폰 상태 변경
         dto.setPolicyId(1L);  // 쿠폰 정책 ID
         dto.setEndDate(LocalDate.now().plusDays(10));  // 만료일 설정
-        dto.setUserIds(Arrays.asList(1L, 2L));  // 수정할 사용자 ID 리스트
+        dto.setUserIds(Arrays.asList("1L", "2L"));  // 수정할 사용자 ID 리스트
 
         // When
         var result = mockMvc.perform(put("/admin/coupon/update/")
