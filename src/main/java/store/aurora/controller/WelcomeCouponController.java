@@ -16,7 +16,7 @@ public class WelcomeCouponController {
     private final AdminCouponService adminCouponService;
 
     // 회원가입 API
-    @PostMapping("/welcomeCoupon")
+    @PostMapping("/welcome")
     public String registerUser(@RequestHeader(value = "X-USER-ID") String userId) {
 
         // 사용자가 이미 Welcome 쿠폰을 보유하고 있는지 확인

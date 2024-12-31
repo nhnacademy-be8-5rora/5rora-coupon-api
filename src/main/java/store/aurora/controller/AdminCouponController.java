@@ -47,7 +47,7 @@ public class AdminCouponController {
     }
 
     // 사용자쿠폰 수정 (관리자)
-    @PutMapping(value = "/coupon/update/")
+    @PutMapping(value = "/update")
     public ResponseEntity<String> userCouponUpdate(@RequestBody @Validated
                                                        UpdateUserCouponByUserIdDto updateUserCouponByUserIdDto) {
 
