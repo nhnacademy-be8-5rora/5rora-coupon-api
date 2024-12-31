@@ -1,10 +1,7 @@
 package store.aurora.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import store.aurora.dto.RequestUserCouponDTO;
 import store.aurora.service.AdminCouponService;
 
@@ -12,15 +9,15 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/coupon")
 @RequiredArgsConstructor
 public class WelcomeCouponController {
 
     private final AdminCouponService adminCouponService;
 
     // 회원가입 API
-    @PostMapping("/welcomeCoupon")
-    public String registerUser(@RequestBody Long userId) {
+    @PostMapping("/welcome")
+    public String registerUser(@RequestHeader(value = "X-USER-ID") String userId) {
 
         // 사용자가 이미 Welcome 쿠폰을 보유하고 있는지 확인
         boolean alreadyHasCoupon = adminCouponService.existWelcomeCoupon(userId, 1L);

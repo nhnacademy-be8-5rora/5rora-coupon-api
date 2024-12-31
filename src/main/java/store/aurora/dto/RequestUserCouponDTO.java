@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 public class RequestUserCouponDTO {
     @NotNull
-    private List<Long> userId;    // 유저 ID 리스트
+    private List<String> userId;    // 유저 ID 리스트
     @NotNull
     private Long couponPolicyId; // 정책 ID
 

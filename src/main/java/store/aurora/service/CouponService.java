@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import store.aurora.domain.CouponState;
 import store.aurora.domain.UserCoupon;
-import store.aurora.repository.CouponRepository;
+import store.aurora.repository.UserCouponRepository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,12 +14,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CouponService {
 
-    private final CouponRepository couponRepository;
+    private final UserCouponRepository userCouponRepository;
 
     //사용자 쿠폰 환불
     @Transactional
-    public void refund(List<Long> userCouponId) {
-        List<UserCoupon> userCoupons = couponRepository.findAllById(userCouponId);
+    public void refund(String userCouponId) {
+        List<UserCoupon> userCoupons = userCouponRepository.findAllByUserId(userCouponId);
         if (userCoupons.isEmpty()) {
             throw new IllegalArgumentException("No coupons found for the provided IDs.");
         }
@@ -34,14 +34,14 @@ public class CouponService {
             userCoupon.setUsedDate(null);    //사용기간 null로 변경
         }
 
-        couponRepository.saveAll(userCoupons); // 상태 변경 후 저장
+        userCouponRepository.saveAll(userCoupons); // 상태 변경 후 저장
 
     }
 
     //사용자 쿠폰 사용
     @Transactional
-    public void used(List<Long> userCouponId) {
-        List<UserCoupon> userCoupons = couponRepository.findAllById(userCouponId);
+    public void used(String userCouponId) {
+        List<UserCoupon> userCoupons = userCouponRepository.findAllByUserId(userCouponId);
         if (userCoupons.isEmpty()) {
             throw new IllegalArgumentException("No coupons found for the provided IDs.");
         }
@@ -55,6 +55,6 @@ public class CouponService {
             userCoupon.setUsedDate(LocalDate.now());
         }
 
-        couponRepository.saveAll(userCoupons); // 상태 변경 후 저장
+        userCouponRepository.saveAll(userCoupons); // 상태 변경 후 저장
     }
 }

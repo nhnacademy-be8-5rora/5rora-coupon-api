@@ -22,7 +22,7 @@ public class AdminCouponService {
     private static final Logger USER_LOG = LoggerFactory.getLogger("user-logger");
 
     private final CouponPolicyRepository couponPolicyRepository;
-    private final CouponRepository couponRepository;
+    private final UserCouponRepository userCouponRepository;
     private final DisCountRuleRepository disCountRuleRepository;
     private  final CategoryPolicyRepository categoryPolicyRepository;
     private  final BookPolicyRepository bookPolicyRepository;
@@ -34,18 +34,18 @@ public class AdminCouponService {
         Long policyId = updateUserCouponByUserIdDto.getPolicyId();
         LocalDate endDate = updateUserCouponByUserIdDto.getEndDate();
 
-        List<Long> userIds = updateUserCouponByUserIdDto.getUserIds();
+        List<String> userIds = updateUserCouponByUserIdDto.getUserIds();
 
         if (couponState != null) {
-            couponRepository.updateCouponStateByUserIds(couponState, userIds);
+            userCouponRepository.updateCouponStateByUserIds(couponState, userIds);
         }
 
         if (policyId != null) {
-            couponRepository.updateCouponPolicyByUserIds(policyId, userIds);
+            userCouponRepository.updateCouponPolicyByUserIds(policyId, userIds);
         }
 
         if (endDate != null) {
-            couponRepository.updateCouponEndDateByUserIds(endDate, userIds);
+            userCouponRepository.updateCouponEndDateByUserIds(endDate, userIds);
         }
 
     }
@@ -54,7 +54,7 @@ public class AdminCouponService {
     @Transactional
     public boolean userCouponCreate(RequestUserCouponDTO requestUserCouponDTO) {
         try {
-            List<Long> userIds = requestUserCouponDTO.getUserId(); // 유저 ID 리스트
+            List<String> userIds = requestUserCouponDTO.getUserId(); // 유저 ID 리스트
             Long policyId = requestUserCouponDTO.getCouponPolicyId(); // 적용할 정책
             CouponState state = requestUserCouponDTO.getState();   // 쿠폰 초기 상태
             LocalDate startDate = requestUserCouponDTO.getStartDate(); // 시작일
@@ -79,7 +79,7 @@ public class AdminCouponService {
                     })
                     .toList();
 
-            couponRepository.saveAll(newCoupons); // 한 번에 저장
+            userCouponRepository.saveAll(newCoupons); // 한 번에 저장
 
             return true; // 성공적으로 저장되면 true 반환
         } catch (Exception e) {
@@ -90,9 +90,9 @@ public class AdminCouponService {
 
     //Welcome 쿠폰 확인
     @Transactional(readOnly = true)
-    public boolean existWelcomeCoupon(Long userId, Long policyId){
+    public boolean existWelcomeCoupon(String userId, Long policyId){
 
-        return couponRepository.existsByUserIdAndPolicyId(userId, policyId);
+        return userCouponRepository.existsByUserIdAndPolicyId(userId, policyId);
     }
 
     //쿠폰 정책 생성(쿠폰계산 및 쿠폰 정책 개체 생성)
