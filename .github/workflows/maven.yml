@@ -19,14 +19,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Set up SSH key and add passphrase
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        eval "$(ssh-agent -s)"  # SSH 에이전트 실행
-        echo "${{ secrets.SSH_KEY_PASSPHRASE }}" | ssh-add ~/.ssh/id_rsa  # SSH 키에 비밀번호 입력
-
     - uses: actions/checkout@v4
     - name: Set up JDK 21
       uses: actions/setup-java@v4
