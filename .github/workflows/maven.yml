@@ -46,6 +46,7 @@ jobs:
 
     - name: Set up SSH key and add passphrase
       run: |
+        mkdir -p ~/.ssh  # .ssh 디렉토리 생성
         echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         echo "${{ secrets.SSH_KEY_PASSPHRASE }}" | ssh-add ~/.ssh/id_rsa
