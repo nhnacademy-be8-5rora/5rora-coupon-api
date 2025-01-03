@@ -7,10 +7,10 @@ spring:
     username: project_be8_5rora
     password: oMyVE2dkskrCXF@t
     driver-class-name: com.mysql.cj.jdbc.Driver
-    #    url: jdbc:mysql://localhost:3306/test?useSSL=false&serverTimezone=UTC
-    #    username: root
-    #    password: 3489
-    #    driver-class-name: com.mysql.cj.jdbc.Driver
+#        url: jdbc:mysql://localhost:3306/test?useSSL=false&serverTimezone=UTC
+#        username: root
+#        password: 3489
+#        driver-class-name: com.mysql.cj.jdbc.Driver
 
     dbcp2:
       initial-size: 5                  # 초기 커넥션 수
