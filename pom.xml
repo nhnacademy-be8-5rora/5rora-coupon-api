@@ -186,7 +186,7 @@
     </dependencies>
 
     <build>
-        <finalName>5rora-shop-api</finalName>
+        <finalName>5rora-coupon-api</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
