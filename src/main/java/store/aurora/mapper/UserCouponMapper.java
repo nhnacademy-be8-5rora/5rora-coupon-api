@@ -1,17 +1,17 @@
 package store.aurora.mapper;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import store.aurora.domain.BookPolicy;
 import store.aurora.domain.CategoryPolicy;
 import store.aurora.domain.UserCoupon;
 import store.aurora.dto.UserCouponDTO;
 import java.util.List;
 
-@RequiredArgsConstructor
+@Component
 public class UserCouponMapper {
 
     // UserCoupon -> UserCouponDTO 변환
-    public static UserCouponDTO toDTO(UserCoupon userCoupon) {
+    public UserCouponDTO toDTO(UserCoupon userCoupon) {
         UserCouponDTO dto = new UserCouponDTO();
 
         dto.setCouponName(userCoupon.getPolicy().getName());

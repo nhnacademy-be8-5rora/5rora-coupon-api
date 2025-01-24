@@ -7,11 +7,10 @@ import store.aurora.domain.CouponPolicy;
 import store.aurora.domain.CouponState;
 import store.aurora.dto.ProductInfoDTO;
 import store.aurora.domain.UserCoupon;
-import store.aurora.dto.UsedCouponDTO;
+import store.aurora.dto.response.UsedCouponDTO;
 import store.aurora.dto.UserCouponDTO;
-import store.aurora.dto.PaymentCouponDTO;
+import store.aurora.dto.response.PaymentCouponDTO;
 import store.aurora.mapper.UserCouponMapper;
-import store.aurora.repository.CouponPolicyRepository;
 import store.aurora.repository.UserCouponRepository;
 
 import java.util.*;
@@ -21,18 +20,7 @@ import java.util.*;
 public class CouponListService {
 
     private final UserCouponRepository userCouponRepository;
-    private final CouponPolicyRepository couponPolicyRepository;
-
-    //사용자ID로 해당 사용자가 가진 사용자 쿠폰 목록 검색
-    @Transactional(readOnly = true)
-    public List<UserCouponDTO> getCouponList(String userId) {
-        List<UserCoupon> userCoupons =userCouponRepository.findByUserId(userId);
-
-        // List<UserCoupon>을 List<UserCouponDTO>로 변환
-        return userCoupons.stream()
-                .map(UserCouponMapper::toDTO) // toDTO 메서드를 사용하여 변환
-                .toList();
-    }
+    private final UserCouponMapper userCouponMapper;
 
     //결제창에서 각 상품별 사용 가능 쿠폰 목록
     @Transactional(readOnly = true)
@@ -73,7 +61,7 @@ public class CouponListService {
         return productMap;
     }
 
-    private boolean isCouponAvailableForProduct(CouponPolicy couponPolicy, ProductInfoDTO productInfo) {
+    public boolean isCouponAvailableForProduct(CouponPolicy couponPolicy, ProductInfoDTO productInfo) {
         // 쿠폰 정책에서 bookId가 null이 아니면 bookId가 일치하는지 확인
         if (couponPolicy.getBookPolicies() != null && !couponPolicy.getBookPolicies().isEmpty()) {
             boolean matches = couponPolicy.getBookPolicies().stream()
@@ -93,10 +81,15 @@ public class CouponListService {
         return true;  // 모든 조건을 통과하면 쿠폰 사용 가능
     }
 
-    //쿠폰 정책 리스트 출력
+    //사용자ID로 해당 사용자가 가진 사용자 쿠폰 목록 검색
     @Transactional(readOnly = true)
-    public List<CouponPolicy> couponPolicyList() {
-        return couponPolicyRepository.findAll();
+    public List<UserCouponDTO> getCouponList(String userId) {
+        List<UserCoupon> userCoupons =userCouponRepository.findByUserId(userId);
+
+        // List<UserCoupon>을 List<UserCouponDTO>로 변환
+        return userCoupons.stream()
+                .map(userCouponMapper::toDTO) // toDTO 메서드를 사용하여 변환
+                .toList();
     }
 
     @Transactional(readOnly = true)
@@ -107,8 +100,9 @@ public class CouponListService {
                 .map(userCoupon -> new UsedCouponDTO(
                         userCoupon.getPolicy().getName(),
                         userCoupon.getUsedDate(),
-                        userCoupon.getEndDate(),
-                        userCoupon.getStartDate()))
+                        userCoupon.getStartDate(),
+                        userCoupon.getEndDate())
+                        )
                 .toList();
     }
 }

@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import store.aurora.dto.PaymentCouponDTO;
+import store.aurora.dto.response.PaymentCouponDTO;
 import store.aurora.dto.ProductInfoDTO;
 import store.aurora.service.CouponListService;
 import store.aurora.service.CouponService;
@@ -23,7 +23,7 @@ public class UserCouponController {
 
     //사용자 쿠폰 환불시 해당 사용자 쿠폰 상태 변경 및 데이터베이스 동기화
     @PostMapping(value = "/refund")
-    public ResponseEntity<String> userCouponRefund(@RequestBody @Valid List<Long> userCouponIds) {
+    public ResponseEntity<String> refund(@RequestBody @Valid List<Long> userCouponIds) {
 
         couponService.refund(userCouponIds);
 
@@ -32,7 +32,7 @@ public class UserCouponController {
 
     //사용자 쿠폰 사용시 해당 사용자 쿠폰 상태 변경 및 데이터베이스 동기화
     @PostMapping(value = "/using")
-    public ResponseEntity<String> userCouponUsing(@RequestBody @Valid Long couponId){
+    public ResponseEntity<String> used(@RequestBody @Valid Long couponId){
 
         couponService.used(couponId);
 

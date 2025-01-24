@@ -9,14 +9,16 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import store.aurora.dto.UsedCouponDTO;
+import store.aurora.dto.response.UsedCouponDTO;
 import store.aurora.dto.UserCouponDTO;
 import store.aurora.service.CouponListService;
 
 import java.time.LocalDate;
 import java.util.List;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(UserCouponListController.class)
 @ExtendWith(SpringExtension.class)
@@ -33,11 +35,18 @@ class UserCouponListControllerTest {
     void testGetCouponList() throws Exception {
         // Given
         String userId = "123";
-        List<UserCouponDTO> userCouponList = List.of(
-                new UserCouponDTO("Spring Coupon", 100, 500, 10, 50,
-                        LocalDate.of(2025, 1, 1), LocalDate.of(2025, 12, 31),
-                        List.of(1L, 2L), List.of(10L, 20L))
-        );
+        UserCouponDTO userCoupon = new UserCouponDTO();
+        userCoupon.setCouponName("Spring Coupon");
+        userCoupon.setNeedCost(100);
+        userCoupon.setMaxSale(500);
+        userCoupon.setSalePercent(10);
+        userCoupon.setSaleAmount(50);
+        userCoupon.setStartDate(LocalDate.of(2025, 1, 1));
+        userCoupon.setEndDate(LocalDate.of(2025, 12, 31));
+        userCoupon.setBookIdList(List.of(1L, 2L));
+        userCoupon.setCategoryIdList(List.of(10L, 20L));
+
+        List<UserCouponDTO> userCouponList = List.of(userCoupon);
 
         Mockito.when(couponListService.getCouponList(userId)).thenReturn(userCouponList);
 
